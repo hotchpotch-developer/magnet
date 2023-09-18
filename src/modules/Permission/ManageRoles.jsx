@@ -128,11 +128,6 @@ const ManageRoles = () => {
             redrawDataTable(dt);
         }
 
-        {(!$('.dt-custom-filter button').hasClass('add-new')) &&
-            $('.dt-custom-filter').append(`<button type="button" class="btn btn-sm btn-info add-btn add-new me-3" onclick="resetData()" data-bs-toggle="modal" data-bs-target="#addRole" >
-                <i class="ri-user-add-line"></i> Add New
-            </button>`)
-        }
     }, [dt, reload, context])
 
     return (
