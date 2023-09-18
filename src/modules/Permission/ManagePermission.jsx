@@ -5,7 +5,6 @@ import { Context } from "../../components/Context";
 import { now } from "lodash";
 import { createRoot } from "react-dom/client";
 import { CREATE_PERMISSION, DELETE_PERMISSION, EDIT_PERMISSION, PERMISSION_LIST } from "../../components/APIRoutes";
-import $ from 'jquery'
 import * as Elements from "../../components/Elements";
 import { fetchData, initialFormState, validateForm } from "../../components/Helper";
 

@@ -5,7 +5,6 @@ import { now } from 'lodash';
 import { ASSIGN_PERMISSION, COMMON_DROPDOWN, CREATE_ROLE, DELETE_ROLE, EDIT_ROLE, ROLE_LIST } from "../../components/APIRoutes";
 import { Context } from '../../components/Context'
 import { createRoot } from "react-dom/client"
-import $ from 'jquery'
 import * as Elements from "../../components/Elements";
 import { fetchData, initialFormState, validateForm } from "../../components/Helper";
 
