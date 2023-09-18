@@ -8342,8 +8342,6 @@ button.gridjs-sort-asc, button.gridjs-sort-desc {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
 }
 .gridjs-td .gridjs-checkbox[type=checkbox] {
     border-radius: .25em;
@@ -14634,7 +14632,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .dt-custom-filter {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     flex-flow: row-reverse;
 }
 
