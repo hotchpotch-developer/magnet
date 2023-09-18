@@ -42,7 +42,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link menu-link" to="#managerMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="managerMenu">
+                                <Link className="nav-link menu-link" to="#managerMenu" data-bs-toggle="collapse" role="button" aria-controls="managerMenu">
                                     <i className="ri-admin-line"></i> <span data-key="t-apps">Permission</span>
                                 </Link>
                                 <div className="collapse menu-dropdown" id="managerMenu">
@@ -60,7 +60,7 @@ const Navbar = () => {
                                 </div>
                             </li> 
                             <li className="nav-item">
-                                <Link className="nav-link menu-link" to="#managerMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="managerMenu">
+                                <Link className="nav-link menu-link" to="#managerMenu" data-bs-toggle="collapse" role="button" aria-controls="managerMenu">
                                     <i className="ri-team-line"></i> <span data-key="t-apps">Teams</span>
                                 </Link>
                                 <div className="collapse menu-dropdown" id="managerMenu">
@@ -81,7 +81,7 @@ const Navbar = () => {
                                 </div>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="recruiterMenu">
+                                <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
                                     <i className="ri-briefcase-2-line"></i> <span data-key="t-apps">Post Job</span>
                                 </Link>
                                 <div className="collapse menu-dropdown" id="recruiterMenu">
@@ -96,7 +96,7 @@ const Navbar = () => {
                                 </div>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="recruiterMenu">
+                                <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
                                     <i className="ri-user-2-line"></i> <span data-key="t-apps">Candidates</span>
                                 </Link>
                                 <div className="collapse menu-dropdown" id="recruiterMenu">

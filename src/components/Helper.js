@@ -82,7 +82,6 @@ export const validateForm = (e, form_id = false) => {
 export const showAlertMsg = (data, form_id = false) => {
     if (data.error || data.success) {
         const idGenerate = Math.floor((Math.random() * 1000000000) + 1);
-        var seticon = data.success ? 'squarecheck' : data.error ? 'cancelcircle' : 'bellfill';
 
         const htmlToast = `<div id="${idGenerate}" class="toast fade toast-${data.success ? 'success' : 'danger'}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay=${form_id === 'studentForm' ? 8000 : 4000}>
             <div class="toast-body first-text-uppercase">

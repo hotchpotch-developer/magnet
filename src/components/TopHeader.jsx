@@ -75,7 +75,7 @@ const TopHeader = () => {
                         <div className="d-flex align-items-center">
 
                             <div className="dropdown d-md-none topbar-head-dropdown header-item">
-                                <button type="button" className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <button type="button" className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" >
                                     <i className="bx bx-search fs-22"></i>
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
@@ -91,7 +91,7 @@ const TopHeader = () => {
                             </div>
 
                             <div className="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
-                                <button type="button" className={`btn btn-icon btn-topbar btn-ghost-secondary rounded-circle ${notificationDD ? 'show' : ''}`} id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded={`${notificationDD ? true : false}`} onClick={() => bellDropDown()}>
+                                <button type="button" className={`btn btn-icon btn-topbar btn-ghost-secondary rounded-circle ${notificationDD ? 'show' : ''}`} id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" onClick={() => bellDropDown()}>
                                     <i className='bx bx-bell fs-22'></i>
                                     <span className="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">3<span className="visually-hidden">unread messages</span></span>
                                 </button>
@@ -355,7 +355,7 @@ const TopHeader = () => {
                             </div>
 
                             <div className="dropdown ms-sm-3 header-item topbar-user">
-                                <button type="button" className={`btn ${dropDown ? 'show' : ''}`} id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded={`${dropDown ? true : false}`} onClick={() => profileDropDown()}>
+                                <button type="button" className={`btn ${dropDown ? 'show' : ''}`} id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" onClick={() => profileDropDown()}>
                                     <span className="d-flex align-items-center">
                                         <img className="rounded-circle header-profile-user" src="/images/avatar-1.jpg" alt="Header Avatar" />
                                             <span className="text-start ms-xl-2">
