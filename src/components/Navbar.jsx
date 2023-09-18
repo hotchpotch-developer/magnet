@@ -111,19 +111,9 @@ const Navbar = () => {
                                 </div>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="recruiterMenu">
+                                <Link className="nav-link menu-link" to="/common-setting">
                                     <i className="ri-list-settings-line"></i> <span data-key="t-apps">Common Settings</span>
                                 </Link>
-                                <div className="collapse menu-dropdown" id="recruiterMenu">
-                                    <ul className="nav nav-sm flex-column">
-                                        <li className="nav-item">
-                                            <Link to="/manage-states" className="nav-link" data-key="t-calendar"> Manage States </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="/manage-locations" className="nav-link" data-key="t-chat"> Manage Locations </Link>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link menu-link" to="/">

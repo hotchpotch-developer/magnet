@@ -6,12 +6,12 @@ import Login from "../modules/Auth/Login";
 import ForgotPassword from "../modules/Auth/ForgotPassword";
 import Dashboard from "../modules/Dashboard/Dashboard";
 import CreateManager from "../modules/Manager/CreateManager";
-import ManageList from "../modules/CommonSettings/ManagesStates/ManageList";
 import { fetchData } from "./Helper";
 import { GET_AUTH_INFO } from "./APIRoutes";
 import ErrorPage from "./ErrorPage";
 import ManageRoles from "../modules/Permission/ManageRoles";
 import ManagePermission from "../modules/Permission/ManagePermission";
+import SettingMaster from "../modules/CommonSettings/ManagesStates/SettingMaster";
 
 
 const Routing = () => {
@@ -51,7 +51,7 @@ const Routing = () => {
 
                         {/* Common Settings Routes */}
 
-                        <Route caseSensitive={false} path="/manage-states" element={ <ManageList />} />
+                        <Route caseSensitive={false} path="/common-setting" element={ <SettingMaster /> } />
 
                     </Route>
                 }
