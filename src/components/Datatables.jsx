@@ -196,6 +196,7 @@ export const redrawDataTable = (dt) => {
 export const reloadUrlDataTable = (dt, url) => {
     if ($.fn.DataTable.isDataTable('#wt_datatable_' + dt.dt_name) && url) {
         $('#wt_datatable_' + dt.dt_name).DataTable().clear().ajax.url(ENDPOINT + url).load()
+        $('.dataTables_paginate').addClass('pagination-custom');
     } else {
         initDataTable(dt)
     }

@@ -14632,7 +14632,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .dt-custom-filter {
     display: flex;
-    justify-content: flex-end;
     flex-flow: row-reverse;
 }
 
