@@ -56,10 +56,9 @@ export const AddButtonModal = (props) => {
 
 
 export const EditButtonModal = (props) => {
-    const { t } = useTranslation();
     return (
-        <button className="btn btn-sm btn-outline-secondary me-1 action-btn" data-bs-toggle="modal" data-bs-target={props.modal_id} onClick={props.action ?? null}>
-            <i className="bi bi-pencil-fill"></i>
+        <button id={props.id ?? null} type="button" className="btn btn-soft-success" data-bs-target={props.modalId} data-bs-toggle="modal" onClick={props.action ?? null} title={props.title ?? ''}>
+            <i className="ri-pencil-fill fs-5"></i>
         </button>
     )
 }
