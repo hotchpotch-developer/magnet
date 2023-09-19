@@ -179,6 +179,7 @@ export const initDataTable = (dt) => {
 export const reloadDataTable = (dt) => {
     if ($.fn.DataTable.isDataTable('#wt_datatable_' + dt.dt_name)) {
         $('#wt_datatable_' + dt.dt_name).DataTable().clear().draw(null, false)
+        $('.dataTables_paginate').addClass('pagination-custom');
     } else {
         initDataTable(dt)
     }
