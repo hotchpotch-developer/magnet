@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DEPARTMENT_LIST } from "../../../components/APIRoutes";
-import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Department = (props) => {
@@ -34,6 +34,8 @@ const Department = (props) => {
         if (props.activeTab === 'department' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, DEPARTMENT_LIST);
+        }else{
+            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { REMARK_LIST } from "../../../components/APIRoutes";
-import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Remark = (props) => {
@@ -34,6 +34,8 @@ const Remark = (props) => {
         if (props.activeTab === 'remark' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, REMARK_LIST);
+        }else{
+            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])

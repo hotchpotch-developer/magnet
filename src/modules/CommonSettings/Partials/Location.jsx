@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LOCATION_LIST } from "../../../components/APIRoutes";
-import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Location = (props) => {
@@ -34,6 +34,8 @@ const Location = (props) => {
         if (props.activeTab === 'location' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, LOCATION_LIST);
+        }else{
+            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])

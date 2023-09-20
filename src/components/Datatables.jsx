@@ -13,6 +13,7 @@ export const initDataTable = (dt) => {
     
     if (typeof $ !== "undefined" && $.fn.dataTable) {
         var all_settings = $($.fn.dataTable.tables()).DataTable().settings();
+        $('.dataTables_paginate').addClass('pagination-custom');
         for (var i = 0, settings; (settings = all_settings[i]); ++i) {
             if (settings.jqXHR)
                 settings.jqXHR.abort();
@@ -179,7 +180,6 @@ export const initDataTable = (dt) => {
 export const reloadDataTable = (dt) => {
     if ($.fn.DataTable.isDataTable('#wt_datatable_' + dt.dt_name)) {
         $('#wt_datatable_' + dt.dt_name).DataTable().clear().draw(null, false)
-        $('.dataTables_paginate').addClass('pagination-custom');
     } else {
         initDataTable(dt)
     }

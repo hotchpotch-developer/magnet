@@ -20,10 +20,8 @@ const SettingMaster = () => {
 
             <div className="row">
                 <div className="col-12">
-                    <h5 className="mb-3">Animation Nav</h5>
                     <div className="card">
                         <div className="card-body">
-                            <p className="text-muted">Use <code>animation-nav</code> class to create animated tabs.</p>
 
                             <ul className="nav nav-pills animation-nav nav-justified gap-2 mb-3" role="tablist">
                                 <li className="nav-item waves-effect waves-light">

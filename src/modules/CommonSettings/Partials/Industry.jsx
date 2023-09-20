@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { INDUSTRY_LIST } from "../../../components/APIRoutes";
-import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Industry = (props) => {
@@ -34,6 +34,8 @@ const Industry = (props) => {
         if (props.activeTab === 'industry' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, INDUSTRY_LIST);
+        }else{
+            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])
