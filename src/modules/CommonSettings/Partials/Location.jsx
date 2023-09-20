@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LOCATION_LIST } from "../../../components/APIRoutes";
-import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Location = (props) => {
@@ -9,7 +9,7 @@ const Location = (props) => {
     const [dt] = useState({
         dt_url: LOCATION_LIST,
         dt_name: 'location-list',
-        dt_export: true,
+        dt_export: false,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Location Name', class: "text-nowrap minw-130px" },
@@ -34,8 +34,6 @@ const Location = (props) => {
         if (props.activeTab === 'location' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, LOCATION_LIST);
-        }else{
-            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])

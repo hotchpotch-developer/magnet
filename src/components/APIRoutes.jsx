@@ -21,7 +21,13 @@ export const ASSIGN_PERMISSION = "assign-permission"
 // Common Settings Routes
 
 export const DEPARTMENT_LIST = "department-list"
+export const ADD_DEPARTMENT = "add-department"
+export const EDIT_DEPARTMENT = "edit-department"
+export const DELETE_DEPARTMENT = "delete-department"
 export const INDUSTRY_LIST = "industry-list"
+export const ADD_INDUSTRY = "add-industry"
+export const EDIT_INDUSTRY = "edit-industry"
+export const DELETE_INDUSTRY = "delete-industry"
 export const LOCATION_LIST = "location-list"
 export const REMARK_LIST = "remark-list"
 export const SOURCE_LIST = "source-list"

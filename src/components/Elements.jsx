@@ -61,7 +61,7 @@ export const loadingButton = () => {
 
 export const ConfirmationModal = (props) => {
     return (
-        <div id="confirmationModal" className="modal fade zoomIn" tabIndex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true" style={{display: 'none'}} data-bs-backdrop="static" >
+        <div id={props.modalId ?? "confirmationModal"} className="modal fade zoomIn" tabIndex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true" style={{display: 'none'}} data-bs-backdrop="static" >
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-body text-center p-5">
