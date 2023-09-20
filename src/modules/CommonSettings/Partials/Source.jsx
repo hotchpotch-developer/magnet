@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { SOURCE_LIST } from "../../../components/APIRoutes";
-import Datatables, { redrawDataTable, reloadUrlDataTable } from "../../../components/Datatables";
+import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 
 const Source = (props) => {
@@ -9,7 +9,7 @@ const Source = (props) => {
     const [dt] = useState({
         dt_url: SOURCE_LIST,
         dt_name: 'source-List',
-        dt_export: true,
+        dt_export: false,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'source', name: 'source', title: 'Source', class: "text-nowrap minw-130px" },
@@ -35,8 +35,6 @@ const Source = (props) => {
         if (props.activeTab === 'source' && !initDataTable) {
             setInitDataTable(true);
             reloadUrlDataTable(dt, SOURCE_LIST);
-        }else{
-            redrawDataTable(dt)
         }
 
     }, [dt, props.activeTab, initDataTable])
