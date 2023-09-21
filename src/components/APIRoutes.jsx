@@ -29,8 +29,17 @@ export const ADD_INDUSTRY = "add-industry"
 export const EDIT_INDUSTRY = "edit-industry"
 export const DELETE_INDUSTRY = "delete-industry"
 export const LOCATION_LIST = "location-list"
+export const ADD_LOCATION = "add-location"
+export const EDIT_LOCATION = "edit-location"
+export const DELETE_LOCATION = "delete-location"
 export const REMARK_LIST = "remark-list"
+export const ADD_REMARK = "add-remark"
+export const EDIT_REMARK = "edit-remark"
+export const DELETE_REMARK = "delete-remark"
 export const SOURCE_LIST = "source-list"
+export const ADD_SOURCE = "add-source"
+export const EDIT_SOURCE = "edit-source"
+export const DELETE_SOURCE = "delete-source"
 
 // Common Routes
 
