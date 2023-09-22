@@ -107,9 +107,11 @@ const Industry = (props) => {
     return (
 
         <>
-            <button type="button" className="btn btn-soft-success" data-bs-target="#addIndustry" data-bs-toggle="modal" title="Add Industry">
-                <i className="add-fill fs-5"></i>Add
-            </button>
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addIndustry" data-bs-toggle="modal" title="Add Industry">
+                    <i className="ri-add-fill fs-5"></i>Add Industry
+                </button>
+            </div>
             <Datatables dt_name="industry-list" dataPageLength="15" />
             <Elements.ModalSection modalId="addIndustry" title={`${edit ? 'Update Industry' : 'Add Industry'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="industry-form">
                 <form className="needs-validation" noValidate id="industry-form">

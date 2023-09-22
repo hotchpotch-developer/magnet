@@ -104,9 +104,11 @@ const Location = (props) => {
     return (
 
         <>
-            <button type="button" className="btn btn-soft-success" data-bs-target="#addLocation" data-bs-toggle="modal" title="Add Location">
-                <i className="add-fill fs-5"></i>Add
-            </button>
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addLocation" data-bs-toggle="modal" title="Add Location">
+                    <i className="ri-add-fill fs-5"></i>Add Location
+                </button>
+            </div>
             <Datatables dt_name="location-list" dataPageLength="15" />
             <Elements.ModalSection modalId="addLocation" title={`${edit ? 'Update Location' : 'Add Location'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="location-form">
                 <form className="needs-validation" noValidate id="location-form">

@@ -107,9 +107,11 @@ const Source = (props) => {
     return (
 
         <>
-            <button type="button" className="btn btn-soft-success" data-bs-target="#addSource" data-bs-toggle="modal" title="Add Source">
-                <i className="add-fill fs-5"></i>Add
-            </button>
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addSource" data-bs-toggle="modal" title="Add Source">
+                    <i className="ri-add-fill fs-5"></i>Add Source
+                </button>
+            </div>
             <Datatables dt_name="source-List" dataPageLength="15" />
             <Elements.ModalSection modalId="addSource" title={`${edit ? 'Update Source' : 'Add Source'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="source-form">
                 <form className="needs-validation" noValidate id="source-form">

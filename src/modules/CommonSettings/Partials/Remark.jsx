@@ -105,9 +105,11 @@ const Remark = (props) => {
     return (
 
         <>
-            <button type="button" className="btn btn-soft-success" data-bs-target="#addRemark" data-bs-toggle="modal" title="Add Remark">
-                <i className="add-fill fs-5"></i>Add
-            </button>
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addRemark" data-bs-toggle="modal" title="Add Remark">
+                    <i className="ri-add-fill fs-5"></i>Add Remark
+                </button>
+            </div>
             <Datatables dt_name="remark-list" dataPageLength="15" />
             <Elements.ModalSection modalId="addRemark" title={`${edit ? 'Update Remark' : 'Add Remark'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="remark-form">
                 <form className="needs-validation" noValidate id="remark-form">
