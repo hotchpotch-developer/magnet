@@ -41,6 +41,11 @@ export const ADD_SOURCE = "add-source"
 export const EDIT_SOURCE = "edit-source"
 export const DELETE_SOURCE = "delete-source"
 
+// Teams Routes
+
+export const CREATE_TEAM = "create-team"
+export const EDIT_TEAM = "edit-team"
+export const TEAM_LIST = "team-list"
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"
