@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client"
 import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
 import { TEAM_LIST } from "../../components/APIRoutes";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { createRoot } from "react-dom/client";
 
 const TeamList = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const role = location && location.state ? location.state.role : 'Admin';
 
     const [dt] = useState({
@@ -30,7 +31,9 @@ const TeamList = () => {
                     createRoot(td).render(
                         <>
                             <div className="d-flex text-nowrap">
-                                {/* <Link to="/add-team" state={{ team: records }} className="btn btn-soft-success" title="Edit"> Edit </Link> */}
+                                <button type="button" className="btn btn-soft-success" title="Edit" onClick={() => editTeam(records)}>
+                                    <i className="ri-pencil-fill fs-5"></i>
+                                </button>
                             </div>
                         </>
                     )
@@ -38,6 +41,10 @@ const TeamList = () => {
             }
         ]
     });
+
+    const editTeam = (data) => {
+        navigate('/edit-team', { state: { team: data } });
+    }
 
     useEffect(() => {
         reloadUrlDataTable(dt, `${TEAM_LIST}?type=${role}`);

@@ -54,6 +54,7 @@ const Routing = () => {
                         {/* eams Routes */}
                         <Route caseSensitive={false} path="/team-list" element={ <TeamList /> } />
                         <Route caseSensitive={false} path="/add-team" element={ <CreateTeam /> } />
+                        <Route caseSensitive={false} path="/edit-team" element={ <CreateTeam /> } />
 
                         {/* Common Settings Routes */}
                         <Route caseSensitive={false} path="/common-setting" element={ <SettingMaster /> } />
