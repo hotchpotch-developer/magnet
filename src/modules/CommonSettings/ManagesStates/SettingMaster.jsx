@@ -23,7 +23,7 @@ const SettingMaster = () => {
                     <div className="card">
                         <div className="card-body">
 
-                            <ul className="nav nav-pills animation-nav nav-justified gap-2 mb-3" role="tablist">
+                            <ul className="nav nav-pills animation-nav nav-justified gap-2 mb-3 pb-3 border-bottom" role="tablist">
                                 <li className="nav-item waves-effect waves-light">
                                     <a className="nav-link active" data-bs-toggle="tab" href="#department-home" role="tab" onClick={() => handleTabChange('department')}>
                                         Department

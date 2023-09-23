@@ -104,9 +104,11 @@ const Department = (props) => {
     return (
 
         <>
-            <button type="button" className="btn btn-soft-success" data-bs-target="#addDepartment" data-bs-toggle="modal" title="Add Department">
-                <i className="add-fill fs-5"></i>Add
-            </button>
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addDepartment" data-bs-toggle="modal" title="Add Department">
+                    <i className="ri-add-fill fs-5"></i>Add Department
+                </button>
+            </div>
             <Datatables dt_name="department-list" dataPageLength="15" />
             <Elements.ModalSection modalId="addDepartment" title={`${edit ? 'Update Department' : 'Add Department'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="department-form">
                 <form className="needs-validation" noValidate id="department-form">
