@@ -12,16 +12,6 @@
     transition: 300ms
 }
 
-.dataTable tbody tr:hover {
-    box-shadow: 0 0 1px 1px #eee !important;
-    background-color: #eee !important;
-    color: #000
-}
-
-.dataTable tbody tr:hover td {
-    color: #000 !important
-}
-
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter {
     font-size: 0
@@ -34,14 +24,13 @@
 .dataTable tr th {
     font-size: 13.5px;
     letter-spacing: .25px;
-    border: none;
     padding: 9px 14px;
     font-weight: 700;
     color: #fff;
-    background-color: rgba(33, 37, 41, 0.9);
     margin-bottom: 4px;
     text-transform: uppercase;
-    position: relative
+    position: relative;
+    border-width: 1px;
 }
 
 .dataTable thead tr th:first-child {
@@ -55,7 +44,8 @@
 .dataTable tr td {
     font-size: 14.5px !important;
     color: #6c757d !important;
-    transition: 300ms
+    border-width: 1px;
+    transition: 300ms;
 }
 
 .dataTable.table>:not(caption)>*>* {
@@ -71,10 +61,10 @@
     width: 100%;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
+    color: #fff;
+    background-color: transparent;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px solid #2a4562;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -83,7 +73,7 @@
     transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
-    padding: .25rem .5rem;
+    padding: .20rem .5rem;
     font-size: .875rem;
     border-radius: .2rem
 }
@@ -92,8 +82,8 @@
 .dataTables_wrapper .dataTables_length input:focus,
 .dataTables_wrapper .dataTables_filter select:focus,
 .dataTables_wrapper .dataTables_filter input:focus {
-    color: #212529;
-    background-color: #fff;
+    color: #fff;
+    background-color: transparent;
     border-color: #86b7fe;
     outline: 0;
     -webkit-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, 0.25);
@@ -121,7 +111,7 @@
     background-size: 14px 14px;
     background-position: 10px 12px;
     padding-left: 33px;
-    border-radius: 0
+    border-radius: 0.2rem;
 }
 
 .dataTables_wrapper .dataTables_length label {
@@ -133,18 +123,18 @@
 }
 
 .dataTables_wrapper .dataTables_length label select {
-    padding: .475rem .75rem;
+    padding: .350rem .75rem;
     margin-left: 4px;
     margin-right: 4px;
-    border-radius: 0;
-    background-color: #fff;
+    border-radius: 0.2rem;
+    background-color: transparent;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right .22rem center;
     background-size: 14px 10px;
     padding-right: 20px;
     text-align-last: center;
-    -moz-text-align-last: center
+    -moz-text-align-last: center;
 }
 
 .dataTables_wrapper .table {
@@ -258,12 +248,13 @@
     height: calc(100% - 51px);
     top: 45px;
     left: 0;
-    background: rgba(255, 255, 255, 0.85);
+    background: #041324;
     padding-top: 51px;
     text-align: center;
     color: var(--blue);
     font-weight: 600;
-    letter-spacing: 1px
+    letter-spacing: 1px;
+    border: 1px solid #2a4562;
 }
 
 .dataTables_wrapper .dataTables_empty {
@@ -306,12 +297,11 @@
     border-radius: 20px;
     top: 2px;
     left: 0;
-    background: -webkit-gradient(linear, right top, left top, from(var(--black)), to(#ffc107)) !important;
-    background: linear-gradient(to left, var(--black), #ffc107) !important;
+    background: -webkit-gradient(linear, right top, left top, from(#8c68cd), to(#fff)) !important;
+    background: linear-gradient(to left, #8c68cd, #fff) !important;
     width: 0;
     height: 3px;
     z-index: 9999;
-    box-shadow: 0 0 0 1px #fff;
     animation: tableloadingBar 4s linear infinite
 }
 
