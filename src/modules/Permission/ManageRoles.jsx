@@ -132,6 +132,11 @@ const ManageRoles = () => {
     return (
         <>
             <Breadcrumbs title="Manage Roles" parentPage="Permission" />
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addRole" data-bs-toggle="modal" title="Add Role">
+                    <i className="ri-add-fill fs-5"></i>Add Role
+                </button>
+            </div>
             <Datatables dt_name="role-List" dataPageLength="15"  />
             <Elements.ModalSection modalId="addRole" title={`${editData ? 'Update Role' : 'Add Role'}`} btnTitle={`${editData ? 'Update' : 'Save'}`} action={(e) => saveUpdateRole(e)} loading={loader} formId="addUpdateRole">
                 <form className="needs-validation" noValidate id="addUpdateRole">

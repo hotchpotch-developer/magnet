@@ -14590,7 +14590,7 @@ body::before {
 
 /* Datatable CSS */
 
-div.dataTables_wrapper div.dataTables_paginate {
+/* div.dataTables_wrapper div.dataTables_paginate {
     margin: 0;
     white-space: nowrap;
     text-align: right
@@ -14652,7 +14652,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .dataTables_filter label input[type="search"]:focus-visible {
     outline: 0 !important;
-}
+} */
 
 .pagination-custom{
     margin: 2px 0 !important;

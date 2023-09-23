@@ -95,6 +95,11 @@ const ManagePermission = () => {
     return (
         <>
             <Breadcrumbs title="Manage Permission" parentPage="Permission"  />
+            <div className="col-12 d-flex justify-content-end mb-3">
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addPermission" data-bs-toggle="modal" title="Add Permission">
+                    <i className="ri-add-fill fs-5"></i>Add Permission
+                </button>
+            </div>
             <Datatables dt_name="permission-List" dataPageLength="15"  />
             <Elements.ModalSection modalId="addPermission" title={`${editData ? 'Update Permission' : 'Add Permission'}`} btnTitle={`${editData ? 'Update' : 'Save'}`} action={(e) => saveUpdatePermission(e)} loading={loader} formId="addUpdatePermission">
                 <form className="needs-validation" noValidate id="addUpdatePermission">

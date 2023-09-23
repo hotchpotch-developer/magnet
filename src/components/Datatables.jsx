@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import '../datatables-custom.css'
 import 'datatables.net';
 import 'datatables.net-buttons';
 import 'datatables.net-buttons/js/buttons.colVis.min';
