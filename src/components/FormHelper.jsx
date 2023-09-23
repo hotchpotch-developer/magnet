@@ -111,13 +111,11 @@ export const ModalInputField = (props) => {
 export const SelectField = (props) => {
 
     return (
-        <div className="mb-4 row mx-0">
-            <label htmlFor={props.name} className="col-sm-3 col-xxl-2 col-form-label">
-                {props.label} {props.required && <sup className='text-danger fw-bold fs-15px'>*</sup>}
-            </label>
-            <div className="col-sm-9 col-lg-6 col-xxl-5">
+        <div className="col-xxl-3 col-md-6">
+            <div>
+                <label htmlFor="employee_id" className="form-label">{_.startCase(props.name)}</label>
                 {props.children}
-                <div className="invalid-feedback">The {props.label} field is required.</div>
+                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
             </div>
         </div>
     )

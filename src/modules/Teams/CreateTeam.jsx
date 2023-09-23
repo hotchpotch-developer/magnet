@@ -4,7 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData, initialFormState, validateForm } from "../../components/Helper";
-import { InputField } from "../../components/FormHelper";
+import { InputField, SelectField } from "../../components/FormHelper";
 
 const CreateTeam = () => {
     const location = useLocation();
@@ -75,7 +75,12 @@ const CreateTeam = () => {
                                         <InputField name="email" value={formData.email} required onChange={handleInputChange} />
                                         <InputField name="role" value={formData.role} required onChange={handleInputChange} />
                                         <InputField name="password" required={!formData.id} onChange={handleInputChange} />
-                                        <InputField name="status" id="status1" value={formData.status} required onChange={handleInputChange} />
+                                        <SelectField name="Status">
+                                            <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">In Active</option>
+                                            </select>
+                                        </SelectField>
                                         <InputField type="file" name="profile_image" />
                                     </div>
                                     {loading ? loadingButton() : <button type="button" className="btn btn-primary mt-3" onClick={submitForm}>{formData.id ? 'Update' : 'Save'}</button>}
