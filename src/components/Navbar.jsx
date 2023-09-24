@@ -66,16 +66,19 @@ const Navbar = () => {
                                 <div className="collapse menu-dropdown" id="managerMenu">
                                     <ul className="nav nav-sm flex-column">
                                         <li className="nav-item">
-                                            <Link to="/add-manager" className="nav-link" data-key="t-calendar"> Admin </Link>
+                                            <Link to="/add-team" className="nav-link" data-key="t-calendar"> Add Team </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="/add-manager" className="nav-link" data-key="t-calendar"> Manager </Link>
+                                            <Link to="/team-list" state={{role: "Admin"}} className="nav-link" data-key="t-calendar"> Admin </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="apps-chat.html" className="nav-link" data-key="t-chat"> Team Leader </Link>
+                                            <Link to="/team-list" state={{role: "Manager"}} className="nav-link" data-key="t-calendar"> Manager List </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="apps-chat.html" className="nav-link" data-key="t-chat"> HR Recruiter </Link>
+                                            <Link to="/team-list" state={{role: "Team Leader"}} className="nav-link" data-key="t-calendar"> Team Leader </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to="/team-list" state={{role: "HR Recruiter"}} className="nav-link" data-key="t-calendar"> HR Recruiter </Link>
                                         </li>
                                     </ul>
                                 </div>

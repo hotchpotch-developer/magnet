@@ -12,6 +12,8 @@ import ErrorPage from "./ErrorPage";
 import ManageRoles from "../modules/Permission/ManageRoles";
 import ManagePermission from "../modules/Permission/ManagePermission";
 import SettingMaster from "../modules/CommonSettings/ManagesStates/SettingMaster";
+import TeamList from "../modules/Teams/TeamList";
+import CreateTeam from "../modules/Teams/CreateTeam";
 
 
 const Routing = () => {
@@ -49,8 +51,12 @@ const Routing = () => {
                         {/* Manager Routes */}
                         <Route caseSensitive={false} path="/add-manager" element={ <CreateManager />} />
 
-                        {/* Common Settings Routes */}
+                        {/* eams Routes */}
+                        <Route caseSensitive={false} path="/team-list" element={ <TeamList /> } />
+                        <Route caseSensitive={false} path="/add-team" element={ <CreateTeam /> } />
+                        <Route caseSensitive={false} path="/edit-team" element={ <CreateTeam /> } />
 
+                        {/* Common Settings Routes */}
                         <Route caseSensitive={false} path="/common-setting" element={ <SettingMaster /> } />
 
                     </Route>

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Select from 'react-select'
 
 export const showPassword = (e, id) => {
@@ -81,14 +82,11 @@ export const UnAuthInputField = (props) => {
 export const InputField = (props) => {
 
     return (
-        <div className={`mt-2 mx-0 px-2 ${props.col ? "col-sm-md col-lg-12" : "row"}`}>
-            <label htmlFor={props.name} className={props.col ? "px-1" : "col-sm-3 col-xxl-2 col-form-label"}>
-                {props.label} {props.required && <sup className='text-danger fw-bold fs-15px'>*</sup>}
-            </label>
-            <div className={props.col ? "" : "col-sm-9 col-lg-6 col-xxl-5"}>
-                <input type={props.type ?? 'text'} className="form-control" id={props.name} {...props} autoComplete="off" onChange={removeError} />
-                {props.suggestion && <span className="text-success fs-12px">{props.suggestion}</span>}
-                <div className="invalid-feedback">The {props.label} field is required.</div>
+        <div className="col-xxl-3 col-md-6">
+            <div>
+                <label htmlFor="employee_id" className="form-label">{_.startCase(props.name)}</label>
+                <input type={props.type ?? 'text'} className="form-control" id={props.id ?? props.name} {...props} />
+                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
             </div>
         </div>
     )
@@ -113,13 +111,11 @@ export const ModalInputField = (props) => {
 export const SelectField = (props) => {
 
     return (
-        <div className="mb-4 row mx-0">
-            <label htmlFor={props.name} className="col-sm-3 col-xxl-2 col-form-label">
-                {props.label} {props.required && <sup className='text-danger fw-bold fs-15px'>*</sup>}
-            </label>
-            <div className="col-sm-9 col-lg-6 col-xxl-5">
+        <div className="col-xxl-3 col-md-6">
+            <div>
+                <label htmlFor="employee_id" className="form-label">{_.startCase(props.name)}</label>
                 {props.children}
-                <div className="invalid-feedback">The {props.label} field is required.</div>
+                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
             </div>
         </div>
     )

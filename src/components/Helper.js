@@ -2,7 +2,18 @@ import { Toast } from "bootstrap";
 import $ from 'jquery'
 export const ENDPOINT = process.env.REACT_APP_API_URL
 
+const bodyLoader = (active) => {
+    if(active){
+        document.querySelector('body').classList.add('loading-data');
+    }else{
+        document.querySelector('body').classList.remove('loading-data');
+    }
+}
+
 export const fetchData = async (url, method, data, token, process, res, abort_signal = false, process_type = false, form_id = '', loading = true) => {
+    if(loading){
+        bodyLoader(true)
+    }
     let headers = {
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -33,7 +44,9 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
     }
 
     await fetch(`${ENDPOINT}${url}`, request).then((response) => process_type === "text" ? response.text() : (process_type === "blob" ? response.blob() : response.json())).then((json) => {
-        
+        if(loading){
+            bodyLoader(false)
+        }
         if (json.message === "Unauthenticated.") {
             localStorage.removeItem("accessToken");
             window.location.href = '/'
@@ -46,7 +59,12 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
             showAlertMsg(json, form_id)
             res(json)
         }
-    }).catch((error) => { console.log(error) });
+    }).catch((error) => { 
+        if(loading){
+            bodyLoader(false)
+        }
+        console.log(error)
+    });
 }
 
 export const validateForm = (e, form_id = false) => {
