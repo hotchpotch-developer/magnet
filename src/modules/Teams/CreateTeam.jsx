@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CREATE_TEAM, EDIT_TEAM, TEAM_LIST } from "../../components/APIRoutes";
+import { CREATE_TEAM, EDIT_TEAM } from "../../components/APIRoutes";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
