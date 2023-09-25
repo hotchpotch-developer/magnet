@@ -10,6 +10,10 @@ const TeamList = () => {
     const navigate = useNavigate();
     const role = location && location.state ? location.state.role : 'Admin';
 
+    const viewProfile = () => {
+        navigate('/team-profile');
+    }
+
     const [dt] = useState({
         dt_url: `${TEAM_LIST}?type=${role}`,
         dt_name: 'team-list',
@@ -33,6 +37,9 @@ const TeamList = () => {
                             <div className="d-flex text-nowrap">
                                 <button type="button" className="btn btn-soft-success" title="Edit" onClick={() => editTeam(records)}>
                                     <i className="ri-pencil-fill fs-5"></i>
+                                </button>
+                                <button type="button" className="btn btn-soft-primary ms-2" title="View Profile" onClick={() => viewProfile(records)}>
+                                    <i className="ri-eye-fill fs-5"></i>
                                 </button>
                             </div>
                         </>
