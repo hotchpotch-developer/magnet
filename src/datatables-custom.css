@@ -198,12 +198,11 @@
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    height: 30px;
+    height: 37px;
     min-width: 30px;
     text-decoration: none;
     display: inline-flex;
     border: 1px solid #dee2e6;
-    margin-left: 2px;
     cursor: pointer;
     text-align: center;
     -webkit-box-pack: center;
@@ -212,9 +211,8 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-radius: .25rem;
     font-size: 14px;
-    color: #212529
+    color: #fff
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
@@ -229,16 +227,24 @@
     cursor: not-allowed
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous.disabled{
+    border-radius: 5px 0 0 5px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next.disabled{
+    border-radius: 0 5px 5px 0 !important;
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background-color: rgba(33, 37, 41, 0.9);
-    border-color: rgba(33, 37, 41, 0.9);
+    background-color: #8c68cd !important;
+    border-color: #8c68cd !important;
     color: #fff
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:not(.disabled):hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background-color: #0d6efd !important;
-    border-color: #0d6efd !important;
+    background-color: #8c68cd !important;
+    border-color: #8c68cd !important;
     color: #fff !important
 }
 
