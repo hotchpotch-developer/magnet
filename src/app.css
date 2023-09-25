@@ -14728,9 +14728,10 @@ body.loading-data::before {
     position: fixed;
     left: 0;
     background: -webkit-gradient(linear, right top, left top, from(red), to(green)) !important;
-    background: linear-gradient(to left, red, green) !important;
+    background: linear-gradient(to left, #8c68cd, #fff) !important;
+    top: 0;
     width: 0;
-    height: 3px;
+    height: 7px;
     z-index: 9999;
     -webkit-animation: beforeloading 2s infinite ease-out;
             animation: beforeloading 2s infinite ease-out;
@@ -14740,10 +14741,11 @@ body.loading-data::after {
     content: '';
     position: fixed;
     left: 0;
-    background: -webkit-gradient(linear, right top, left top, from(red), to(green)) !important;
-    background: linear-gradient(to left, red, green) !important;
+    background: -webkit-gradient(linear, right top, left top, from(#8c68cd), to(#fff)) !important;
+    background: linear-gradient(to left, #8c68cd, #fff) !important;
     width: 0;
-    height: 3px;
+    top: 0;
+    height: 7px;
     z-index: 9999;
     -webkit-animation: afterloadding 2s infinite ease-in;
             animation: afterloadding 2s infinite ease-in;
