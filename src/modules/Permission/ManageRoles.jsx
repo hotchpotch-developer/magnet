@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Datatables, { redrawDataTable } from "../../components/Datatables";
 import { now } from 'lodash';
-import { ASSIGN_PERMISSION, COMMON_DROPDOWN, CREATE_ROLE, DELETE_ROLE, EDIT_ROLE, ROLE_LIST } from "../../components/APIRoutes";
+import { ASSIGN_PERMISSION, COMMON_DROPDOWN, CREATE_ROLE, EDIT_ROLE, ROLE_LIST } from "../../components/APIRoutes";
 import { Context } from '../../components/Context'
 import { createRoot } from "react-dom/client"
 import * as Elements from "../../components/Elements";
@@ -14,7 +14,6 @@ const ManageRoles = () => {
     const [reload, setReload] = useState(now);
     const [loader, setLoader] = useState(false)
     const [editData, setEditData] = useState(false)
-    const [deleteRecord, setDeleteRecord] = useState(false)
     const [selectPermission, setSelectPermission] = useState([])
     const [permissionList, setPermissionList] = useState([])
 
@@ -39,9 +38,6 @@ const ManageRoles = () => {
                                     </button>
                                     <button type="button" className="btn btn-soft-warning ms-2" data-bs-target="#assignPermission" data-bs-toggle="modal" onClick={() => editAssignPermission(records)} title="Assign Permission">
                                         <i className="ri-user-star-fill fs-5"></i>
-                                    </button>
-                                    <button type="button" className="btn btn-soft-danger ms-2" data-bs-target="#confirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Role">
-                                        <i className="ri-delete-bin-line fs-5"></i>
                                     </button>
                                 </div>
                             </>
@@ -69,21 +65,6 @@ const ManageRoles = () => {
                     document.querySelector('#addRole [data-bs-dismiss="modal"]').click()
                     setReload(now)
                 }
-            })
-        }
-    }
-
-    const deleteRole = () => {
-        if(deleteRecord) {
-            setLoader(true)
-            fetchData(`${DELETE_ROLE}/${deleteRecord.id}`, 'GET', '', true, false, (res) => {
-                setLoader(false)
-                if(res.status){
-                    setDeleteRecord(false)
-                    document.querySelector('#confirmationModal [data-bs-dismiss="modal"]').click()
-                    setReload(now)
-                }
-
             })
         }
     }
@@ -179,7 +160,6 @@ const ManageRoles = () => {
                     </div>
                 </form>
             </Elements.ModalSection>
-            <Elements.ConfirmationModal action={() => deleteRole()} />
         </>
     );
 

@@ -9,12 +9,10 @@ export const LOGOUT = "logout"
 export const ROLE_LIST = "role-list"
 export const CREATE_ROLE = "create-role"
 export const EDIT_ROLE = "edit-role"
-export const DELETE_ROLE = "delete-role"
 
 export const PERMISSION_LIST = "permission-list"
 export const CREATE_PERMISSION = "create-permission"
 export const EDIT_PERMISSION = "edit-permission"
-export const DELETE_PERMISSION = "delete-permission"
 
 export const ASSIGN_PERMISSION = "assign-permission"
 
