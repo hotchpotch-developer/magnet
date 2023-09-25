@@ -44,9 +44,9 @@ export const ModalSection = (props) => {
     )
 }
 
-export const loadingButton = () => {
+export const loadingButton = (width = false) => {
     return (
-        <button className="btn btn-outline-primary btn-load">
+        <button className={`btn btn-outline-primary btn-load w-${width ? width : 'auto'}`}>
             <span className="d-flex align-items-center">
                 <span className="spinner-border flex-shrink-0" role="status">
                     <span className="visually-hidden">Loading...</span>

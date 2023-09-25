@@ -1,12 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchData, validateForm } from "../../components/Helper";
 import { LOGIN } from "../../components/APIRoutes";
 import { Context } from "../../components/Context"
+import { loadingButton } from "../../components/Elements";
 
 const Login = () => {
 
     const [context, setContext] = useContext(Context)
+    const [loader, setLoader] = useState(false)
     const navigate = useNavigate()
 
     const passwordAddedOn = () => {
@@ -18,10 +20,12 @@ const Login = () => {
         e.preventDefault();
 
         if(validateForm(e, 'loginForm')){
+            setLoader(true)
 
             let formData = new FormData(document.getElementById('loginForm'));
 
             fetchData(LOGIN, 'POST', formData, false, true, (res) => {
+                setLoader(false)
                 if(res.status === 200 && res.data){
                     localStorage.setItem('accessToken', res.data.access_token)
                     setContext(prev => ({...prev, auth: res.data}));
@@ -82,7 +86,9 @@ const Login = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <button className="btn btn-primary w-100" type="button" onClick={(e) => signIn(e)}>Sign In</button>
+                                                    {!loader ?
+                                                        <button className="btn btn-primary w-100" type="button" onClick={(e) => signIn(e)}>Sign In</button>
+                                                    : loadingButton(100) }
                                                 </div>
                                             </form>
                                         </div>
