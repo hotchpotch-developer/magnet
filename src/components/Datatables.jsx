@@ -141,7 +141,7 @@ export const initDataTable = (dt) => {
     
     const table = $('#wt_datatable_' + dt.dt_name).DataTable({
         
-        dom: "B<'row clearfix mx-0'<'col-6 col-lg-2 px-0 text-center text-sm-start float-start my-2'l><'dt-custom-filter col-md-6 my-2 col-lg-8 px-0 text-center text-sm-end exportbuttons'><'col-md-12 col-lg-2 px-0 ps-2 ps-ms-0 text-center text-lg-end my-2'f>>" +
+        dom: "B<'row clearfix mx-0'<'col-6 col-lg-2 px-0 text-center text-sm-start float-start'l><'dt-custom-filter col-md-6 col-lg-8 px-0 text-center text-sm-end exportbuttons'><'col-md-12 col-lg-2 px-0 ps-2 ps-ms-0 text-center text-lg-end'f>>" +
             "<'row clearfix mx-0'<'col-sm-12 px-0'<'table-responsive position-relative my-1' tr>>>" +
             "<'row clearfix mx-0'<'col-md-12 col-lg-5 px-0 text-center text-lg-start'i><'col-md-12 col-lg-7 px-0 text-center text-lg-end'p>>",
         // dom: 'Bfrtip',
@@ -170,7 +170,7 @@ export const initDataTable = (dt) => {
         createdRow: dt.dt_createdRow,
         buttons: dt.dt_export ? exportButons : [],
     });
-    table.buttons().container().appendTo($('.exportbuttons'));
+    table.buttons().container().appendTo($('#wt_datatable_' + dt.dt_name + '.exportbuttons'));
 
     var headers = table.columns().header().toArray();
     $(headers).on('click', function (e) {
