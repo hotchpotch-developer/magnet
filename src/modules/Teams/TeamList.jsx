@@ -12,7 +12,7 @@ import * as Elements from "../../components/Elements";
 const TeamList = () => {
     const navigate = useNavigate();
     const [role, setRole] = useState('');
-    const [loader, setLoader] = useState(false)
+    // const [loader, setLoader] = useState(false)
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
 
@@ -70,12 +70,12 @@ const TeamList = () => {
     useEffect(() => {
         let url = role ? `${TEAM_LIST}?type=${role}` : TEAM_LIST;
         reloadUrlDataTable(dt, url);
-    }, [dt, role])
+    }, [dt, role, reload])
 
     const deleteTeam = () => {
-        setLoader(true)
+        // setLoader(true)
         fetchData(`${DELETE_TEAM}/${deleteRecord.id}`, 'GET', '', true, false, (res) => {
-            setLoader(false)
+            // setLoader(false)
             if (res.status) {
                 setDeleteRecord(false)
                 document.querySelector('#teamConfirmationModal [data-bs-dismiss="modal"]').click()
