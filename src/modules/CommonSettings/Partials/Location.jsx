@@ -17,7 +17,7 @@ const Location = (props) => {
     const [dt] = useState({
         dt_url: LOCATION_LIST,
         dt_name: 'location-list',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Location Name', class: "text-nowrap minw-130px" },

@@ -17,7 +17,7 @@ const Remark = (props) => {
     const [dt] = useState({
         dt_url: REMARK_LIST,
         dt_name: 'remark-list',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'remark', name: 'remark', title: 'Remark', class: "text-nowrap minw-130px" },

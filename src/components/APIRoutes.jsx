@@ -44,6 +44,7 @@ export const DELETE_SOURCE = "delete-source"
 export const CREATE_TEAM = "create-team"
 export const EDIT_TEAM = "edit-team"
 export const TEAM_LIST = "team-list"
+export const DELETE_TEAM = "delete-team"
 export const ROLE_SELECT = "role-list"
 // Common Routes
 

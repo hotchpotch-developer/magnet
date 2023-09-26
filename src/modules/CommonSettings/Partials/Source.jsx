@@ -17,7 +17,7 @@ const Source = (props) => {
     const [dt] = useState({
         dt_url: SOURCE_LIST,
         dt_name: 'source-List',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'source', name: 'source', title: 'Source', class: "text-nowrap minw-130px" },
