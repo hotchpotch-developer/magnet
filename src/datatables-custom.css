@@ -331,8 +331,9 @@
 }
 
 .dt-buttons .dt-button {
-    padding: .475rem .75rem;
-    border-radius: 0 !important
+    padding: .570rem .75rem;
+    border-radius: 0.2rem !important;
+    margin-left: 10px;
 }
 
 .dt-button-collection {
