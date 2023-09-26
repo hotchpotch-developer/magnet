@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
-import { CREATE_TEAM, EDIT_TEAM, ROLE_SELECT } from "../../components/APIRoutes";
+import { COMMON_DROPDOWN, CREATE_TEAM, EDIT_TEAM } from "../../components/APIRoutes";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
-import { fetchData, initialFormState, validateForm } from "../../components/Helper";
+import { fetchData, validateForm } from "../../components/Helper";
 import { InputField, SelectField } from "../../components/FormHelper";
+import * as Elements from "../../components/Elements";
 
 const CreateTeam = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [roles, setRoles] = useState([])
+    const [role, setRole] = useState(null)
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({ employee_id: "", first_name: "", last_name: "", phone: "", email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
-        fetchData(ROLE_SELECT, 'GET', '', true, false, (res) => {
+        fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
             if (res.status) {
                 setRoles(res.data)
+                if (location && location.state && location.state.team) {
+                    let role = res.data.filter((item) => item.value === location.state.team.roles_id)
+                    setRole(role[0] ?? null)
+                }
             }
         })
-    }, [])
+    }, [location])
 
 
     useEffect(() => {
@@ -53,11 +59,7 @@ const CreateTeam = () => {
             fetchData(formData.id ? EDIT_TEAM : CREATE_TEAM, 'POST', formdata, true, true, (res) => {
                 setLoading(false)
                 if (res.status) {
-                    if (formData.id) {
-                        navigate('/team-list', { state: { role: formData.roles_name } });
-                    } else {
-                        initialFormState('team-form', setFormData)
-                    }
+                    navigate('/team-list');
                 }
             })
         }
@@ -82,15 +84,22 @@ const CreateTeam = () => {
                                         <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
                                         <InputField name="phone" value={formData.phone} required onChange={handleInputChange} />
                                         <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                        <InputField name="role" value={formData.role} required onChange={handleInputChange} />
-                                        <SelectField name="Status">
-                                            <select name="status" className="form-select" value={formData.role} required onChange={handleInputChange}>
-                                                {roles.map((role, key) => {
-                                                    return <option key={key} value={role.id}>{role.name}</option>
-                                                })}
-                                            </select>
-                                        </SelectField>
-                                        <InputField name="password" required={!formData.id} onChange={handleInputChange} />
+                                        {/* <InputField name="role" value={formData.role} required onChange={handleInputChange} /> */}
+                                        <div className="col-xxl-3 col-md-6">
+                                            <label htmlFor="employee_id" className="form-label">Role</label>
+                                            <Elements.ReactSelect
+                                                placeholder="Select Role"
+                                                options={roles}
+                                                name="role"
+                                                value={role}
+                                                id="role"
+                                                className="react-select required"
+                                                onChange={(e) => { Elements.reactSelectValidation(e, "role"); setRole(e) }}
+                                                required={true}
+                                            />
+                                            <div className="invalid-feedback">Please Enter Role.</div>
+                                        </div>
+                                        <InputField name="password" type="password" required={!formData.id} onChange={handleInputChange} />
                                         <SelectField name="Status">
                                             <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
                                                 <option value="active">Active</option>

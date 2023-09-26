@@ -4,6 +4,7 @@ import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
 import { TEAM_LIST } from "../../components/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import RoleFilter from "./RoleFilter";
 
 const TeamList = () => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const TeamList = () => {
     }
 
     const [dt] = useState({
-        dt_url: `${TEAM_LIST}?type=${role}`,
+        dt_url: TEAM_LIST,
         dt_name: 'team-list',
         dt_export: true,
         dt_column: [
@@ -48,11 +49,7 @@ const TeamList = () => {
         ],
         dt_filter: () => {
             createRoot(document.querySelector(`#wt_datatable_team-list_wrapper .dt-custom-filter`)).render(<>
-                <select className="form-select" style={{width: "200px"}} onChange={(e) => setRole(e.target.value)}>
-                    <option value="">All</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">In Active</option>
-                </select>
+                <RoleFilter setValue={setRole} />
             </>)
         }
     });
@@ -62,13 +59,14 @@ const TeamList = () => {
     }
 
     useEffect(() => {
-        reloadUrlDataTable(dt, `${TEAM_LIST}?type=${role}`);
+        let url = role ? `${TEAM_LIST}?type=${role}` : TEAM_LIST;
+        reloadUrlDataTable(dt, url);
     }, [dt, role])
 
     return (
 
         <>
-            <Breadcrumbs title={role} parentPage={role} />
+            <Breadcrumbs title="Team" parentPage="Team" />
             <Datatables dt_name="team-list" dataPageLength="15" />
         </>
 
