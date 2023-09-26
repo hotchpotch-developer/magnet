@@ -17,7 +17,7 @@ const Industry = (props) => {
     const [dt] = useState({
         dt_url: INDUSTRY_LIST,
         dt_name: 'industry-list',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Industry Name', class: "text-nowrap minw-130px" },

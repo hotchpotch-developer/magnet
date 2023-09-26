@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client"
 import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
 import { TEAM_LIST } from "../../components/APIRoutes";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
 const TeamList = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const role = location && location.state ? location.state.role : 'Admin';
+    const [role, setRole] = useState('');
 
     const viewProfile = () => {
         navigate('/team-profile');
@@ -17,7 +16,7 @@ const TeamList = () => {
     const [dt] = useState({
         dt_url: `${TEAM_LIST}?type=${role}`,
         dt_name: 'team-list',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'first_name', name: 'first_name', title: 'First Name' },
@@ -46,7 +45,16 @@ const TeamList = () => {
                     )
                 }
             }
-        ]
+        ],
+        dt_filter: () => {
+            createRoot(document.querySelector(`#wt_datatable_team-list_wrapper .dt-custom-filter`)).render(<>
+                <select className="form-select" style={{width: "200px"}} onChange={(e) => setRole(e.target.value)}>
+                    <option value="">All</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">In Active</option>
+                </select>
+            </>)
+        }
     });
 
     const editTeam = (data) => {

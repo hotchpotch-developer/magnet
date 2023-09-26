@@ -17,7 +17,7 @@ const Department = (props) => {
     const [dt] = useState({
         dt_url: DEPARTMENT_LIST,
         dt_name: 'department-list',
-        dt_export: false,
+        dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Department Name', class: "text-nowrap minw-130px" },

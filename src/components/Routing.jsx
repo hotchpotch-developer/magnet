@@ -34,13 +34,12 @@ const Routing = () => {
             navigate('/')
         }
 
-        document.querySelector("html").setAttribute("data-bs-theme", "dark");
     }, [token, navigate])
 
     return (
         <Context.Provider value={[context, setContext]}>
             <Routes>
-                {context && context.auth &&
+                {token &&
                     <Route caseSensitive={false} path="/" element={<Layout />}>
                         <Route caseSensitive={false} path="/" element={ <Dashboard />} />
 
@@ -62,7 +61,7 @@ const Routing = () => {
                 
                 <Route caseSensitive={false} path="/" element={ <Login /> } />
                 <Route caseSensitive={false} path="/forgot-password" element={ <ForgotPassword /> } />
-                {!token ? <Route path="*" element={<ErrorPage />} /> : ''}
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Context.Provider>
     )

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CREATE_TEAM, EDIT_TEAM } from "../../components/APIRoutes";
+import { CREATE_TEAM, EDIT_TEAM, ROLE_SELECT } from "../../components/APIRoutes";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,11 +9,20 @@ import { InputField, SelectField } from "../../components/FormHelper";
 const CreateTeam = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [roles, setRoles] = useState([])
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({ employee_id: "", first_name: "", last_name: "", phone: "", email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
-        console.log(location.state);
+        fetchData(ROLE_SELECT, 'GET', '', true, false, (res) => {
+            if (res.status) {
+                setRoles(res.data)
+            }
+        })
+    }, [])
+
+
+    useEffect(() => {
         if (location && location.state && location.state.team) {
             let team = location.state.team;
             setFormData({
@@ -74,6 +83,13 @@ const CreateTeam = () => {
                                         <InputField name="phone" value={formData.phone} required onChange={handleInputChange} />
                                         <InputField name="email" value={formData.email} required onChange={handleInputChange} />
                                         <InputField name="role" value={formData.role} required onChange={handleInputChange} />
+                                        <SelectField name="Status">
+                                            <select name="status" className="form-select" value={formData.role} required onChange={handleInputChange}>
+                                                {roles.map((role, key) => {
+                                                    return <option key={key} value={role.id}>{role.name}</option>
+                                                })}
+                                            </select>
+                                        </SelectField>
                                         <InputField name="password" required={!formData.id} onChange={handleInputChange} />
                                         <SelectField name="Status">
                                             <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>

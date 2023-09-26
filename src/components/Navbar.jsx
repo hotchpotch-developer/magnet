@@ -69,16 +69,7 @@ const Navbar = () => {
                                             <Link to="/add-team" className="nav-link" data-key="t-calendar"> Add Team </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="/team-list" state={{role: "Admin"}} className="nav-link" data-key="t-calendar"> Admin </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="/team-list" state={{role: "Manager"}} className="nav-link" data-key="t-calendar"> Manager List </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="/team-list" state={{role: "Team Leader"}} className="nav-link" data-key="t-calendar"> Team Leader </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="/team-list" state={{role: "HR Recruiter"}} className="nav-link" data-key="t-calendar"> HR Recruiter </Link>
+                                            <Link to="/team-list" className="nav-link" data-key="t-calendar"> Team List </Link>
                                         </li>
                                     </ul>
                                 </div>
