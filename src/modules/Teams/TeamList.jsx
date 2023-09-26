@@ -78,6 +78,7 @@ const TeamList = () => {
             setLoader(false)
             if (res.status) {
                 setDeleteRecord(false)
+                document.querySelector('#teamConfirmationModal [data-bs-dismiss="modal"]').click()
                 setReload(now)
             }
         })
