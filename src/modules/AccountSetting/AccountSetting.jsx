@@ -3,6 +3,12 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 
 const AccountSetting = () => {
 
+
+    const passwordAddedOn = () => {
+        let element = document.querySelector('#password-input');
+        element.setAttribute('type', element.type === 'password' ? 'text' : 'password');
+    }
+
     return (
         <>
             <Breadcrumbs title="Account Settings" parentPage="Settings"  />
@@ -72,8 +78,8 @@ const AccountSetting = () => {
                                         <div className="row g-2">
                                             <div className="col-lg-4">
                                                 <div>
-                                                    <label for="oldpasswordInput" className="form-label">Old Password*</label>
-                                                    <input type="password" className="form-control" id="oldpasswordInput" placeholder="Enter current password" />
+                                                    <label for="currentpasswordInput" className="form-label">Current Password*</label>
+                                                    <input type="password" className="form-control" id="currentpasswordInput" placeholder="Enter current password" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4">
@@ -83,9 +89,10 @@ const AccountSetting = () => {
                                                 </div>
                                             </div>
                                             <div className="col-lg-4">
-                                                <div>
-                                                    <label for="confirmpasswordInput" className="form-label">Confirm Password*</label>
-                                                    <input type="password" className="form-control" id="confirmpasswordInput" placeholder="Confirm password" />
+                                                <label className="form-label" htmlFor="password-input">Confirm Password*</label>
+                                                <div className="position-relative auth-pass-inputgroup mb-3">
+                                                    <input type="password" name="password" className="form-control pe-5 password-input" placeholder="Enter confirm Password" id="password-input" required />
+                                                    <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon" onClick={() => passwordAddedOn()}><i className="ri-eye-fill align-middle"></i></button>
                                                 </div>
                                             </div>
                                             <div className="col-lg-12 mt-4">
