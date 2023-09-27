@@ -38,7 +38,6 @@ const PersonalDetails = (props) => {
         }
     }
 
-console.log(context);
     return (
 
         <>
