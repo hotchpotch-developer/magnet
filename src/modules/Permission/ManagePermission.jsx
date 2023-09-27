@@ -31,7 +31,7 @@ const ManagePermission = () => {
                     createRoot(td).render(
                             <>
                                 <div className="d-flex text-nowrap">
-                                    <button type="button" className="btn btn-soft-success" data-bs-target="#addPermission" data-bs-toggle="modal" onClick={() => setEditData(records)}>
+                                    <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addPermission" data-bs-toggle="modal" onClick={() => setEditData(records)}>
                                         <i className="ri-pencil-fill"></i>
                                     </button>
                                 </div>

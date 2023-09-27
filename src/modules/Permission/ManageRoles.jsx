@@ -24,7 +24,7 @@ const ManageRoles = () => {
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Role Name', class: "text-nowrap minw-130px" },    
-            { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
+            { data: 'action', name: 'action', title: 'Action', class: "text-truncate minw-100px", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
             {
@@ -33,10 +33,10 @@ const ManageRoles = () => {
                     createRoot(td).render(
                             <>
                                 <div className="d-flex text-nowrap">
-                                    <button type="button" className="btn btn-soft-success" data-bs-target="#addRole" data-bs-toggle="modal" onClick={() => setEditData(records)} title="Edit Role">
+                                    <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addRole" data-bs-toggle="modal" onClick={() => setEditData(records)} title="Edit Role">
                                         <i className="ri-pencil-fill fs-5"></i>
                                     </button>
-                                    <button type="button" className="btn btn-soft-warning ms-2" data-bs-target="#assignPermission" data-bs-toggle="modal" onClick={() => editAssignPermission(records)} title="Assign Permission">
+                                    <button type="button" className="btn btn-sm btn-soft-warning ms-2" data-bs-target="#assignPermission" data-bs-toggle="modal" onClick={() => editAssignPermission(records)} title="Assign Permission">
                                         <i className="ri-user-star-fill fs-5"></i>
                                     </button>
                                 </div>

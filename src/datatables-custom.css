@@ -7,8 +7,6 @@
 .dataTable {
     padding: 1px;
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 6px;
     transition: 300ms
 }
 
@@ -46,6 +44,7 @@
     color: #6c757d !important;
     border-width: 1px;
     transition: 300ms;
+    padding: 5px 10px !important;
 }
 
 .dataTable.table>:not(caption)>*>* {

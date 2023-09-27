@@ -30,10 +30,10 @@ const Industry = (props) => {
                     createRoot(td).render(
                         <>
                             <div className="d-flex text-nowrap">
-                                <button type="button" className="btn btn-soft-success" data-bs-target="#addIndustry" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Industry">
+                                <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addIndustry" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Industry">
                                     <i className="ri-pencil-fill fs-5"></i>
                                 </button>
-                                <button type="button" className="btn btn-soft-danger ms-2" data-bs-target="#industryConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Industry">
+                                <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#industryConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Industry">
                                     <i className="ri-delete-bin-line fs-5"></i>
                                 </button>
                             </div>

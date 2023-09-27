@@ -30,10 +30,10 @@ const Department = (props) => {
                     createRoot(td).render(
                         <>
                             <div className="d-flex text-nowrap">
-                                <button type="button" className="btn btn-soft-success" data-bs-target="#addDepartment" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Department">
+                                <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addDepartment" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Department">
                                     <i className="ri-pencil-fill fs-5"></i>
                                 </button>
-                                <button type="button" className="btn btn-soft-danger ms-2" data-bs-target="#departmentConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Department">
+                                <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#departmentConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Department">
                                     <i className="ri-delete-bin-line fs-5"></i>
                                 </button>
                             </div>
