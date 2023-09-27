@@ -141,7 +141,7 @@ export const initDataTable = (dt) => {
     
     const table = $('#wt_datatable_' + dt.dt_name).DataTable({
         
-        dom: "B<'row clearfix mx-0'<'col-6 col-lg-2 px-0 text-center text-sm-start float-start'l><'dt-custom-filter col-md-6 col-lg-8 px-0 text-center text-sm-start exportbuttons'><'col-md-12 col-lg-2 px-0 ps-2 ps-ms-0 text-center text-lg-end'f>>" +
+        dom: "B<'row clearfix mx-0'<'col-6 col-lg-2 px-0 text-center text-sm-start float-start'l><'dt-custom-filter col-md-6 col-lg-8 px-0 text-center text-sm-start exportbuttons d-flex justify-content-end'><'col-md-12 col-lg-2 px-0 ps-2 ps-ms-0 text-center text-lg-end'f>>" +
             "<'row clearfix mx-0'<'col-sm-12 px-0'<'table-responsive position-relative my-1' tr>>>" +
             "<'row clearfix mx-0'<'col-md-12 col-lg-5 px-0 text-center text-lg-start'i><'col-md-12 col-lg-7 px-0 text-center text-lg-end'p>>",
         // dom: 'Bfrtip',

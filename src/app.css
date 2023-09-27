@@ -14718,6 +14718,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 /*# sourceMappingURL=app.min.css.map */
 
 
+.react-select .css-13cymwt-control {
+    background: transparent;
+    border: 1px solid #2a4562;
+}
+
 body.loading-data {
     pointer-events: none;
 }

@@ -86,6 +86,21 @@ export const ReactSelect = (props) => {
     return(
         <Select 
             components={animatedComponents}
+            styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor:'#2a4562',
+                  backgroundColor: 'transparent',
+                  color: '#fff'
+                }),
+
+                option: (baseStyles, state) => ({
+                    ...baseStyles,
+                    color: state.isSelected ? "#fff" : "#05192f",
+                    backgroundColor: state.isSelected ? "#05192f" : "#fff",
+                }),
+                singleValue: (baseStyles) => ({ ...baseStyles, color: "#fff" }),
+            }}
             {...props}
         />
     )
