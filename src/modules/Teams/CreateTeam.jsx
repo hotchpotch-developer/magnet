@@ -68,7 +68,7 @@ const CreateTeam = () => {
     return (
 
         <>
-            <Breadcrumbs title="Add Team" parentPage="Add Team" />
+            <Breadcrumbs title="Add Team" parentPage="Teams" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">

@@ -16,7 +16,7 @@ const SettingMaster = () => {
     return (
 
         <>
-            <Breadcrumbs title="Common Setting" parentPage="Common Setting" />
+            <Breadcrumbs title="Common Settings" parentPage="Common Settings" />
 
             <div className="row">
                 <div className="col-12">

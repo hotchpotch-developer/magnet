@@ -87,7 +87,7 @@ const TeamList = () => {
     return (
 
         <>
-            <Breadcrumbs title="Team" parentPage="Team" />
+            <Breadcrumbs title="Team List" parentPage="Teams" />
             <Datatables dt_name="team-list" dataPageLength="15" />
             <Elements.ConfirmationModal modalId="teamConfirmationModal" action={deleteTeam} />
         </>
