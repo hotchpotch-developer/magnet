@@ -16,6 +16,12 @@ const Login = () => {
         element.setAttribute('type', element.type === 'password' ? 'text' : 'password');
     }
 
+    const changeHandler = (e) => {
+        if (e.keyCode === 13) {
+            signIn(e)
+        }
+    }
+
     const signIn = (e) => {
         e.preventDefault();
 
@@ -80,7 +86,7 @@ const Login = () => {
                                                     </div>
                                                     <label className="form-label" htmlFor="password-input">Password</label>
                                                     <div className="position-relative auth-pass-inputgroup mb-3">
-                                                        <input type="password" name="password" className="form-control pe-5 password-input" placeholder="Password" id="password-input" required />
+                                                        <input type="password" name="password" className="form-control pe-5 password-input" placeholder="Password" id="password-input" required onKeyUp={(e) => changeHandler(e)} />
                                                         <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon" onClick={() => passwordAddedOn()}><i className="ri-eye-fill align-middle"></i></button>
                                                     </div>
                                                 </div>
