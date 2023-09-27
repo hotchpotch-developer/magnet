@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Select from 'react-select'
+import { loadingButton } from './Elements';
 
 export const showPassword = (e, id) => {
     let btn = e.target;
@@ -24,25 +25,6 @@ export const removeReactSelectError = (id) => {
     if (ele.lastChild.classList.contains('d-block')) ele.lastChild.remove();
     ele.classList.remove('is-invalid')
     ele.classList.add('is-valid')
-}
-
-export const PasswordField = (props) => {
-
-    return (
-        <div className="mb-3 row mx-0">
-            <label htmlFor={props.name} className="col-sm-3 col-xxl-2 col-form-label">
-                {props.label} {props.required && <sup className='text-danger fw-bold fs-15px'>*</sup>}
-            </label>
-            <div className="col-sm-9 col-lg-6 col-xxl-5 position-relative">
-                <input type="password" maxLength={20} className="form-control no-validate-icon" id={props.id ?? props.name} {...props} autoComplete="off" onChange={removeError} />
-                {props.suggestion && <span className="text-success fs-12px">{props.suggestion}</span>}
-                <div className="invalid-feedback">The {props.label} field is required.</div>
-                <button type="button" onClick={(e) => showPassword(e, props.id ?? props.name)} className="eye-set pt-1">
-                    <i className="bi-eye fs-5 pe-none"></i>
-                </button>
-            </div>
-        </div>
-    )
 }
 
 export const UnAuthPasswordField = (props) => {
@@ -82,11 +64,31 @@ export const UnAuthInputField = (props) => {
 export const InputField = (props) => {
 
     return (
-        <div className="col-xxl-3 col-md-6">
+        <div className={props.full ? "col-lg-12" : "col-xxl-3 col-md-6"}>
             <div>
-                <label htmlFor="employee_id" className="form-label">{_.startCase(props.name)}</label>
+                <label htmlFor={props.id ?? props.name} className="form-label">{_.startCase(props.name)}</label>
                 <input type={props.type ?? 'text'} className="form-control" id={props.id ?? props.name} {...props} />
                 <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
+            </div>
+        </div>
+    )
+}
+
+export const PasswordField = (props) => {
+
+    const passwordAddedOn = () => {
+        let id = props.id ?? props.name;
+        let element = document.querySelector('#' + id);
+        element.setAttribute('type', element.type === 'password' ? 'text' : 'password');
+    }
+
+    return (
+        <div className="col-lg-4">
+            <label className="form-label" htmlFor={props.id ?? props.name}>{_.startCase(props.name)}</label>
+            <div className="position-relative auth-pass-inputgroup mb-3">
+                <input type="password" name="password" className="form-control pe-5 password-input" id={props.id ?? props.name} {...props} />
+                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
+                <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" onClick={() => passwordAddedOn()}><i className="ri-eye-fill align-middle"></i></button>
             </div>
         </div>
     )
@@ -150,11 +152,9 @@ export const UnAuthSubmitButton = (props) => {
 export const SubmitButton = (props) => {
 
     return (
-        <div className="row mx-0">
-            <div className={`col-sm-10 px-0 ${!props.noOffset && 'offset-sm-3 offset-xxl-2'}`}>
-                <button type={props.type ?? "button"} disabled={props.load} className={`btn btn-${props.bgColor ?? 'primary'} w-120px px-4 me-2`} title={props.title} onClick={props.action}>
-                    {props.load ? <div className="spinner-border spinner-border-sm mx-3" role="status"><span className="visually-hidden">Loading</span></div> : props.title}
-                </button>
+        <div className="col-lg-12 mt-4">
+            <div className="text-end">
+                {props.loading ? loadingButton() : <button type={props.type ?? "button"} className="btn btn-primary" title={props.title} onClick={props.action}>{props.title}</button>}
             </div>
         </div>
     )

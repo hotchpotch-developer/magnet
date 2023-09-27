@@ -73,7 +73,10 @@ const ManageRoles = () => {
         setEditData(data)
         fetchData(`${COMMON_DROPDOWN}?type=permission`, 'GET', '', true, false, (res) => {
             if(res.status){
-                res.data && res.data.length > 0 && setPermissionList(res.data)
+                if(res.data && res.data.length > 0){
+                    setPermissionList(res.data)
+                    setSelectPermission(data.permissions);
+                }
             }
         })
     }
