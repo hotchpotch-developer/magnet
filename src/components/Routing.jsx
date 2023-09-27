@@ -14,6 +14,7 @@ import SettingMaster from "../modules/CommonSettings/ManagesStates/SettingMaster
 import TeamList from "../modules/Teams/TeamList";
 import CreateTeam from "../modules/Teams/CreateTeam";
 import TeamProfile from "../modules/Teams/TeamProfile";
+import AccountSetting from "../modules/AccountSetting/AccountSetting";
 
 
 const Routing = () => {
@@ -55,6 +56,9 @@ const Routing = () => {
 
                         {/* Common Settings Routes */}
                         <Route caseSensitive={false} path="/common-setting" element={ <SettingMaster /> } />
+
+                        {/* Settings */}
+                        <Route caseSensitive={false} path="/account-settings" element={<AccountSetting />} />
 
                     </Route>
                 }
