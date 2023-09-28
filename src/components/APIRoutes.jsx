@@ -5,6 +5,7 @@ export const GET_AUTH_INFO = "get-auth-user-info";
 export const LOGOUT = "logout"
 export const CHANGE_PASSWORD = "change-password"
 export const UPDATE_ACCOUNT_SETTING = "update-account-setting"
+export const DIRECT_LOGIN = "direct-login"
 
 // Permission Routes
 

@@ -9,6 +9,7 @@ const TopHeader = () => {
     const [dropDown, setDropDown] = useState(false)
     const [notificationDD, setNotificationDD] = useState(false)
     const [context, setContext] = useContext(Context)
+    const [adminToken] = useState(localStorage.getItem('admin-accessToken') ?? false)
     const navigate = useNavigate()
 
     const openMenu = () => {
@@ -30,11 +31,18 @@ const TopHeader = () => {
             fetchData(LOGOUT, 'GET', '', true, false, (res) => {
                 if(res.status === 200 && res.success) {
                     localStorage.removeItem('accessToken');
+                    localStorage.removeItem('admin-accessToken')
                     setContext('')
                     navigate('/')
                 }
             })
         }
+    }
+
+    const goToAdmin = () => {
+        localStorage.removeItem('admin-accessToken')
+        localStorage.setItem('accessToken', adminToken)
+        window.location.replace('/')
     }
 
     return (
@@ -366,6 +374,7 @@ const TopHeader = () => {
                                 </button>
                                 <div className={`dropdown-menu dropdown-menu-end ${dropDown ? 'show user-profile-dropdown-header' : ''}`} data-popper-placement={`${dropDown ? 'bottom-end' : ''}`}>
                                     <h6 className="dropdown-header">Welcome Anna!</h6>
+                                    {adminToken && <button onClick={goToAdmin} className="dropdown-item"><i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Go To Admin</span></button>}
                                     <Link className="dropdown-item" to="/account-settings"><i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Profile</span></Link>
                                     <Link className="dropdown-item" href="auth-lockscreen-basic.html"><i className="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Lock screen</span></Link>
                                     <Link className="dropdown-item" onClick={() => logout()}><i className="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span className="align-middle" data-key="t-logout">Logout</span></Link>

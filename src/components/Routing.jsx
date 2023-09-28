@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from  "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Context } from "./Context";
 import Layout from "./Layout";
 import Login from "../modules/Auth/Login";
@@ -20,18 +20,22 @@ import AccountSetting from "../modules/AccountSetting/AccountSetting";
 const Routing = () => {
 
     const [context, setContext] = useState('')
+    const [superAdmin, setSuperAdmin] = useState(false)
     const token = localStorage.getItem('accessToken')
     const navigate = useNavigate()
 
     useEffect(() => {
 
-        if(token) {
+        if (token) {
             fetchData(GET_AUTH_INFO, 'GET', '', true, false, (res) => {
-                if(res.status === 200 && res.data) {
-                    setContext(prev => ({...prev, auth: res.data}));
+                if (res.status === 200 && res.data) {
+                    setContext(prev => ({ ...prev, auth: res.data }));
+                    if (res.data.role_id === "1") {
+                        setSuperAdmin(true);
+                    }
                 }
             })
-        }else{
+        } else {
             navigate('/')
         }
 
@@ -42,30 +46,38 @@ const Routing = () => {
             <Routes>
                 {token &&
                     <Route caseSensitive={false} path="/" element={<Layout />}>
-                        <Route caseSensitive={false} path="/" element={ <Dashboard />} />
+                        <Route caseSensitive={false} path="/" element={<Dashboard />} />
+                        {context && context.auth && (superAdmin || context.auth.permissions) && <>
+                            {/* Permission Routes */}
+                            {(superAdmin || context.auth.permissions.includes('Permission')) && <>
+                                <Route caseSensitive={false} path="/manage-roles" element={<ManageRoles />} />
+                                <Route caseSensitive={false} path="/manage-permission" element={<ManagePermission />} />
+                            </>}
 
-                        {/* Permission Routes */}
-                        <Route caseSensitive={false} path="/manage-roles" element={ <ManageRoles /> } />
-                        <Route caseSensitive={false} path="/manage-permission" element={ <ManagePermission /> } />
+                            {/* Teams Routes */}
+                            {(superAdmin || context.auth.permissions.includes('Teams')) && <>
+                                <Route caseSensitive={false} path="/team-list" element={<TeamList />} />
+                                <Route caseSensitive={false} path="/add-team" element={<CreateTeam />} />
+                                <Route caseSensitive={false} path="/edit-team" element={<CreateTeam />} />
+                                <Route caseSensitive={false} path="/team-profile" element={<TeamProfile />} />
+                            </>}
 
-                        {/* eams Routes */}
-                        <Route caseSensitive={false} path="/team-list" element={ <TeamList /> } />
-                        <Route caseSensitive={false} path="/add-team" element={ <CreateTeam /> } />
-                        <Route caseSensitive={false} path="/edit-team" element={ <CreateTeam /> } />
-                        <Route caseSensitive={false} path="/team-profile" element={ <TeamProfile /> } />
+                            {/* Common Settings Routes */}
+                            {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
+                                <Route caseSensitive={false} path="/common-setting" element={<SettingMaster />} />
+                            </>}
 
-                        {/* Common Settings Routes */}
-                        <Route caseSensitive={false} path="/common-setting" element={ <SettingMaster /> } />
+                            {/* Settings */}
+                            <Route caseSensitive={false} path="/account-settings" element={<AccountSetting />} />
 
-                        {/* Settings */}
-                        <Route caseSensitive={false} path="/account-settings" element={<AccountSetting />} />
-
+                            <Route path="*" element={<ErrorPage />} />
+                        </>}
                     </Route>
                 }
-                
-                <Route caseSensitive={false} path="/" element={ <Login /> } />
-                <Route caseSensitive={false} path="/forgot-password" element={ <ForgotPassword /> } />
-                <Route path="*" element={<ErrorPage />} />
+
+                <Route caseSensitive={false} path="/" element={<Login />} />
+                <Route caseSensitive={false} path="/forgot-password" element={<ForgotPassword />} />
+                {!token && <Route path="*" element={<ErrorPage />} />}
             </Routes>
         </Context.Provider>
     )

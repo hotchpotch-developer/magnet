@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client"
 import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
-import { DELETE_TEAM, TEAM_LIST } from "../../components/APIRoutes";
+import { DELETE_TEAM, DIRECT_LOGIN, TEAM_LIST } from "../../components/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RoleFilter from "./RoleFilter";
 import { fetchData } from "../../components/Helper";
 import { now } from "lodash";
 import * as Elements from "../../components/Elements";
+import { Context } from "../../components/Context";
 
 const TeamList = () => {
     const navigate = useNavigate();
     const [role, setRole] = useState('');
-    // const [loader, setLoader] = useState(false)
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
+    const [context] = useContext(Context)
 
     const viewProfile = () => {
         navigate('/team-profile');
@@ -50,6 +51,11 @@ const TeamList = () => {
                                 <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#teamConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Team">
                                     <i className="ri-delete-bin-line fs-5"></i>
                                 </button>
+                                {context && context.auth && context.auth.role_id === "1" && <>
+                                    <button type="button" className="btn btn-sm btn-soft-info ms-2" onClick={() => directLogin(records.id)} title="Direct Login">
+                                        <i className="ri-login-box-fill fs-5"></i>
+                                    </button>
+                                </>}
                             </div>
                         </>
                     )
@@ -73,13 +79,22 @@ const TeamList = () => {
     }, [dt, role, reload])
 
     const deleteTeam = () => {
-        // setLoader(true)
         fetchData(`${DELETE_TEAM}/${deleteRecord.id}`, 'GET', '', true, false, (res) => {
-            // setLoader(false)
             if (res.status) {
                 setDeleteRecord(false)
                 document.querySelector('#teamConfirmationModal [data-bs-dismiss="modal"]').click()
                 setReload(now)
+            }
+        })
+    }
+
+    const directLogin = (id) => {
+        fetchData(`${DIRECT_LOGIN}?id=${id}`, 'GET', '', true, false, (res) => {
+            if (res.status) {
+                let token = localStorage.getItem('accessToken')
+                localStorage.setItem('admin-accessToken', token)
+                localStorage.setItem('accessToken', res.data.accessToken)
+                window.location.replace('/')
             }
         })
     }
