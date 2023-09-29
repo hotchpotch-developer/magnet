@@ -53,7 +53,7 @@ const TeamList = () => {
                                 </button>
                                 {context && context.auth && context.auth.role_id === "1" && <>
                                     <button type="button" className="btn btn-sm btn-soft-info ms-2" onClick={() => directLogin(records.id)} title="Direct Login">
-                                        <i className="ri-login-box-fill fs-5"></i>
+                                        <i className="ri-login-circle-line fs-5"></i>
                                     </button>
                                 </>}
                             </div>
