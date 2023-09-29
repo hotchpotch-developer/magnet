@@ -91,7 +91,8 @@
 
 .dataTables_wrapper .dataTables_filter {
     display: inline-block;
-    width: 100%
+    width: 100%;
+    padding-right: 10px !important;
 }
 
 .dataTables_wrapper .sorting_disabled {

@@ -108,7 +108,11 @@ const CreateTeam = () => {
                                         </SelectField>
                                         <InputField type="file" name="profile_image" />
                                     </div>
-                                    {loading ? loadingButton() : <button type="button" className="btn btn-primary mt-3" onClick={submitForm}>{formData.id ? 'Update' : 'Save'}</button>}
+                                    <div className="col-lg-12 mt-4">
+                                        <div className="text-end">
+                                            {loading ? loadingButton() : <button type="button" className="btn btn-primary mt-3" onClick={submitForm}>{formData.id ? 'Update' : 'Save'}</button>}
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>

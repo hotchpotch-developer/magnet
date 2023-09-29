@@ -14727,6 +14727,14 @@ body.loading-data {
     pointer-events: none;
 }
 
+select option {
+    background: #05192f;
+}
+.dt-buttons .dt-button.export-btn, 
+.dt-buttons .dt-button.buttons-colvis {
+    margin-left: 0 !important;
+}
+
   
 body.loading-data::before {
     content: '';
