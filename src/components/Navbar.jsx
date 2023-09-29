@@ -55,7 +55,7 @@ const Navbar = () => {
                                 {(superAdmin || context.auth.permissions.includes('Permission')) && <>
                                     <li className="nav-item">
                                         <Link className="nav-link menu-link" to="#managerMenu" data-bs-toggle="collapse" role="button" aria-controls="managerMenu">
-                                            <i className="ri-admin-line"></i> <span data-key="t-apps">Permission</span>
+                                            <i className="ri-shield-user-line"></i> <span data-key="t-apps">Permission</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="managerMenu">
                                             <ul className="nav nav-sm flex-column">
@@ -109,7 +109,7 @@ const Navbar = () => {
                                 {(superAdmin || context.auth.permissions.includes('Candidates')) && <>
                                     <li className="nav-item">
                                         <Link className="nav-link menu-link" to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
-                                            <i className="ri-user-2-line"></i> <span data-key="t-apps">Candidates</span>
+                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Candidates</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="recruiterMenu">
                                             <ul className="nav nav-sm flex-column">
