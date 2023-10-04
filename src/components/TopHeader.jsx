@@ -362,24 +362,26 @@ const TopHeader = () => {
                                 </div>
                             </div>
 
-                            <div className="dropdown ms-sm-3 header-item topbar-user">
+                            {context && context.auth && <>
+                                <div className="dropdown ms-sm-3 header-item topbar-user">
                                 <button type="button" className={`btn ${dropDown ? 'show' : ''}`} id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" onClick={() => profileDropDown()}>
                                     <span className="d-flex align-items-center">
                                         <img className="rounded-circle header-profile-user" src="/images/avatar-1.jpg" alt="Header Avatar" />
                                             <span className="text-start ms-xl-2">
-                                                <span className="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">Anna Adame</span>
-                                                <span className="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
+                                                <span className="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">{`${context.auth.first_name} ${context.auth.last_name}`}</span>
+                                                <span className="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{context.auth.role_name}</span>
                                             </span>
                                     </span>
                                 </button>
                                 <div className={`dropdown-menu dropdown-menu-end ${dropDown ? 'show user-profile-dropdown-header' : ''}`} data-popper-placement={`${dropDown ? 'bottom-end' : ''}`}>
-                                    <h6 className="dropdown-header">Welcome Anna!</h6>
+                                    <h6 className="dropdown-header">Welcome {context.auth.first_name} !</h6>
                                     {adminToken && <button onClick={goToAdmin} className="dropdown-item"><i className="mdi mdi-account-reactivate text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Go To Admin</span></button>}
                                     <Link className="dropdown-item" to="/account-settings"><i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Profile</span></Link>
                                     <Link className="dropdown-item" href="auth-lockscreen-basic.html"><i className="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Lock screen</span></Link>
                                     <Link className="dropdown-item" onClick={() => logout()}><i className="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span className="align-middle" data-key="t-logout">Logout</span></Link>
                                 </div>
                             </div>
+                            </>}
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ const ChangePassword = (props) => {
                 <div className="row g-2">
                     <PasswordField required name="current_password" />
                     <PasswordField required name="new_password" />
-                    <PasswordField required name="confirm_password" />
+                    <PasswordField eye={true} required name="confirm_password" />
                     <SubmitButton title="Change Password" loading={loading} action={submitForm} />
                 </div>
             </form>

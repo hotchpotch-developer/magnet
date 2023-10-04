@@ -47,7 +47,12 @@ const ManageRoles = () => {
         ]
     });
 
-
+    useEffect(() => {
+        document.getElementById('addRole').addEventListener('show.bs.modal', function () {
+            initialFormState('addUpdateRole')
+            setEditData(false)
+        })
+    }, [])
 
     const saveUpdateRole = (e) => {
         e.preventDefault()

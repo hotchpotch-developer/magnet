@@ -42,6 +42,13 @@ const ManagePermission = () => {
         ]
     });
 
+    useEffect(() => {
+        document.getElementById('addPermission').addEventListener('show.bs.modal', function () {
+            initialFormState('addUpdatePermission')
+            setEditData(false)
+        })
+    }, [])
+    
     const saveUpdatePermission = (e) => {
         e.preventDefault();
 

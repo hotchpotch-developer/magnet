@@ -5,6 +5,8 @@ import Industry from "../Partials/Industry";
 import Source from "../Partials/Source";
 import Remark from "../Partials/Remark";
 import Location from "../Partials/Location";
+import Company from "../Partials/Company";
+import Channel from "../Partials/Channel";
 
 const SettingMaster = () => {
     const [activeTab, setActiveTab] = useState("department");
@@ -49,6 +51,16 @@ const SettingMaster = () => {
                                         Source
                                     </a>
                                 </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#company-home" role="tab" onClick={() => handleTabChange('company')}>
+                                        Company
+                                    </a>
+                                </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#channel-home" role="tab" onClick={() => handleTabChange('channel')}>
+                                        Channel
+                                    </a>
+                                </li>
                             </ul>
                             <div className="tab-content text-muted">
                                 <div className="tab-pane active" id="department-home" role="tabpanel">
@@ -65,6 +77,12 @@ const SettingMaster = () => {
                                 </div>
                                 <div className="tab-pane" id="source-home" role="tabpanel">
                                     <Source activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="company-home" role="tabpanel">
+                                    <Company activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="channel-home" role="tabpanel">
+                                    <Channel activeTab={activeTab} />
                                 </div>
                             </div>
                         </div>

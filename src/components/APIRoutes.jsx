@@ -41,6 +41,14 @@ export const SOURCE_LIST = "source-list"
 export const ADD_SOURCE = "add-source"
 export const EDIT_SOURCE = "edit-source"
 export const DELETE_SOURCE = "delete-source"
+export const COMPANY_LIST = "company-list"
+export const ADD_COMPANY = "add-company"
+export const EDIT_COMPANY = "edit-company"
+export const DELETE_COMPANY = "delete-company"
+export const CHANNEL_LIST = "channel-list"
+export const ADD_CHANNEL = "add-channel"
+export const EDIT_CHANNEL = "edit-channel"
+export const DELETE_CHANNEL = "delete-channel"
 
 // Teams Routes
 
