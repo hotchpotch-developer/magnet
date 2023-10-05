@@ -47,6 +47,7 @@ const Industry = (props) => {
     useEffect(() => {
         document.getElementById('addIndustry').addEventListener('show.bs.modal', function () {
             initialFormState('industry-form', setFormData)
+            setEdit(false);
         })
     }, [])
 

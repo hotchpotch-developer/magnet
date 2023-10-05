@@ -47,6 +47,7 @@ const Company = (props) => {
     useEffect(() => {
         document.getElementById('addCompany').addEventListener('show.bs.modal', function () {
             initialFormState('company-form', setFormData)
+            setEdit(false);
         })
     }, [])
 

@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
-import { ADD_CHANNEL, CHANNEL_LIST, DELETE_CHANNEL, EDIT_CHANNEL } from "../../../components/APIRoutes";
+import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, PRODUCT_LIST } from "../../../components/APIRoutes";
 import Datatables, { reloadUrlDataTable } from "../../../components/Datatables";
 import { createRoot } from "react-dom/client"
 import * as Elements from "../../../components/Elements";
 import { fetchData, initialFormState, validateForm } from "../../../components/Helper";
 import { now } from "lodash";
 
-const Channel = (props) => {
+const Product = (props) => {
     const [initDataTable, setInitDataTable] = useState(false);
     const [edit, setEdit] = useState(false);
-    const [formData, setFormData] = useState({ channel_name: "" });
+    const [formData, setFormData] = useState({ product_name: "" });
     const [loader, setLoader] = useState(false)
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
 
     const [dt] = useState({
-        dt_url: CHANNEL_LIST,
-        dt_name: 'channel-list',
+        dt_url: PRODUCT_LIST,
+        dt_name: 'product-list',
         dt_export: true,
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
-            { data: 'name', name: 'name', title: 'Channel Name', class: "text-nowrap minw-130px" },
+            { data: 'name', name: 'name', title: 'Product Name', class: "text-nowrap minw-130px" },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
@@ -30,10 +30,10 @@ const Channel = (props) => {
                     createRoot(td).render(
                         <>
                             <div className="d-flex text-nowrap">
-                                <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addChannel" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Channel">
+                                <button type="button" className="btn btn-sm btn-soft-success" data-bs-target="#addProduct" data-bs-toggle="modal" onClick={() => getEditData(records)} title="Edit Product">
                                     <i className="ri-pencil-fill fs-5"></i>
                                 </button>
-                                <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#channelConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Channel">
+                                <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#productConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Product">
                                     <i className="ri-delete-bin-line fs-5"></i>
                                 </button>
                             </div>
@@ -45,17 +45,17 @@ const Channel = (props) => {
     });
 
     useEffect(() => {
-        document.getElementById('addChannel').addEventListener('show.bs.modal', function () {
-            initialFormState('channel-form', setFormData)
+        document.getElementById('addProduct').addEventListener('show.bs.modal', function () {
+            initialFormState('product-form', setFormData)
             setEdit(false);
         })
     }, [])
 
 
     useEffect(() => {
-        if (props.activeTab === 'channel' && (!initDataTable || reload)) {
+        if (props.activeTab === 'product' && (!initDataTable || reload)) {
             setInitDataTable(true);
-            reloadUrlDataTable(dt, CHANNEL_LIST);
+            reloadUrlDataTable(dt, PRODUCT_LIST);
         }
 
     }, [dt, props.activeTab, initDataTable, reload])
@@ -68,19 +68,19 @@ const Channel = (props) => {
     const submitForm = (e) => {
         e.preventDefault()
 
-        if (validateForm(e, 'channel-form')) {
+        if (validateForm(e, 'product-form')) {
             setLoader(true)
-            let api_url = ADD_CHANNEL;
+            let api_url = ADD_PRODUCT;
             let formdata = formData;
             if (edit) {
-                api_url = EDIT_CHANNEL;
+                api_url = EDIT_PRODUCT;
                 formdata = { ...formdata, id: edit };
             }
             fetchData(api_url, 'POST', formdata, true, false, (res) => {
                 setLoader(false)
                 if (res.status) {
-                    initialFormState('channel-form', setFormData)
-                    document.querySelector('#addChannel [data-bs-dismiss="modal"]').click()
+                    initialFormState('product-form', setFormData)
+                    document.querySelector('#addProduct [data-bs-dismiss="modal"]').click()
                     setReload(now)
                 }
             })
@@ -89,16 +89,16 @@ const Channel = (props) => {
 
     const getEditData = (data) => {
         setEdit(data.id);
-        setFormData(prev => ({ ...prev, channel_name: data.name }));
+        setFormData(prev => ({ ...prev, product_name: data.name }));
     }
 
-    const deleteChannel = () => {
+    const deleteProduct = () => {
         setLoader(true)
-        fetchData(`${DELETE_CHANNEL}/${deleteRecord.id}`, 'GET', '', true, false, (res) => {
+        fetchData(`${DELETE_PRODUCT}/${deleteRecord.id}`, 'GET', '', true, false, (res) => {
             setLoader(false)
             if (res.status) {
                 setDeleteRecord(false)
-                document.querySelector('#channelConfirmationModal [data-bs-dismiss="modal"]').click()
+                document.querySelector('#productConfirmationModal [data-bs-dismiss="modal"]').click()
                 setReload(now)
             }
         })
@@ -109,26 +109,26 @@ const Channel = (props) => {
 
         <>
             <div className="col-12 d-flex justify-content-end mb-3">
-                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addChannel" data-bs-toggle="modal" title="Add Channel">
-                    <i className="ri-add-fill fs-5"></i>Add Channel
+                <button type="button" className="btn btn-outline-success" style={{width: 'auto'}} data-bs-target="#addProduct" data-bs-toggle="modal" title="Add Product">
+                    <i className="ri-add-fill fs-5"></i>Add Product
                 </button>
             </div>
-            <Datatables dt_name="channel-list" dataPageLength="15" />
-            <Elements.ModalSection modalId="addChannel" title={`${edit ? 'Update Channel' : 'Add Channel'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="channel-form">
-                <form className="needs-validation" noValidate id="channel-form">
+            <Datatables dt_name="product-list" dataPageLength="15" />
+            <Elements.ModalSection modalId="addProduct" title={`${edit ? 'Update Product' : 'Add Product'}`} btnTitle={`${edit ? 'Update' : 'Save'}`} action={submitForm} loading={loader} formId="product-form">
+                <form className="needs-validation" noValidate id="product-form">
                     <div className="row gy-4">
                         <div className="col-md-12">
-                            <label htmlFor="channel_name" className="form-label">Channel Name</label>
-                            <input type="text" className="form-control" id="channel_name" name="channel_name" value={formData.channel_name} onChange={handleInputChange} required />
-                            <div className="invalid-feedback">Please Enter Channel name.</div>
+                            <label htmlFor="product_name" className="form-label">Product Name</label>
+                            <input type="text" className="form-control" id="product_name" name="product_name" value={formData.product_name} onChange={handleInputChange} required />
+                            <div className="invalid-feedback">Please Enter Product name.</div>
                         </div>
                     </div>
                 </form>
             </Elements.ModalSection>
-            <Elements.ConfirmationModal modalId="channelConfirmationModal" action={deleteChannel} />
+            <Elements.ConfirmationModal modalId="productConfirmationModal" action={deleteProduct} />
         </>
 
     )
 
 }
-export default Channel;
+export default Product;

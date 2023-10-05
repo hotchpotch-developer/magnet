@@ -7,6 +7,10 @@ import Remark from "../Partials/Remark";
 import Location from "../Partials/Location";
 import Company from "../Partials/Company";
 import Channel from "../Partials/Channel";
+import Designation from "../Partials/Designation";
+import Product from "../Partials/Product";
+import Level from "../Partials/Level";
+import State from "../Partials/State";
 
 const SettingMaster = () => {
     const [activeTab, setActiveTab] = useState("department");
@@ -61,6 +65,26 @@ const SettingMaster = () => {
                                         Channel
                                     </a>
                                 </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#designation-home" role="tab" onClick={() => handleTabChange('designation')}>
+                                        Designation
+                                    </a>
+                                </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#product-home" role="tab" onClick={() => handleTabChange('product')}>
+                                        Product
+                                    </a>
+                                </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#level-home" role="tab" onClick={() => handleTabChange('level')}>
+                                        Level
+                                    </a>
+                                </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#state-home" role="tab" onClick={() => handleTabChange('state')}>
+                                        State
+                                    </a>
+                                </li>
                             </ul>
                             <div className="tab-content text-muted">
                                 <div className="tab-pane active" id="department-home" role="tabpanel">
@@ -83,6 +107,18 @@ const SettingMaster = () => {
                                 </div>
                                 <div className="tab-pane" id="channel-home" role="tabpanel">
                                     <Channel activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="designation-home" role="tabpanel">
+                                    <Designation activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="product-home" role="tabpanel">
+                                    <Product activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="level-home" role="tabpanel">
+                                    <Level activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="state-home" role="tabpanel">
+                                    <State activeTab={activeTab} />
                                 </div>
                             </div>
                         </div>

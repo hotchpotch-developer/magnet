@@ -47,6 +47,7 @@ const Department = (props) => {
     useEffect(() => {
         document.getElementById('addDepartment').addEventListener('show.bs.modal', function () {
             initialFormState('department-form', setFormData)
+            setEdit(false);
         })
     }, [])
 

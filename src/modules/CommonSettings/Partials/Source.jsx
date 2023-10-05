@@ -48,6 +48,7 @@ const Source = (props) => {
     useEffect(() => {
         document.getElementById('addSource').addEventListener('show.bs.modal', function () {
             initialFormState('source-form', setFormData)
+            setEdit(false);
         })
     }, [])
 
