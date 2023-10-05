@@ -87,8 +87,8 @@ export const PasswordField = (props) => {
             <label className="form-label" htmlFor={props.id ?? props.name}>{_.startCase(props.name)}</label>
             <div className="position-relative auth-pass-inputgroup mb-3">
                 <input type="password" name="password" className="form-control pe-5 password-input" id={props.id ?? props.name} {...props} />
-                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
                 {props.eye && <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" onClick={() => passwordAddedOn()}><i className="ri-eye-fill align-middle"></i></button>}
+                <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
             </div>
         </div>
     )
