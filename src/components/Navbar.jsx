@@ -100,7 +100,7 @@ const Navbar = () => {
                                                     <Link to="apps-calendar.html" className="nav-link" data-key="t-calendar"> Add Job </Link>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <Link to="apps-chat.html" className="nav-link" data-key="t-chat"> Job List </Link>
+                                                    <Link to="/manage-jobs" className="nav-link" data-key="t-chat"> Manage Jobs </Link>
                                                 </li>
                                             </ul>
                                         </div>

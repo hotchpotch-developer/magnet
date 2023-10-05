@@ -15,6 +15,7 @@ import TeamList from "../modules/Teams/TeamList";
 import CreateTeam from "../modules/Teams/CreateTeam";
 import TeamProfile from "../modules/Teams/TeamProfile";
 import AccountSetting from "../modules/AccountSetting/AccountSetting";
+import JobList from "../modules/Jobs/JobList";
 
 
 const Routing = () => {
@@ -65,6 +66,11 @@ const Routing = () => {
                             {/* Common Settings Routes */}
                             {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
                                 <Route caseSensitive={false} path="/common-setting" element={<SettingMaster />} />
+                            </>}
+                            
+                            {/* Post Jobs */}
+                            {(superAdmin || context.auth.permissions.includes('	Post Job')) && <>
+                                <Route caseSensitive={false} path="/manage-jobs" element={<JobList />} />
                             </>}
 
                             {/* Settings */}
