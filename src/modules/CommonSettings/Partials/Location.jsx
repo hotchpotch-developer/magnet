@@ -47,6 +47,7 @@ const Location = (props) => {
     useEffect(() => {
         document.getElementById('addLocation').addEventListener('show.bs.modal', function () {
             initialFormState('location-form', setFormData)
+            setEdit(false);
         })
     }, [])
 

@@ -47,6 +47,7 @@ const Remark = (props) => {
     useEffect(() => {
         document.getElementById('addRemark').addEventListener('show.bs.modal', function () {
             initialFormState('remark-form', setFormData)
+            setEdit(false);
         })
     }, [])
 
