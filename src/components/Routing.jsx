@@ -17,6 +17,7 @@ import TeamProfile from "../modules/Teams/TeamProfile";
 import AccountSetting from "../modules/AccountSetting/AccountSetting";
 import JobList from "../modules/Jobs/JobList";
 import CreateJob from "../modules/Jobs/CreateJob"
+import EmployeeCalendar from "../modules/Attendance/EmployeeCalendar";
 
 
 const Routing = () => {
@@ -50,6 +51,10 @@ const Routing = () => {
                     <Route caseSensitive={false} path="/" element={<Layout />}>
                         <Route caseSensitive={false} path="/" element={<Dashboard />} />
                         {context && context.auth && (superAdmin || context.auth.permissions) && <>
+
+                            {/* Attendance Sheet */}
+                            <Route caseSensitive={false} path="/attendance" element={<EmployeeCalendar />} />
+
                             {/* Permission Routes */}
                             {(superAdmin || context.auth.permissions.includes('Permission')) && <>
                                 <Route caseSensitive={false} path="/manage-roles" element={<ManageRoles />} />
