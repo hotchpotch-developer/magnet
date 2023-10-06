@@ -97,7 +97,7 @@ const Navbar = () => {
                                         <div className="collapse menu-dropdown" id="recruiterMenu">
                                             <ul className="nav nav-sm flex-column">
                                                 <li className="nav-item">
-                                                    <Link to="apps-calendar.html" className="nav-link" data-key="t-calendar"> Add Job </Link>
+                                                    <Link to="/create-job" className="nav-link" data-key="t-calendar"> Create Job </Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link to="/manage-jobs" className="nav-link" data-key="t-chat"> Manage Jobs </Link>
