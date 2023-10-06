@@ -15,6 +15,9 @@ import TeamList from "../modules/Teams/TeamList";
 import CreateTeam from "../modules/Teams/CreateTeam";
 import TeamProfile from "../modules/Teams/TeamProfile";
 import AccountSetting from "../modules/AccountSetting/AccountSetting";
+import JobList from "../modules/Jobs/JobList";
+import CreateJob from "../modules/Jobs/CreateJob"
+import EmployeeCalendar from "../modules/Attendance/EmployeeCalendar";
 
 
 const Routing = () => {
@@ -48,6 +51,10 @@ const Routing = () => {
                     <Route caseSensitive={false} path="/" element={<Layout />}>
                         <Route caseSensitive={false} path="/" element={<Dashboard />} />
                         {context && context.auth && (superAdmin || context.auth.permissions) && <>
+
+                            {/* Attendance Sheet */}
+                            <Route caseSensitive={false} path="/attendance" element={<EmployeeCalendar />} />
+
                             {/* Permission Routes */}
                             {(superAdmin || context.auth.permissions.includes('Permission')) && <>
                                 <Route caseSensitive={false} path="/manage-roles" element={<ManageRoles />} />
@@ -65,6 +72,12 @@ const Routing = () => {
                             {/* Common Settings Routes */}
                             {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
                                 <Route caseSensitive={false} path="/common-setting" element={<SettingMaster />} />
+                            </>}
+                            
+                            {/* Post Jobs */}
+                            {(superAdmin || context.auth.permissions.includes('	Post Job')) && <>
+                                <Route caseSensitive={false} path="/manage-jobs" element={<JobList />} />
+                                <Route caseSensitive={false} path="/create-job" element={<CreateJob />} />
                             </>}
 
                             {/* Settings */}
