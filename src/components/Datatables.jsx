@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import jsZip from 'jszip';
 import '../datatables-custom.css'
 import 'datatables.net';
 import 'datatables.net-buttons';
@@ -7,6 +8,7 @@ import 'datatables.net-buttons/js/buttons.flash.min';
 import 'datatables.net-buttons/js/buttons.print.min';
 import 'datatables.net-buttons/js/buttons.html5.min';
 import moment from 'moment';
+window.JSZip = jsZip;
 export const ENDPOINT = process.env.REACT_APP_API_URL
 
 

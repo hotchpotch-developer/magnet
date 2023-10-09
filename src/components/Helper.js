@@ -3,15 +3,15 @@ import $ from 'jquery'
 export const ENDPOINT = process.env.REACT_APP_API_URL
 
 const bodyLoader = (active) => {
-    if(active){
+    if (active) {
         document.querySelector('body').classList.add('loading-data');
-    }else{
+    } else {
         document.querySelector('body').classList.remove('loading-data');
     }
 }
 
 export const fetchData = async (url, method, data, token, process, res, abort_signal = false, process_type = false, form_id = '', loading = true) => {
-    if(loading){
+    if (loading) {
         bodyLoader(true)
     }
     let headers = {
@@ -44,7 +44,7 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
     }
 
     await fetch(`${ENDPOINT}${url}`, request).then((response) => process_type === "text" ? response.text() : (process_type === "blob" ? response.blob() : response.json())).then((json) => {
-        if(loading){
+        if (loading) {
             bodyLoader(false)
         }
         if (json.message === "Unauthenticated.") {
@@ -59,8 +59,8 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
             showAlertMsg(json, form_id)
             res(json)
         }
-    }).catch((error) => { 
-        if(loading){
+    }).catch((error) => {
+        if (loading) {
             bodyLoader(false)
         }
         console.log(error)
@@ -114,7 +114,7 @@ export const showAlertMsg = (data, form_id = false) => {
 
         var toast = new Toast(getIdToast);
         toast.show();
-        
+
         getIdToast.addEventListener('hidden.bs.toast', function () {
             setTimeout(() => {
                 this.remove();
@@ -145,4 +145,30 @@ export const initialFormState = (formId, setData = false) => {
         setData(prevState => ({ ...prevState = '' }))
     }
     return setData;
+}
+
+export const copyText = (id) => {
+    let text = document.getElementById(id).value;
+    let textField = document.createElement('textarea')
+    textField.innerText = text
+    document.body.appendChild(textField)
+    textField.select()
+    document.execCommand('copy')
+    textField.remove()
+}
+
+export const generateText = (length = 8, number = false, password = false) => {
+    let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    if (number) {
+        charset = "0123456789012345678901234567890123456789012345678901234567890123456789";
+    }
+    if (password) {
+        charset = "0123456789!@#$%^&*()_+=-abcdefghijklmnopqrst0123456789!@#$%^&*()_+=-uvwxyz0123456789!@#$%^&*()_+=-ABCDEFGHIJKLM0123456789!@#$%^&*()_+=-NOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-";
+    }
+
+    let retVal = '';
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
 }

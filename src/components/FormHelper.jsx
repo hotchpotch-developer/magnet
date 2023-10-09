@@ -66,7 +66,7 @@ export const InputField = (props) => {
     return (
         <div className={props.full ? "col-lg-12" : "col-xxl-3 col-md-6"}>
             <div>
-                <label htmlFor={props.id ?? props.name} className="form-label">{_.startCase(props.name)}</label>
+                <label htmlFor={props.label ?? (props.id ?? props.name)} className="form-label">{_.startCase(props.name)}</label>
                 <input type={props.type ?? 'text'} className="form-control" id={props.id ?? props.name} {...props} />
                 <div className="invalid-feedback">Please Enter {_.startCase(props.name)}.</div>
             </div>

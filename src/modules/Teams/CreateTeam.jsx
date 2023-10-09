@@ -3,8 +3,8 @@ import { COMMON_DROPDOWN, CREATE_TEAM, EDIT_TEAM } from "../../components/APIRou
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
-import { fetchData, validateForm } from "../../components/Helper";
-import { InputField, SelectField } from "../../components/FormHelper";
+import { copyText, fetchData, generateText, validateForm } from "../../components/Helper";
+import { InputField, PasswordField, SelectField } from "../../components/FormHelper";
 import * as Elements from "../../components/Elements";
 
 const CreateTeam = () => {
@@ -13,7 +13,7 @@ const CreateTeam = () => {
     const [roles, setRoles] = useState([])
     const [role, setRole] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [formData, setFormData] = useState({ employee_id: "", first_name: "", last_name: "", phone: "", email: "", role: "", password: "", status: "" });
+    const [formData, setFormData] = useState({ employee_id: "", first_name: "", last_name: "", phone: "", alternate_phone: "", email: "", alternate_email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
@@ -38,7 +38,9 @@ const CreateTeam = () => {
                 first_name: team.first_name,
                 last_name: team.last_name,
                 phone: team.phone,
+                phone: team.alternate_phone ?? '',
                 email: team.email,
+                email: team.alternate_email ?? '',
                 role: team.role_id,
                 status: team.status,
             })
@@ -83,7 +85,9 @@ const CreateTeam = () => {
                                         <InputField name="first_name" value={formData.first_name} required onChange={handleInputChange} />
                                         <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
                                         <InputField name="phone" value={formData.phone} required onChange={handleInputChange} />
+                                        <InputField name="alternate_phone" value={formData.alternate_phone} onChange={handleInputChange} />
                                         <InputField name="email" value={formData.email} required onChange={handleInputChange} />
+                                        <InputField name="alternate_email" value={formData.alternate_email} onChange={handleInputChange} />
                                         {/* <InputField name="role" value={formData.role} required onChange={handleInputChange} /> */}
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
@@ -99,6 +103,17 @@ const CreateTeam = () => {
                                             />
                                             <div className="invalid-feedback">Please Enter Role.</div>
                                         </div>
+                                        <div className="col-xxl-3 col-md-6">
+                                            <div>
+                                                <label htmlFor="aa" className="form-label">AA</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="aa" name="aa" required />
+                                                    <span class="input-group-text" role="button" title="Copy" onClick={() => copyText('aa')}>C</span>
+                                                    <span class="input-group-text" role="button" title="Auto Generate" onClick={() => document.getElementById('aa').value = generateText(16, false, true)}>A</span>
+                                                    <div className="invalid-feedback">Please Enter AA.</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <InputField name="password" type="password" required={!formData.id} onChange={handleInputChange} />
                                         <SelectField name="Status">
                                             <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
@@ -107,6 +122,7 @@ const CreateTeam = () => {
                                             </select>
                                         </SelectField>
                                         <InputField type="file" name="profile_image" />
+                                        <InputField type="file" name="doc" label="Aadhar/Pan" />
                                     </div>
                                     <div className="col-lg-12 mt-4">
                                         <div className="text-end">
