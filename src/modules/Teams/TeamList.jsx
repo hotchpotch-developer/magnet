@@ -22,7 +22,7 @@ const TeamList = () => {
     }
 
     const [dt] = useState({
-        dt_url: TEAM_LIST,
+        dt_url: `${TEAM_LIST}?type=all`,
         dt_name: 'team-list',
         dt_export: true,
         dt_column: [
@@ -74,7 +74,7 @@ const TeamList = () => {
     }
 
     useEffect(() => {
-        let url = role ? `${TEAM_LIST}?type=${role}` : TEAM_LIST;
+        let url = role ? `${TEAM_LIST}?type=${role}` : `${TEAM_LIST}?type=all`;
         reloadUrlDataTable(dt, url);
     }, [dt, role, reload])
 

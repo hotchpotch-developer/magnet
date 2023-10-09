@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Context } from "./Context";
 import Layout from "./Layout";
 import Login from "../modules/Auth/Login";
@@ -25,7 +25,6 @@ const Routing = () => {
     const [context, setContext] = useState('')
     const [superAdmin, setSuperAdmin] = useState(false)
     const token = localStorage.getItem('accessToken')
-    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -38,11 +37,9 @@ const Routing = () => {
                     }
                 }
             })
-        } else {
-            navigate('/')
         }
 
-    }, [token, navigate])
+    }, [token])
 
     return (
         <Context.Provider value={[context, setContext]}>
@@ -73,7 +70,7 @@ const Routing = () => {
                             {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
                                 <Route caseSensitive={false} path="/common-setting" element={<SettingMaster />} />
                             </>}
-                            
+
                             {/* Post Jobs */}
                             {(superAdmin || context.auth.permissions.includes('	Post Job')) && <>
                                 <Route caseSensitive={false} path="/manage-jobs" element={<JobList />} />
@@ -86,10 +83,13 @@ const Routing = () => {
                             <Route path="*" element={<ErrorPage />} />
                         </>}
                     </Route>
+                }else{<>
+                    <Route caseSensitive={false} path="/" element={<Login />} />
+                    <Route caseSensitive={false} path="/login" element={<Login />} />
+                    <Route caseSensitive={false} path="/forgot-password" element={<ForgotPassword />} />
+                    <Route caseSensitive={false} path="/reset-password" element={<ForgotPassword />} />
+                </>
                 }
-
-                <Route caseSensitive={false} path="/" element={<Login />} />
-                <Route caseSensitive={false} path="/forgot-password" element={<ForgotPassword />} />
                 {!token && <Route path="*" element={<ErrorPage />} />}
             </Routes>
         </Context.Provider>

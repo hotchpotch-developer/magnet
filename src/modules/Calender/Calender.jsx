@@ -1,6 +1,8 @@
 import React from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
 import Breadcrumbs from '../../components/Breadcrumbs'
 import interactionPlugin from "@fullcalendar/interaction"
 import * as Elements from "../../components/Elements";
@@ -38,7 +40,12 @@ const Calender = () => {
                 </form>
             </Elements.ModalSection>
             <FullCalendar
-                plugins={[dayGridPlugin, interactionPlugin]}
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+                headerToolbar={{
+                    left: "prev,next today",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                }}
                 initialView="dayGridMonth"
                 events={[
                     // Add your events here

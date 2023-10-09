@@ -3,17 +3,19 @@ import { COMMON_DROPDOWN, CREATE_TEAM, EDIT_TEAM } from "../../components/APIRou
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { loadingButton } from "../../components/Elements";
 import { useLocation, useNavigate } from "react-router-dom";
-import { copyText, fetchData, generateText, validateForm } from "../../components/Helper";
-import { InputField, PasswordField, SelectField } from "../../components/FormHelper";
+import { copyText, fetchData, generateText, initialFormState, validateForm } from "../../components/Helper";
+import { InputField, SelectField } from "../../components/FormHelper";
 import * as Elements from "../../components/Elements";
 
 const CreateTeam = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [roles, setRoles] = useState([])
+    const [reportingUsers, setReportingUsers] = useState([])
     const [role, setRole] = useState(null)
+    const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [formData, setFormData] = useState({ employee_id: "", first_name: "", last_name: "", phone: "", alternate_phone: "", email: "", alternate_email: "", role: "", password: "", status: "" });
+    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
@@ -22,6 +24,20 @@ const CreateTeam = () => {
                 if (location && location.state && location.state.team) {
                     let role = res.data.filter((item) => item.value === location.state.team.roles_id)
                     setRole(role[0] ?? null)
+                }else{
+                    setRole(null)
+                }
+            }
+        })
+
+        fetchData(COMMON_DROPDOWN + '?type=reporting_user', 'GET', '', true, false, (res) => {
+            if (res.status) {
+                setReportingUsers(res.data)
+                if (location && location.state && location.state.team) {
+                    let reporting_user = res.data.filter((item) => item.value === location.state.team.reporting_user_id)
+                    setReportingUser(reporting_user[0] ?? null)
+                }else{
+                    setReportingUser(null)
                 }
             }
         })
@@ -31,6 +47,7 @@ const CreateTeam = () => {
     useEffect(() => {
         if (location && location.state && location.state.team) {
             let team = location.state.team;
+
             setFormData({
                 id: team.id,
                 roles_name: team.roles_name,
@@ -38,12 +55,16 @@ const CreateTeam = () => {
                 first_name: team.first_name,
                 last_name: team.last_name,
                 phone: team.phone,
-                phone: team.alternate_phone ?? '',
+                alternet_phone: team.alternet_phone ?? '',
                 email: team.email,
-                email: team.alternate_email ?? '',
+                alternet_email: team.alternet_email ?? '',
                 role: team.role_id,
+                reporting_user_id: team.reporting_user_id,
                 status: team.status,
             })
+        }else{
+            setFormData({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
+            initialFormState("team-form");
         }
     }, [location])
 
@@ -81,14 +102,13 @@ const CreateTeam = () => {
                             <div className="live-preview">
                                 <form className="needs-validation" noValidate id="team-form">
                                     <div className="row gy-4">
-                                        <InputField name="employee_id" value={formData.employee_id} required onChange={handleInputChange} />
+                                        {formData.id && <InputField name="employee_id" value={formData.employee_id} disabled />}
                                         <InputField name="first_name" value={formData.first_name} required onChange={handleInputChange} />
                                         <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
-                                        <InputField name="phone" value={formData.phone} required onChange={handleInputChange} />
-                                        <InputField name="alternate_phone" value={formData.alternate_phone} onChange={handleInputChange} />
+                                        <InputField name="phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" value={formData.phone} required onChange={handleInputChange} />
+                                        <InputField label="Alternate Phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
                                         <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                        <InputField name="alternate_email" value={formData.alternate_email} onChange={handleInputChange} />
-                                        {/* <InputField name="role" value={formData.role} required onChange={handleInputChange} /> */}
+                                        <InputField label="Alternate Email" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
                                             <Elements.ReactSelect
@@ -104,17 +124,30 @@ const CreateTeam = () => {
                                             <div className="invalid-feedback">Please Enter Role.</div>
                                         </div>
                                         <div className="col-xxl-3 col-md-6">
+                                            <label htmlFor="reporting_user_id" className="form-label">Reporting User</label>
+                                            <Elements.ReactSelect
+                                                placeholder="Select Role"
+                                                options={reportingUsers}
+                                                name="reporting_user_id"
+                                                value={reportingUser}
+                                                id="reporting_user_id"
+                                                className="react-select required"
+                                                onChange={(e) => { Elements.reactSelectValidation(e, "role"); setReportingUser(e) }}
+                                                required={true}
+                                            />
+                                            <div className="invalid-feedback">Please Enter Role.</div>
+                                        </div>
+                                        <div className="col-xxl-3 col-md-6">
                                             <div>
-                                                <label htmlFor="aa" className="form-label">AA</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="aa" name="aa" required />
-                                                    <span class="input-group-text" role="button" title="Copy" onClick={() => copyText('aa')}>C</span>
-                                                    <span class="input-group-text" role="button" title="Auto Generate" onClick={() => document.getElementById('aa').value = generateText(16, false, true)}>A</span>
-                                                    <div className="invalid-feedback">Please Enter AA.</div>
+                                                <label htmlFor="password" className="form-label">Password</label>
+                                                <div className="input-group">
+                                                    <input type="text" className="form-control" id="password" name="password" required={!formData.id} onChange={handleInputChange} />
+                                                    <span className="input-group-text" role="button" title="Copy" onClick={() => copyText('password')}>C</span>
+                                                    <span className="input-group-text" role="button" title="Auto Generate" onClick={() => document.getElementById('password').value = generateText(16, false, true)}>A</span>
+                                                    <div className="invalid-feedback">Please Enter Password.</div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <InputField name="password" type="password" required={!formData.id} onChange={handleInputChange} />
                                         <SelectField name="Status">
                                             <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
                                                 <option value="active">Active</option>
@@ -122,7 +155,7 @@ const CreateTeam = () => {
                                             </select>
                                         </SelectField>
                                         <InputField type="file" name="profile_image" />
-                                        <InputField type="file" name="doc" label="Aadhar/Pan" />
+                                        <InputField type="file" name="proof_document" label="Aadhar/Pan" />
                                     </div>
                                     <div className="col-lg-12 mt-4">
                                         <div className="text-end">
