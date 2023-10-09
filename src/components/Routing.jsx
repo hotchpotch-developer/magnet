@@ -87,7 +87,6 @@ const Routing = () => {
                     <Route caseSensitive={false} path="/" element={<Login />} />
                     <Route caseSensitive={false} path="/login" element={<Login />} />
                     <Route caseSensitive={false} path="/forgot-password" element={<ForgotPassword />} />
-                    <Route caseSensitive={false} path="/reset-password" element={<ForgotPassword />} />
                 </>
                 }
                 {!token && <Route path="*" element={<ErrorPage />} />}
