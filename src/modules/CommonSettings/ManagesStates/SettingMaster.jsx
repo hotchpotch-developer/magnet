@@ -65,11 +65,11 @@ const SettingMaster = () => {
                                         Channel
                                     </a>
                                 </li>
-                                <li className="nav-item waves-effect waves-light">
+                                {/* <li className="nav-item waves-effect waves-light">
                                     <a className="nav-link" data-bs-toggle="tab" href="#designation-home" role="tab" onClick={() => handleTabChange('designation')}>
                                         Designation
                                     </a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item waves-effect waves-light">
                                     <a className="nav-link" data-bs-toggle="tab" href="#product-home" role="tab" onClick={() => handleTabChange('product')}>
                                         Product
@@ -108,9 +108,9 @@ const SettingMaster = () => {
                                 <div className="tab-pane" id="channel-home" role="tabpanel">
                                     <Channel activeTab={activeTab} />
                                 </div>
-                                <div className="tab-pane" id="designation-home" role="tabpanel">
+                                {/* <div className="tab-pane" id="designation-home" role="tabpanel">
                                     <Designation activeTab={activeTab} />
-                                </div>
+                                </div> */}
                                 <div className="tab-pane" id="product-home" role="tabpanel">
                                     <Product activeTab={activeTab} />
                                 </div>
