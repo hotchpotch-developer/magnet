@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                                             <form className="need-validation" noValidate id="forgotPasswordForm">
                                                 <div className="mb-4">
                                                     <label className="form-label">Email</label>
-                                                    <input type="email" className="form-control" id="email" placeholder="Enter Email" required onKeyUp={(e) => changeHandler(e)} />
+                                                    <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" required onKeyUp={(e) => changeHandler(e)} />
                                                 </div>
 
                                                 <div className="mt-4">
