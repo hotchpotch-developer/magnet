@@ -7,7 +7,6 @@ import Remark from "../Partials/Remark";
 import Location from "../Partials/Location";
 import Company from "../Partials/Company";
 import Channel from "../Partials/Channel";
-import Designation from "../Partials/Designation";
 import Product from "../Partials/Product";
 import Level from "../Partials/Level";
 import State from "../Partials/State";

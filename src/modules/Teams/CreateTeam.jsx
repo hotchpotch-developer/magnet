@@ -127,7 +127,7 @@ const CreateTeam = () => {
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="reporting_user_id" className="form-label">Reporting User</label>
                                             <Elements.ReactSelect
-                                                placeholder="Select Role"
+                                                placeholder="Select Team Member"
                                                 options={reportingUsers}
                                                 name="reporting_user_id"
                                                 value={reportingUser}
@@ -136,7 +136,7 @@ const CreateTeam = () => {
                                                 onChange={(e) => { Elements.reactSelectValidation(e, "role"); setReportingUser(e) }}
                                                 required={true}
                                             />
-                                            <div className="invalid-feedback">Please Enter Role.</div>
+                                            <div className="invalid-feedback">Please select Team Member.</div>
                                         </div>
                                         <div className="col-xxl-3 col-md-6">
                                             <div>
