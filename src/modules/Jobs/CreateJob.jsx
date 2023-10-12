@@ -1,59 +1,84 @@
 import Breadcrumbs from '../../components/Breadcrumbs'
+import { InputField } from '../../components/FormHelper';
+import * as Elements from "../../components/Elements";
+import { useState } from 'react';
+import _ from 'lodash';
 
 const CreateJob = () => {
+    const [jobDescription, setJobDescription] = useState(false)
 
+    const [dropDownData, setDropDownData] = useState({
+        state: [],
+        location: [],
+        industry: [],
+        company: [],
+        sales_non_sales: [],
+        department: [],
+        channel: [],
+        level: [],
+        product: [],
+        openings: [],
+        ctc_from: [],
+        ctc_to: [],
+        status: [],
+        jd_type: [],
+    })
+
+    const [selectedDropDownData, setSelectedDropDownData] = useState({
+        state: null,
+        location: null,
+        industry: null,
+        company: null,
+        sales_non_sales: null,
+        department: null,
+        channel: null,
+        level: null,
+        product: null,
+        openings: null,
+        ctc_from: null,
+        ctc_to: null,
+        status: null,
+        jd_type: null,
+    })
+    const [formData, setFormData] = useState({
+        hr_spoc: '',
+        business_spoc: '',
+        designation: '',
+    })
+
+    const handleInputChange = (e) => {
+        // setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    }
     return (
         <>
             <Breadcrumbs title="Create Job" parentPage="Post Job" />
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <form action="#">
+                        <form className="needs-validation" noValidate id="job-form">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Create Job</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row g-4">
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="job-title-Input" class="form-label">Job Title <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="job-title-Input" placeholder="Enter job title" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="job-position-Input" class="form-label">Job Position <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="job-position-Input" placeholder="Enter job position" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="job-category-Input" class="form-label">Job Category <span class="text-danger">*</span></label>
-                                            <select class="form-control" data-choices name="job-category-Input" required>
-                                                <option value="">Select Category</option>
-                                                <option value="Accounting & Finance">Accounting & Finance</option>
-                                                <option value="Purchasing Manager">Purchasing Manager</option>
-                                                <option value="Education & training">Education & training</option>
-                                                <option value="Marketing & Advertising">Marketing & Advertising</option>
-                                                <option value="It / Software Jobs">It / Software Jobs</option>
-                                                <option value="Digital Marketing">Digital Marketing</option>
-                                                <option value="Administrative Officer">Administrative Officer</option>
-                                                <option value="Government Jobs">Government Jobs</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="job-type-Input" class="form-label">Job Type <span class="text-danger">*</span></label>
-                                            <select class="form-control" data-choices name="job-type-Input" required>
-                                                <option value="">Select job type</option>
-                                                <option value="Full Time">Full Time</option>
-                                                <option value="Part Time">Part Time</option>
-                                                <option value="Freelance">Freelance</option>
-                                                <option value="Internship">Internship</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <InputField name="hr_spoc" value={formData.hr_spoc} required onChange={handleInputChange} />
+                                    <InputField name="business_spoc" value={formData.business_spoc} required onChange={handleInputChange} />
+                                    <InputField name="designation" value={formData.designation} required onChange={handleInputChange} />
+                                    <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => { }} />
+                                    <ReactSelectField name="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => { }} />
+                                    <ReactSelectField name="industry" value={selectedDropDownData.industry} options={dropDownData.industry} onChange={(e) => { }} />
+                                    <ReactSelectField name="company" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => { }} />
+                                    <ReactSelectField name="sales_non_sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => { }} />
+                                    <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => { }} />
+                                    <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => { }} />
+                                    <ReactSelectField name="level" value={selectedDropDownData.level} options={dropDownData.level} onChange={(e) => { }} />
+                                    <ReactSelectField name="product" value={selectedDropDownData.product} options={dropDownData.product} onChange={(e) => { }} />
+                                    <ReactSelectField name="openings" value={selectedDropDownData.openings} options={dropDownData.openings} onChange={(e) => { }} />
+                                    <ReactSelectField name="ctc_from" value={selectedDropDownData.ctc_from} options={dropDownData.ctc_from} onChange={(e) => { }} />
+                                    <ReactSelectField name="ctc_to" value={selectedDropDownData.ctc_to} options={dropDownData.ctc_to} onChange={(e) => { }} />
+                                    <ReactSelectField name="status" value={selectedDropDownData.status} options={dropDownData.status} onChange={(e) => { }} />
+                                    <ReactSelectField name="jd_type" value={selectedDropDownData.jd_type} options={dropDownData.jd_type} onChange={(e) => { }} />
+
 
                                     <div class="col-lg-12">
                                         <div>
@@ -62,74 +87,7 @@ const CreateJob = () => {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="vancancy-Input" class="form-label">No. of Vacancy <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" id="vancancy-Input" placeholder="No. of vacancy" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="experience-Input" class="form-label">Experience <span class="text-danger">*</span></label>
-                                            <select class="form-control" data-choices name="experience-Input">
-                                                <option value="">Select Experience</option>
-                                                <option value="0 Year">0 Year</option>
-                                                <option value="2 Years">2 Years</option>
-                                                <option value="3 Years">3 Years</option>
-                                                <option value="4 Years">4 Years</option>
-                                                <option value="5 Years">5 Years</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="last-apply-date-Input" class="form-label">Last Date of Apply <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="last-apply-date-Input" data-provider="flatpickr" data-date-format="d M, Y" placeholder="Select date" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <label for="close-date-Input" class="form-label">Close Date <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="close-date-Input" data-provider="flatpickr" data-date-format="d M, Y" placeholder="Select date" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="start-salary-Input" class="form-label">Start Salary</label>
-                                            <input type="number" class="form-control" id="start-salary-Input" placeholder="Enter start salary" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="last-salary-Input" class="form-label">Last Salary</label>
-                                            <input type="number" class="form-control" id="last-salary-Input" placeholder="Enter end salary" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="country-Input" class="form-label">Country <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="country-Input" placeholder="Enter country" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="city-Input" class="form-label">State <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="city-Input" placeholder="Enter city" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div>
-                                            <label for="website-field" class="form-label">Tags</label>
-                                            <input class="form-control" id="choices-text-unique-values" data-choices data-choices-text-unique-true type="text" value="Design, Remote" required />
-                                        </div>
-                                    </div>
+                                    <InputField type="file" name="profile_image" />
 
                                     <div class="col-lg-12">
                                         <div class="hstack justify-content-end gap-2">
@@ -149,3 +107,21 @@ const CreateJob = () => {
 }
 
 export default CreateJob;
+
+
+const ReactSelectField = (props) => {
+
+    return (<>
+        <div className="col-xxl-3 col-md-6">
+            <label htmlFor={props.label ?? (props.id ?? props.name)} className="form-label">{props.label ?? _.startCase(props.name)}</label>
+            <Elements.ReactSelect
+                placeholder={`Select ${props.label ?? _.startCase(props.name)}`}
+                name={props.name}
+                id={props.id ?? props.name}
+                className="react-select required"
+                required={true}
+            />
+            <div className="invalid-feedback">{props.error ?? `Please Enter ${_.startCase(props.name)}.`}</div>
+        </div>
+    </>)
+}

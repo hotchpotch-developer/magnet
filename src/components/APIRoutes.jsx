@@ -67,6 +67,10 @@ export const STATE_LIST = "state-list"
 export const ADD_STATE = "add-state"
 export const EDIT_STATE = "edit-state"
 export const DELETE_STATE = "delete-state"
+export const SALES_LIST = "sales-non-sales-list"
+export const ADD_SALES = "add-sales-non-sales"
+export const EDIT_SALES = "edit-sales-non-sales"
+export const DELETE_SALES = "delete-sales-non-sales"
 
 // Teams Routes
 

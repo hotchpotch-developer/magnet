@@ -12,7 +12,7 @@ import { Context } from "../../components/Context";
 
 const TeamList = () => {
     const navigate = useNavigate();
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('all');
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
     const [context] = useContext(Context)
@@ -22,7 +22,7 @@ const TeamList = () => {
     }
 
     const [dt] = useState({
-        dt_url: `${TEAM_LIST}`,
+        dt_url: role ? `${TEAM_LIST}?type=${role}` : `${TEAM_LIST}`,
         dt_name: 'team-list',
         dt_export: true,
         dt_column: [
