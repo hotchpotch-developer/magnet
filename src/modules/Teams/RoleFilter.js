@@ -5,12 +5,12 @@ import * as Elements from "../../components/Elements";
 
 const RoleFilter = ({setValue}) => {
     const [roles, setRoles] = useState([])
-    const [role, setRole] = useState(null)
+    const [role, setRole] = useState({value: 'all', label: "All"})
 
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
             if (res.status) {
-                setRoles(res.data)
+                setRoles([{value: 'all', label: "All"}, ...res.data])
             }
         })
     }, [])
@@ -26,7 +26,7 @@ const RoleFilter = ({setValue}) => {
                     id="role"
                     value={role}
                     className="react-select required"
-                    onChange={(e) => {setRole(e); setValue(e.label)}}
+                    onChange={(e) => {setRole(e); setValue(e.label === 'All' ? 'all' : e.label)}}
                     required={true}
                 />
             </div>

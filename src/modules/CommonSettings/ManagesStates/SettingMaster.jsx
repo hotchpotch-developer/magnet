@@ -10,6 +10,7 @@ import Channel from "../Partials/Channel";
 import Product from "../Partials/Product";
 import Level from "../Partials/Level";
 import State from "../Partials/State";
+import Sales from "../Partials/Sales";
 
 const SettingMaster = () => {
     const [activeTab, setActiveTab] = useState("department");
@@ -84,6 +85,11 @@ const SettingMaster = () => {
                                         State
                                     </a>
                                 </li>
+                                <li className="nav-item waves-effect waves-light">
+                                    <a className="nav-link" data-bs-toggle="tab" href="#sales-home" role="tab" onClick={() => handleTabChange('sales')}>
+                                        Sales
+                                    </a>
+                                </li>
                             </ul>
                             <div className="tab-content text-muted">
                                 <div className="tab-pane active" id="department-home" role="tabpanel">
@@ -118,6 +124,9 @@ const SettingMaster = () => {
                                 </div>
                                 <div className="tab-pane" id="state-home" role="tabpanel">
                                     <State activeTab={activeTab} />
+                                </div>
+                                <div className="tab-pane" id="sales-home" role="tabpanel">
+                                    <Sales activeTab={activeTab} />
                                 </div>
                             </div>
                         </div>
