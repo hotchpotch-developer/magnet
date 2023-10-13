@@ -18,7 +18,6 @@ const CreateTeam = () => {
     const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
-        console.log(location.state);
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
             if (res.status) {
                 setRoles(res.data)

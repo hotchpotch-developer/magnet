@@ -75,6 +75,7 @@ const Routing = () => {
                             {(superAdmin || context.auth.permissions.includes('	Post Job')) && <>
                                 <Route caseSensitive={false} path="/manage-jobs" element={<JobList />} />
                                 <Route caseSensitive={false} path="/create-job" element={<CreateJob />} />
+                                <Route caseSensitive={false} path="/edit-job" element={<CreateJob />} />
                             </>}
 
                             {/* Settings */}

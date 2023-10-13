@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { initialFormState } from './Helper';
+// import { initialFormState } from './Helper';
 
 function Lock() {
     const [isLocked, setIsLocked] = useState(localStorage.getItem('screenLock') ?? false);
@@ -47,7 +47,7 @@ function Lock() {
     }, []);
 
     const submitForm = (e) => {
-        initialFormState('lock-form')
+        // initialFormState('lock-form')
         unlockTab()
         document.getElementById('openLockModal').click()
     }
@@ -61,7 +61,7 @@ function Lock() {
                         <h5 className="modal-title" id="lockModalLabel">Unlock</h5>
                     </div>
                     <div className="modal-body">
-                        <form className="needs-validation" noValidate id="lock-form">
+                        {/* <form className="needs-validation" noValidate id="lock-form">
                             <div className="row gy-4">
                                 <div className="col-md-12">
                                     <label htmlFor="lock_password" className="form-label">Password</label>
@@ -69,10 +69,11 @@ function Lock() {
                                     <div className="invalid-feedback">Please Enter Password.</div>
                                 </div>
                             </div>
-                        </form>
+                        </form> */}
+                        <h4>Are You Working?</h4>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={submitForm}>Unlock</button>
+                        <button type="button" className="btn btn-primary" onClick={submitForm}>Yes</button>
                     </div>
                 </div>
             </div>

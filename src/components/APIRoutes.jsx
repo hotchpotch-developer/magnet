@@ -79,6 +79,13 @@ export const EDIT_TEAM = "edit-team"
 export const TEAM_LIST = "team-list"
 export const DELETE_TEAM = "delete-team"
 export const ROLE_SELECT = "role-list"
+
+// Jobs Routes
+
+export const CREATE_JOB = "create-job"
+export const EDIT_JOB = "edit-job"
+export const JOB_LIST = "job-list"
+export const DELETE_JOB = "delete-job"
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"
