@@ -11,6 +11,7 @@ const JobFilter = ({ setQuery }) => {
 
     useEffect(() => {
         setQuery(`search=${textFilter.search}`)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [textFilter])
 
     const resetFilter = () => {
