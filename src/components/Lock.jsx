@@ -44,6 +44,7 @@ function Lock() {
             window.removeEventListener('keydown', resetTabIdleTimer);
             window.removeEventListener('click', resetTabIdleTimer);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const submitForm = (e) => {
