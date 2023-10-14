@@ -142,8 +142,8 @@ const CreateTeam = () => {
                                                 <label htmlFor="password" className="form-label">Password</label>
                                                 <div className="input-group">
                                                     <input type="text" className="form-control" id="password" name="password" required={!formData.id} onChange={handleInputChange} />
-                                                    <span className="input-group-text" role="button" title="Copy" onClick={() => copyText('password')}>C</span>
-                                                    <span className="input-group-text" role="button" title="Auto Generate" onClick={() => document.getElementById('password').value = generateText(16, false, true)}>A</span>
+                                                    <span className="input-group-text" role="button" title="Copy Password" onClick={() => copyText('password')}><i className=" ri-file-copy-line"></i></span>
+                                                    <span className="input-group-text" role="button" title="Generate Password" onClick={() => document.getElementById('password').value = generateText(16, false, true)}><i className="ri-refresh-line"></i></span>
                                                     <div className="invalid-feedback">Please Enter Password.</div>
                                                 </div>
                                             </div>
