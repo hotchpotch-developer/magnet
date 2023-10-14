@@ -108,7 +108,7 @@ const CreateJob = () => {
             });
             initialFormState("job-form");
         }
-    }, [])
+    }, [location])
 
     useEffect(() => {
         commonDropdown.forEach(element => {
@@ -154,8 +154,8 @@ const CreateJob = () => {
                 }
             })
         });
-
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location])
 
     const handleInputChange = (e, key = false) => {
         if (key) {
