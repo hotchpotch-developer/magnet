@@ -155,6 +155,7 @@ export const copyText = (id) => {
     textField.select()
     document.execCommand('copy')
     textField.remove()
+    showAlertMsg({success: "Text Copied."})
 }
 
 export const generateText = (length = 8, number = false, password = false) => {
