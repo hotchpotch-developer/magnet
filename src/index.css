@@ -1,3 +1,7 @@
 @import "./bootstrap.css";
 @import "./app.css";
 @import "./icon.css";
+
+.ck-file-dialog-button{
+    display: none;
+}

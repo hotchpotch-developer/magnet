@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { copyText, fetchData, generateText, initialFormState, validateForm } from "../../components/Helper";
 import { InputField, SelectField } from "../../components/FormHelper";
 import * as Elements from "../../components/Elements";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CreateTeam = () => {
     const location = useLocation();
@@ -15,6 +17,7 @@ const CreateTeam = () => {
     const [role, setRole] = useState(null)
     const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [additionalInfo, setAdditionalInfo] = useState("")
     const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
 
     useEffect(() => {
@@ -24,7 +27,7 @@ const CreateTeam = () => {
                 if (location && location.state && location.state.team) {
                     let role = res.data.filter((item) => item.value === location.state.team.roles_id)
                     setRole(role[0] ?? null)
-                }else{
+                } else {
                     setRole(null)
                 }
             }
@@ -36,7 +39,7 @@ const CreateTeam = () => {
                 if (location && location.state && location.state.team) {
                     let reporting_user = res.data.filter((item) => item.value === location.state.team.reporting_user_id)
                     setReportingUser(reporting_user[0] ?? null)
-                }else{
+                } else {
                     setReportingUser(null)
                 }
             }
@@ -62,7 +65,9 @@ const CreateTeam = () => {
                 reporting_user_id: team.reporting_user_id,
                 status: team.status,
             })
-        }else{
+            setAdditionalInfo(team.additional_information ?? '')
+        } else {
+            setAdditionalInfo("")
             setFormData({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
             initialFormState("team-form");
         }
@@ -79,6 +84,7 @@ const CreateTeam = () => {
             setLoading(true)
             let formdata = new FormData(document.getElementById('team-form'));
             formdata.append('id', formData.id);
+            formdata.append('additional_information', additionalInfo);
             fetchData(formData.id ? EDIT_TEAM : CREATE_TEAM, 'POST', formdata, true, true, (res) => {
                 setLoading(false)
                 if (res.status) {
@@ -156,6 +162,9 @@ const CreateTeam = () => {
                                         </SelectField>
                                         <InputField type="file" name="profile_image" />
                                         <InputField type="file" name="proof_document" label="Aadhar/Pan" />
+                                        <div className="col-lg-12">
+                                            <CKEditor editor={ClassicEditor} data={additionalInfo} onChange={(event, editor) => setAdditionalInfo(editor.getData())} />
+                                        </div>
                                     </div>
                                     <div className="col-lg-12 mt-4">
                                         <div className="text-end">

@@ -3,9 +3,11 @@ import { InputField } from '../../components/FormHelper';
 import * as Elements from "../../components/Elements";
 import { useEffect, useState } from 'react';
 import _, { startCase } from 'lodash';
-import { COMMON_DROPDOWN, CREATE_JOB, EDIT_JOB } from '../../components/APIRoutes';
+import { COMMON_DROPDOWN, CREATE_JOB, DELETE_JOB, EDIT_JOB } from '../../components/APIRoutes';
 import { fetchData, initialFormState, validateForm } from '../../components/Helper';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CreateJob = () => {
     const location = useLocation();
@@ -37,34 +39,9 @@ const CreateJob = () => {
         channel: [],
         level: [],
         product: [],
-        openings: [
-            { value: 10, label: 10 },
-            { value: 20, label: 20 },
-            { value: 30, label: 30 },
-            { value: 40, label: 40 },
-            { value: 50, label: 50 },
-        ],
-        ctc_from: [
-            { value: 1000, label: 1000 },
-            { value: 2000, label: 2000 },
-            { value: 3000, label: 3000 },
-            { value: 4000, label: 4000 },
-            { value: 5000, label: 5000 },
-        ],
-        ctc_to: [
-            { value: 10000, label: 10000 },
-            { value: 20000, label: 20000 },
-            { value: 30000, label: 30000 },
-            { value: 40000, label: 40000 },
-            { value: 50000, label: 50000 },
-        ],
         status: [
             { value: 'open', label: 'Open' },
             { value: 'close', label: 'Close' },
-        ],
-        jd_type: [
-            { value: 'attached', label: 'Attached' },
-            { value: 'mannual', label: 'Mannual' },
         ],
     })
 
@@ -78,17 +55,17 @@ const CreateJob = () => {
         channel: null,
         level: null,
         product: null,
-        openings: null,
-        ctc_from: null,
-        ctc_to: null,
         status: null,
-        jd_type: null,
     })
 
     const [formData, setFormData] = useState({
         hr_spoc: '',
         business_spoc: '',
         designation: '',
+        openings: '',
+        ctc_from: '',
+        ctc_to: '',
+        status: '',
     })
 
     useEffect(() => {
@@ -99,12 +76,18 @@ const CreateJob = () => {
                 hr_spoc: job.hr_spoc,
                 business_spoc: job.business_spoc,
                 designation: job.designation,
+                openings: job.openings,
+                ctc_from: job.ctc_from,
+                ctc_to: job.ctc_to,
             })
         } else {
             setFormData({
                 hr_spoc: '',
                 business_spoc: '',
                 designation: '',
+                openings: '',
+                ctc_from: '',
+                ctc_to: '',
             });
             initialFormState("job-form");
         }
@@ -127,11 +110,7 @@ const CreateJob = () => {
                             channel: job.channel ?? null,
                             level: job.level ?? null,
                             product: job.product ?? null,
-                            openings: job.openings ? { value: job.openings, label: job.openings } : null,
-                            ctc_from: job.ctc_from ? { value: job.ctc_from, label: job.ctc_from } : null,
-                            ctc_to: job.ctc_to ? { value: job.ctc_to, label: job.ctc_to } : null,
                             status: job.status ? { value: job.status, label: startCase(job.status) } : null,
-                            jd_type: job.jd_type ? { value: job.jd_type, label: startCase(job.jd_type) } : null,
                         })
                     } else {
                         setSelectedDropDownData({
@@ -144,11 +123,7 @@ const CreateJob = () => {
                             channel: null,
                             level: null,
                             product: null,
-                            openings: null,
-                            ctc_from: null,
-                            ctc_to: null,
                             status: null,
-                            jd_type: null,
                         })
                     }
                 }
@@ -159,7 +134,7 @@ const CreateJob = () => {
 
     const handleInputChange = (e, key = false) => {
         if (key) {
-            Elements.reactSelectValidation(e, key === 'status' ? 'job_status' : key)
+            Elements.reactSelectValidation(e, key === 'status' ? 'job_status' : key, key === 'location' ? true : false)
             setSelectedDropDownData(prev => ({ ...prev, [key]: e }));
         } else {
             setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -173,6 +148,7 @@ const CreateJob = () => {
             let formdata = new FormData(document.getElementById('job-form'));
             formdata.append('id', formData.id);
             formdata.append('sales_non_sales', 1);
+            formdata.append('job_description', jobDescription);
             fetchData(formData.id ? EDIT_JOB : CREATE_JOB, 'POST', formdata, true, true, (res) => {
                 setLoading(false)
                 if (res.status) {
@@ -180,6 +156,14 @@ const CreateJob = () => {
                 }
             })
         }
+    }
+
+    const deleteJob = () => {
+        fetchData(`${DELETE_JOB}/${location.state.id}`, 'GET', '', true, false, (res) => {
+            if (res.status) {
+                navigate('/manage-jobs');
+            }
+        })
     }
 
     return (
@@ -197,29 +181,30 @@ const CreateJob = () => {
                                     <InputField name="hr_spoc" value={formData.hr_spoc} required onChange={handleInputChange} />
                                     <InputField name="business_spoc" value={formData.business_spoc} required onChange={handleInputChange} />
                                     <InputField name="designation" value={formData.designation} required onChange={handleInputChange} />
+                                    <InputField name="openings" value={formData.openings} required onChange={handleInputChange} />
+                                    <div className="col-xxl-3 col-md-6">
+                                        <div className="row">
+                                        <InputField name="ctc_from" type="number" min={0} value={formData.ctc_from} required onChange={handleInputChange} />
+                                        <InputField name="ctc_to" type="number" min={1} value={formData.ctc_to} required onChange={handleInputChange} />
+                                        </div>
+                                    </div>
                                     <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
-                                    <ReactSelectField name="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
+                                    <ReactSelectField name="location[]" id="location" isMulti value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
                                     <ReactSelectField name="industry" value={selectedDropDownData.industry} options={dropDownData.industry} onChange={(e) => handleInputChange(e, 'industry')} />
                                     <ReactSelectField name="company" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} />
-                                    <ReactSelectField name="sales_non_sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
+                                    <ReactSelectField name="sales_non_sales" label="Sales/Non Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
                                     <ReactSelectField name="level" value={selectedDropDownData.level} options={dropDownData.level} onChange={(e) => handleInputChange(e, 'level')} />
                                     <ReactSelectField name="product" value={selectedDropDownData.product} options={dropDownData.product} onChange={(e) => handleInputChange(e, 'product')} />
-                                    <ReactSelectField name="openings" value={selectedDropDownData.openings} options={dropDownData.openings} onChange={(e) => handleInputChange(e, 'openings')} />
-                                    <ReactSelectField name="ctc_from" value={selectedDropDownData.ctc_from} options={dropDownData.ctc_from} onChange={(e) => handleInputChange(e, 'ctc_from')} />
-                                    <ReactSelectField name="ctc_to" value={selectedDropDownData.ctc_to} options={dropDownData.ctc_to} onChange={(e) => handleInputChange(e, 'ctc_to')} />
                                     <ReactSelectField name="status" id="job_status" value={selectedDropDownData.status} options={dropDownData.status} onChange={(e) => handleInputChange(e, 'status')} />
-                                    <ReactSelectField name="jd_type" value={selectedDropDownData.jd_type} options={dropDownData.jd_type} onChange={(e) => handleInputChange(e, 'jd_type')} />
-                                    <InputField type="file" name="attach_job_description" required />
+                                    <InputField type="file" name="attach_job_description" />
                                     <div className="col-lg-12">
-                                        <div>
-                                            <label for="description-field" className="form-label">Description <span className="text-danger">*</span></label>
-                                            <textarea className="form-control" id="description-field" rows="3" placeholder="Enter description" required value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} />
-                                        </div>
+                                        <CKEditor editor={ClassicEditor} data={jobDescription} onChange={(event, editor) => setJobDescription(editor.getData())} />
                                     </div>
                                     <div className="col-lg-12">
                                         <div className="hstack justify-content-end gap-2">
+                                            {location && location.state && location.state.id && <button type="button" className="btn btn-soft-danger mt-3" data-bs-target="#jobConfirmationModal" data-bs-toggle="modal" title="Delete Job">Delete</button>}
                                             {loading ? Elements.loadingButton() : <button type="button" className="btn btn-primary mt-3" onClick={submitForm}>{formData.id ? 'Update' : 'Save'}</button>}
                                         </div>
                                     </div>
@@ -229,6 +214,7 @@ const CreateJob = () => {
                     </div>
                 </div>
             </div>
+            <Elements.ConfirmationModal modalId="jobConfirmationModal" action={deleteJob} />
         </>
     )
 
