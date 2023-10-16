@@ -15,8 +15,6 @@ const CreateJob = () => {
     const [loading, setLoading] = useState(false)
     const [jobDescription, setJobDescription] = useState(false)
 
-    console.log(location);
-
     const commonDropdown = [
         { key: "state", value: "state" },
         { key: "location", value: "location" },
