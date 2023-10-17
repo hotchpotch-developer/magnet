@@ -163,6 +163,7 @@ const CreateTeam = () => {
                                         <InputField type="file" name="profile_image" />
                                         <InputField type="file" name="proof_document" label="Aadhar/Pan" />
                                         <div className="col-lg-12">
+                                            <label htmlFor="password" className="form-label">Additional Information</label>
                                             <CKEditor editor={ClassicEditor} data={additionalInfo} onChange={(event, editor) => setAdditionalInfo(editor.getData())} />
                                         </div>
                                     </div>

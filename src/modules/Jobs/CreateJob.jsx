@@ -198,6 +198,7 @@ const CreateJob = () => {
                                     <ReactSelectField name="status" id="job_status" value={selectedDropDownData.status} options={dropDownData.status} onChange={(e) => handleInputChange(e, 'status')} />
                                     <InputField type="file" name="attach_job_description" />
                                     <div className="col-lg-12">
+                                        <label htmlFor="password" className="form-label">Job Description</label>
                                         <CKEditor editor={ClassicEditor} data={jobDescription} onChange={(event, editor) => setJobDescription(editor.getData())} />
                                     </div>
                                     <div className="col-lg-12">
