@@ -100,7 +100,7 @@ const CreateJob = () => {
                         let job = location.state;
                         setSelectedDropDownData({
                             state: job.state_name ?? null,
-                            location: job.location ?? null,
+                            location: job.location_id ?? null,
                             industry: job.industry ?? null,
                             company: job.company ?? null,
                             sales_non_sales: job.sales_non ?? null,

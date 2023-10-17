@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as Elements from "../../../components/Elements";
 
-const JobFilter = () => {
+const CandidateFilter = () => {
     return (
         <>
             <div className="col-xl-3 col-lg-4">
@@ -49,4 +49,4 @@ const JobFilter = () => {
     )
 }
 
-export default JobFilter;
+export default CandidateFilter;

@@ -19,6 +19,8 @@ import JobList from "../modules/Jobs/JobList";
 import CreateJob from "../modules/Jobs/CreateJob"
 import Calender from "../modules/Calender/Calender";
 import JobDetails from "../modules/Jobs/JobDetails";
+import CandidateList from "../modules/Candidate/CandidateList";
+import AddCandidate from "../modules/Candidate/AddCandidate";
 
 
 const Routing = () => {
@@ -73,11 +75,18 @@ const Routing = () => {
                             </>}
 
                             {/* Post Jobs */}
-                            {(superAdmin || context.auth.permissions.includes('	Post Job')) && <>
+                            {(superAdmin || context.auth.permissions.includes('Post Job')) && <>
                                 <Route caseSensitive={false} path="/manage-jobs" element={<JobList />} />
                                 <Route caseSensitive={false} path="/jobs-details" element={<JobDetails />} />
                                 <Route caseSensitive={false} path="/create-job" element={<CreateJob />} />
                                 <Route caseSensitive={false} path="/edit-job" element={<CreateJob />} />
+                            </>}
+
+                            {/* Candidate Route */}
+                            {(superAdmin || context.auth.permissions.includes('Candidate')) && <>
+                                <Route caseSensitive={false} path="/candidates-list" element={<CandidateList />} />
+                                <Route caseSensitive={false} path="/add-candidates" element={<AddCandidate />} />
+                                <Route caseSensitive={false} path="/edit-candidates" element={<AddCandidate />} />
                             </>}
 
                             {/* Settings */}

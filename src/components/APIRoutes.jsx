@@ -71,6 +71,10 @@ export const SALES_LIST = "sales-non-sales-list"
 export const ADD_SALES = "add-sales-non-sales"
 export const EDIT_SALES = "edit-sales-non-sales"
 export const DELETE_SALES = "delete-sales-non-sales"
+export const QUALIFICATION_LIST = "qualification-list"
+export const ADD_QUALIFICATION = "add-qualification"
+export const EDIT_QUALIFICATION = "edit-qualification"
+export const DELETE_QUALIFICATION = "delete-qualification"
 
 // Teams Routes
 

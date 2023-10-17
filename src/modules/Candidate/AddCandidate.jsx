@@ -1,6 +1,6 @@
 import Breadcrumbs from '../../components/Breadcrumbs'
 
-const CreateJob = () => {
+const AddCandidate = () => {
 
     return (
         <>
@@ -148,4 +148,4 @@ const CreateJob = () => {
 
 }
 
-export default CreateJob;
+export default AddCandidate;

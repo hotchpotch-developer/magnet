@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs"
-import JobFilter from "./Partials/JobFilter";
-const JobList = () => {
+import CandidateFilter from "./Partials/CandidateFilter";
+const CandidateList = () => {
 
     return (
         <>
             <Breadcrumbs title="Manage Jobs" parentPage="Post Job" />
             <div className="row">
-                <JobFilter />
+                <CandidateFilter />
                 <div className="col-xl-9 col-lg-8">
                     <div className="col-lg-12">
                         <div className="card joblist-card">
@@ -240,4 +240,4 @@ const JobList = () => {
 
 }
 
-export default JobList;
+export default CandidateList;
