@@ -90,6 +90,13 @@ export const CREATE_JOB = "create-job"
 export const EDIT_JOB = "edit-job"
 export const JOB_LIST = "job-list"
 export const DELETE_JOB = "delete-job"
+
+// Candidates Routes
+
+export const CREATE_CANDIDATE = "create-candidate"
+export const EDIT_CANDIDATE = "edit-candidate"
+export const CANDIDATE_LIST = "candidate-list"
+export const DELETE_CANDIDATE = "delete-candidate"
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"

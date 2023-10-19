@@ -69,6 +69,7 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
 
 export const validateForm = (e, form_id = false) => {
     let error = 0;
+    let react_select_error = 0;
     if (form_id) {
         let form = document.getElementById(form_id)
         if (!form.checkValidity()) {
@@ -77,6 +78,17 @@ export const validateForm = (e, form_id = false) => {
             e.stopPropagation();
         }
         form.classList.add('was-validated')
+
+        let react_select_selector = form_id === '' ? `.react-select input[required]` : `#${form_id} .react-select input[required]`;
+        document.querySelectorAll(react_select_selector).forEach(ele => {
+            if (ele.nextElementSibling && ele.nextElementSibling.classList.contains('invalid-feedback')) {
+                ele.nextElementSibling.remove()
+            }
+            ele.parentElement.classList.remove('is-valid')
+            ele.parentElement.classList.add('is-invalid')
+            $(`${react_select_selector} input[name="${ele.name}"]`).after(`<div class="invalid-feedback invalid-custom-feedback d-block">This Field is required.</div>`)
+            react_select_error++;
+        })
     } else {
         let forms = document.querySelectorAll('.needs-validation')
         Array.prototype.slice.call(forms)
@@ -90,7 +102,7 @@ export const validateForm = (e, form_id = false) => {
             })
     }
 
-    if (error) {
+    if (error || react_select_error) {
         return false
     } else {
         return true
