@@ -139,7 +139,7 @@ const CreateTeam = () => {
                                                 id="reporting_user_id"
                                                 className="react-select required"
                                                 onChange={(e) => { Elements.reactSelectValidation(e, "role"); setReportingUser(e) }}
-                                                required={true}
+                                                required={!(role && role.label === 'Admin')}
                                             />
                                             <div className="invalid-feedback">Please select Team Member.</div>
                                         </div>

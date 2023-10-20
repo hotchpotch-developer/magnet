@@ -5,3 +5,6 @@
 .ck-file-dialog-button{
     display: none;
 }
+.react-datepicker-wrapper{
+    display: unset !important;
+}

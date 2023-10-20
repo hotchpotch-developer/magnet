@@ -73,7 +73,7 @@ const CreateJob = () => {
                 id: job.id,
                 hr_spoc: job.hr_spoc,
                 business_spoc: job.business_spoc,
-                designation: job.designation,
+                designation: job.designation_id,
                 openings: job.openings,
                 ctc_from: job.ctc_from,
                 ctc_to: job.ctc_to,
@@ -145,7 +145,6 @@ const CreateJob = () => {
             setLoading(true)
             let formdata = new FormData(document.getElementById('job-form'));
             formdata.append('id', formData.id);
-            formdata.append('sales_non_sales', 1);
             formdata.append('job_description', jobDescription);
             fetchData(formData.id ? EDIT_JOB : CREATE_JOB, 'POST', formdata, true, true, (res) => {
                 setLoading(false)

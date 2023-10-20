@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import { COMMON_DROPDOWN, CREATE_CANDIDATE, DELETE_CANDIDATE, EDIT_CANDIDATE } from '../../components/APIRoutes';
 import { fetchData, initialFormState, validateForm } from '../../components/Helper';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import _ from 'lodash';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +13,6 @@ const AddCandidate = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
-    const [candidateDescription, setCandidateDescription] = useState(false)
 
     const commonDropdown = [
         { key: "state", value: "state" },
@@ -39,14 +36,20 @@ const AddCandidate = () => {
         department: [],
         channel: [],
         level: [],
-        experience: [],
+        experience: [
+            { value: '1', label: '1' },
+            { value: '2', label: '2' },
+            { value: '3', label: '3' },
+            { value: '4', label: '4' },
+            { value: '5', label: '5' },
+        ],
         qualification: [],
         gender: [
             { value: 'male', label: 'Male' },
             { value: 'female', label: 'Female' },
         ],
         resume_status: [
-            { value: 'manual', label: 'Manual' },
+            { value: 'available', label: 'Available' },
             { value: 'attached', label: 'attached' },
         ],
         status: [
@@ -157,7 +160,6 @@ const AddCandidate = () => {
             setLoading(true)
             let formdata = new FormData(document.getElementById('candidate-form'));
             formdata.append('id', formData.id);
-            formdata.append('candidate_description', candidateDescription);
             fetchData(formData.id ? EDIT_CANDIDATE : CREATE_CANDIDATE, 'POST', formdata, true, true, (res) => {
                 setLoading(false)
                 if (res.status) {
@@ -192,7 +194,6 @@ const AddCandidate = () => {
                                     <InputField name="mobile" value={formData.mobile} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="alternate_mobile" value={formData.alternate_mobile} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="current_ctc" value={formData.current_ctc} required onChange={handleInputChange} />
-                                    <InputField name="experience" value={formData.experience} required onChange={handleInputChange} />
                                     <InputField name="email" value={formData.email} required onChange={handleInputChange} />
                                     <InputField name="alternate_email" value={formData.alternate_email} onChange={handleInputChange} />
                                     <InputField name="pan_no" value={formData.pan_no} required onChange={handleInputChange} />
@@ -214,13 +215,10 @@ const AddCandidate = () => {
                                     <ReactSelectField name="level" value={selectedDropDownData.level} options={dropDownData.level} onChange={(e) => handleInputChange(e, 'level')} />
                                     <ReactSelectField name="high_qualification" value={selectedDropDownData.high_qualification} options={dropDownData.qualification} onChange={(e) => handleInputChange(e, 'high_qualification')} />
                                     <ReactSelectField name="gender" value={selectedDropDownData.gender} options={dropDownData.gender} onChange={(e) => handleInputChange(e, 'gender')} />
+                                    <ReactSelectField name="experience" value={selectedDropDownData.experience} options={dropDownData.experience} onChange={(e) => handleInputChange(e, 'experience')} />
                                     <ReactSelectField name="resume_status" value={selectedDropDownData.resume_status} options={dropDownData.resume_status} onChange={(e) => handleInputChange(e, 'resume_status')} />
                                     <ReactSelectField name="status" id="candidate_status" value={selectedDropDownData.status} options={dropDownData.status} onChange={(e) => handleInputChange(e, 'status')} />
-                                    <InputField type="file" name="attach_candidate_description" />
-                                    <div className="col-lg-12">
-                                        <label htmlFor="password" className="form-label">Candidate Description</label>
-                                        <CKEditor editor={ClassicEditor} data={candidateDescription} onChange={(event, editor) => setCandidateDescription(editor.getData())} />
-                                    </div>
+                                    <InputField type="file" name="resume_file" />
                                     <div className="col-lg-12">
                                         <div className="hstack justify-content-end gap-2">
                                             {location && location.state && location.state.id && <button type="button" className="btn btn-soft-danger mt-3" data-bs-target="#candidateConfirmationModal" data-bs-toggle="modal" title="Delete Candidate">Delete</button>}
