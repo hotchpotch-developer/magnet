@@ -54,7 +54,7 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 {(superAdmin || context.auth.permissions.includes('Permission')) && <>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <Link className={`nav-link menu-link ${(location.pathname.match("/manage-roles") || location.pathname.match("/manage-permission") || location.pathname.match("/user-permission")) && "text-primary"}`} to="#managerMenu" data-bs-toggle="collapse" role="button" aria-controls="managerMenu">
                                             <i className="ri-shield-user-line"></i> <span data-key="t-apps">Permission</span>
                                         </Link>
@@ -71,7 +71,7 @@ const Navbar = () => {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li> */}
                                 </>}
                                 {(superAdmin || context.auth.permissions.includes('Teams')) && <>
                                     <li className="nav-item">

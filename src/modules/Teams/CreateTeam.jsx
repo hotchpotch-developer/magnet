@@ -50,7 +50,7 @@ const CreateTeam = () => {
     useEffect(() => {
         if (location && location.state && location.state.team) {
             let team = location.state.team;
-
+            console.log(team);
             setFormData({
                 id: team.id,
                 roles_name: team.roles_name,

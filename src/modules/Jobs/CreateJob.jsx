@@ -181,8 +181,8 @@ const CreateJob = () => {
                                     <InputField name="openings" value={formData.openings} required onChange={handleInputChange} />
                                     <div className="col-xxl-3 col-md-6">
                                         <div className="row">
-                                        <InputField name="ctc_from" type="number" min={0} value={formData.ctc_from} required onChange={handleInputChange} />
-                                        <InputField name="ctc_to" type="number" min={1} value={formData.ctc_to} required onChange={handleInputChange} />
+                                        <InputField half={true} name="ctc_from" type="number" min={0} value={formData.ctc_from} required onChange={handleInputChange} />
+                                        <InputField half={true} name="ctc_to" type="number" min={1} value={formData.ctc_to} required onChange={handleInputChange} />
                                         </div>
                                     </div>
                                     <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />

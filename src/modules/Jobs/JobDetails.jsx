@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
+import { dateFormat } from "../../components/Helper";
 
 const JobDetails = () => {
     const location = useLocation();
@@ -16,7 +17,7 @@ const JobDetails = () => {
             {data && data.id && <>
                 <div className="row mt-4">
                     <div className="col-lg-12">
-                        <div className="card mt-n4 mx-n4 card-border-effect-none border-0">
+                        <div className="card mt-n4 card-border-effect-none border-0">
                             <div className="bg-secondary-subtle">
                                 <div className="card-body px-4 pb-4">
                                     <div className="row mb-3">
@@ -25,7 +26,7 @@ const JobDetails = () => {
                                                 <div className="col-md-auto">
                                                     <div className="avatar-md">
                                                         <div className="avatar-title bg-white rounded-circle">
-                                                            <img src="assets/images/brands/slack.png" alt="" className="avatar-xs" />
+                                                            <img src="/images/slack.png" alt="" className="avatar-xs" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -36,7 +37,7 @@ const JobDetails = () => {
                                                             <div><i className="ri-building-line align-bottom me-1"></i> {data.business_spoc}</div>
                                                             <div className="vr"></div>
                                                             <div><i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                                                {data.location_id && data.location_id.length > 0 && data.location_id.map(l => <span key={l.value}>{l.label}</span>)}
+                                                                {data.location_id && data.location_id.length > 0 && data.location_id.map(l => <span key={l.value}><span className="badge rounded-pill bg-primary fs-12 mx-1">{l.label}</span></span>)}
                                                             </div>
                                                             <div className="vr"></div>
                                                             <div className="badge rounded-pill bg-success fs-12">{data.position_no}</div>
@@ -47,14 +48,8 @@ const JobDetails = () => {
                                         </div>
                                         <div className="col-md-auto">
                                             <div className="hstack gap-1 flex-wrap mt-4 mt-md-0">
-                                                <button type="button" className="btn btn-icon btn-sm btn-ghost-warning fs-16">
-                                                    <i className="ri-star-fill"></i>
-                                                </button>
                                                 <button type="button" className="btn btn-icon btn-sm btn-ghost-primary fs-16">
                                                     <i className="ri-share-line"></i>
-                                                </button>
-                                                <button type="button" className="btn btn-icon btn-sm btn-ghost-primary fs-16">
-                                                    <i className="ri-flag-line"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -84,16 +79,28 @@ const JobDetails = () => {
                                     <table className="table mb-0">
                                         <tbody>
                                             <tr>
+                                                <td className="fw-medium">Business Name</td>
+                                                <td>{data.company && data.company.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Industry</td>
+                                                <td>{data.industry && data.industry.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Department</td>
+                                                <td>{data.department && data.department.label}</td>
+                                            </tr>
+                                            <tr>
                                                 <td className="fw-medium">Product</td>
-                                                <td>{data.product && data.product.lable}</td>
+                                                <td>{data.product && data.product.label}</td>
                                             </tr>
                                             <tr>
-                                                <td className="fw-medium">Company Name</td>
-                                                <td>{data.company && data.company.lable}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="fw-medium">Job Application</td>
+                                                <td className="fw-medium">Openings</td>
                                                 <td>{data.openings}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Level</td>
+                                                <td>{data.level && data.level.label}</td>
                                             </tr>
                                             <tr>
                                                 <td className="fw-medium">Salary</td>
@@ -101,17 +108,22 @@ const JobDetails = () => {
                                             </tr>
                                             <tr>
                                                 <td className="fw-medium">State</td>
-                                                <td>{data.state_name && data.state_name.lable}</td>
+                                                <td>{data.state_name && data.state_name.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Sales/Non-Sales</td>
+                                                <td>{data.sales_non && data.sales_non.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Channel</td>
+                                                <td>{data.channel && data.channel.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Job Open Date</td>
+                                                <td>{data.created_at && dateFormat(data.created_at)}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div className="mt-4 pt-2 hstack gap-2">
-                                    <a href="#!" className="btn btn-primary w-100">Apply Now</a>
-                                    <a href="#!" className="btn btn-soft-danger btn-icon custom-toggle flex-shrink-0" data-bs-toggle="button">
-                                        <span className="icon-on"><i className="ri-bookmark-line align-bottom"></i></span>
-                                        <span className="icon-off"><i className="ri-bookmark-3-fill align-bottom"></i></span>
-                                    </a>
                                 </div>
                             </div>
                         </div>

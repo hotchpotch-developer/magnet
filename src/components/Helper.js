@@ -1,5 +1,6 @@
 import { Toast } from "bootstrap";
 import $ from 'jquery'
+import moment from "moment";
 export const ENDPOINT = process.env.REACT_APP_API_URL
 
 const bodyLoader = (active) => {
@@ -184,4 +185,8 @@ export const generateText = (length = 8, number = false, password = false) => {
         retVal += charset.charAt(Math.floor(Math.random() * n));
     }
     return retVal;
+}
+
+export const dateFormat = (date) => {
+    return moment(date).format('YYYY-MM-DD H:mm a');
 }
