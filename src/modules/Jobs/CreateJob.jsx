@@ -78,6 +78,7 @@ const CreateJob = () => {
                 ctc_from: job.ctc_from,
                 ctc_to: job.ctc_to,
             })
+            setJobDescription(job.job_description ?? '')
         } else {
             setFormData({
                 hr_spoc: '',
@@ -87,6 +88,7 @@ const CreateJob = () => {
                 ctc_from: '',
                 ctc_to: '',
             });
+            setJobDescription('')
             initialFormState("job-form");
         }
     }, [location])
@@ -158,6 +160,7 @@ const CreateJob = () => {
     const deleteJob = () => {
         fetchData(`${DELETE_JOB}/${location.state.id}`, 'GET', '', true, false, (res) => {
             if (res.status) {
+                document.querySelector('#jobConfirmationModal [data-bs-dismiss="modal"]').click()
                 navigate('/manage-jobs');
             }
         })
@@ -165,13 +168,13 @@ const CreateJob = () => {
 
     return (
         <>
-            <Breadcrumbs title="Create Job" parentPage="Post Job" />
+            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Job`} parentPage="Post Job" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
                         <form className="needs-validation" noValidate id="job-form">
                             <div className="card-header">
-                                <h5 className="card-title mb-0">Create Job</h5>
+                                <h5 className="card-title mb-0">{`${formData.id ? "Update" : "Create"} Job`}</h5>
                             </div>
                             <div className="card-body">
                                 <div className="row g-4">
