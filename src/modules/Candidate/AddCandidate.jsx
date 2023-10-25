@@ -247,7 +247,7 @@ const AddCandidate = () => {
                                     <InputField type="file" name="resume_file" />
                                     <div className="col-lg-12">
                                         <div className="hstack justify-content-end gap-2">
-                                            {location && location.state && location.state.id && <button type="button" className="btn btn-soft-danger mt-3" data-bs-target="#candidateConfirmationModal" data-bs-toggle="modal" title="Delete Candidate">Delete</button>}
+                                            {location && location.state && location.state.id && <button type="button" className="btn btn-soft-danger mt-3" data-bs-target="#candidateConfirmationModal" data-bs-toggle="modal" title="Delete Candidate">Permanently Delete</button>}
                                             {loading ? Elements.loadingButton() : <button type="button" className="btn btn-primary mt-3" onClick={submitForm}>{formData.id ? 'Update' : 'Save'}</button>}
                                         </div>
                                     </div>
