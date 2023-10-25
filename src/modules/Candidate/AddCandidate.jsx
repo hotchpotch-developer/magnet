@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { COMMON_DROPDOWN, CREATE_CANDIDATE, DELETE_CANDIDATE, EDIT_CANDIDATE } from '../../components/APIRoutes';
 import { fetchData, initialFormState, validateForm } from '../../components/Helper';
 import { useLocation, useNavigate } from 'react-router-dom';
-import _ from 'lodash';
+import _, { lowerCase, startCase } from 'lodash';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -72,6 +72,7 @@ const AddCandidate = () => {
         experience: null,
         high_qualification: null,
         resume_status: null,
+        status: null,
     })
 
     const [formData, setFormData] = useState({
@@ -91,8 +92,20 @@ const AddCandidate = () => {
     useEffect(() => {
         if (location && location.state && location.state) {
             let candidate = location.state;
+            console.log(candidate);
             setFormData({
                 id: candidate.id,
+                first_name: candidate.first_name,
+                last_name: candidate.last_name,
+                mobile: candidate.mobile,
+                alternate_mobile: candidate.alternate_mobile,
+                email: candidate.email,
+                alternate_email: candidate.alternate_email,
+                current_ctc: candidate.current_ctc,
+                pan_no: candidate.pan_no,
+                designation: candidate.designation,
+                employment_status: candidate.employment_status,
+                experience: candidate.experience,
             })
         } else {
             setFormData({
@@ -120,7 +133,20 @@ const AddCandidate = () => {
                     if (location && location.state) {
                         let candidate = location.state;
                         setSelectedDropDownData({
-                            name: candidate.name ?? null,
+                            date_of_birth: candidate.dob ? new Date(candidate.dob) : null,
+                            state: candidate.state_name ?? null,
+                            location: candidate.location ?? null,
+                            industry: candidate.industry ?? null,
+                            company: candidate.company ?? null,
+                            sales_non_sales: candidate.sales_non ?? null,
+                            department: candidate.department ?? null,
+                            channel: candidate.channel ?? null,
+                            level: candidate.level ?? null,
+                            experience: candidate.experience ? { value: candidate.experience, label: candidate.experience } : null,
+                            high_qualification: candidate.qualification ?? null,
+                            resume_status: candidate.resume_status ? { value: candidate.resume_status, label: startCase(candidate.resume_status) } : null,
+                            gender: candidate.gender ? { value: lowerCase(candidate.gender), label: startCase(candidate.gender) } : null,
+                            status: candidate.status ? { value: lowerCase(candidate.status), label: startCase(candidate.status) } : null,
                         })
                     } else {
                         setSelectedDropDownData({
@@ -179,13 +205,13 @@ const AddCandidate = () => {
 
     return (
         <>
-            <Breadcrumbs title="Create Candidate" parentPage="Post Candidate" />
+            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Candidate`} parentPage="Post Candidate" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
                         <form className="needs-validation" noValidate id="candidate-form">
                             <div className="card-header">
-                                <h5 className="card-title mb-0">Create Candidate</h5>
+                                <h5 className="card-title mb-0">{`${formData.id ? "Update" : "Create"} Candidate`}</h5>
                             </div>
                             <div className="card-body">
                                 <div className="row g-4">

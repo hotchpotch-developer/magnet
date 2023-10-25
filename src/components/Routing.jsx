@@ -21,6 +21,7 @@ import Calender from "../modules/Calender/Calender";
 import JobDetails from "../modules/Jobs/JobDetails";
 import CandidateList from "../modules/Candidate/CandidateList";
 import AddCandidate from "../modules/Candidate/AddCandidate";
+import CandidateDetails from "../modules/Candidate/CandidateDetails";
 
 
 const Routing = () => {
@@ -85,8 +86,9 @@ const Routing = () => {
                             {/* Candidate Route */}
                             {(superAdmin || context.auth.permissions.includes('Candidate')) && <>
                                 <Route caseSensitive={false} path="/candidates-list" element={<CandidateList />} />
+                                <Route caseSensitive={false} path="/candidate-details" element={<CandidateDetails />} />
                                 <Route caseSensitive={false} path="/add-candidates" element={<AddCandidate />} />
-                                <Route caseSensitive={false} path="/edit-candidates" element={<AddCandidate />} />
+                                <Route caseSensitive={false} path="/edit-candidate" element={<AddCandidate />} />
                             </>}
 
                             {/* Settings */}
