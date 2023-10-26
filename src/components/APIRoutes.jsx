@@ -97,6 +97,13 @@ export const CREATE_CANDIDATE = "create-candidate"
 export const EDIT_CANDIDATE = "edit-candidate"
 export const CANDIDATE_LIST = "candidate-list"
 export const DELETE_CANDIDATE = "delete-candidate"
+
+// Contact Routes
+
+export const CREATE_CONTACT = "create-contact-details"
+export const EDIT_CONTACT = "edit-contact-details"
+export const CONTACT_LIST = "list-contact-details"
+export const DELETE_CONTACT = "delete-contact-details"
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"

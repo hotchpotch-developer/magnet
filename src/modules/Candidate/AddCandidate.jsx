@@ -198,6 +198,7 @@ const AddCandidate = () => {
     const deleteCandidate = () => {
         fetchData(`${DELETE_CANDIDATE}/${location.state.id}`, 'GET', '', true, false, (res) => {
             if (res.status) {
+                document.querySelector('#candidateConfirmationModal [data-bs-dismiss="modal"]').click()
                 navigate('/candidates-list');
             }
         })

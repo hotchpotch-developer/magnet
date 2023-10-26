@@ -22,6 +22,10 @@ import JobDetails from "../modules/Jobs/JobDetails";
 import CandidateList from "../modules/Candidate/CandidateList";
 import AddCandidate from "../modules/Candidate/AddCandidate";
 import CandidateDetails from "../modules/Candidate/CandidateDetails";
+import AddContact from "../modules/Contact/AddContact";
+import ContactList from "../modules/Contact/ContactList";
+import ContactDetails from "../modules/Contact/ContactDetails";
+import ResetPassword from "../modules/Auth/ResetPassword";
 
 
 const Routing = () => {
@@ -91,6 +95,14 @@ const Routing = () => {
                                 <Route caseSensitive={false} path="/edit-candidate" element={<AddCandidate />} />
                             </>}
 
+                            {/* Contact Route */}
+                            {(superAdmin || context.auth.permissions.includes('Contact')) && <>
+                                <Route caseSensitive={false} path="/contacts-list" element={<ContactList />} />
+                                <Route caseSensitive={false} path="/contact-details" element={<ContactDetails />} />
+                                <Route caseSensitive={false} path="/add-contact" element={<AddContact />} />
+                                <Route caseSensitive={false} path="/edit-contact" element={<AddContact />} />
+                            </>}
+
                             {/* Settings */}
                             <Route caseSensitive={false} path="/account-settings" element={<AccountSetting />} />
 
@@ -101,6 +113,7 @@ const Routing = () => {
                     <Route caseSensitive={false} path="/" element={<Login />} />
                     <Route caseSensitive={false} path="/login" element={<Login />} />
                     <Route caseSensitive={false} path="/forgot-password" element={<ForgotPassword />} />
+                    <Route caseSensitive={false} path="/reset-password" element={<ResetPassword />} />
                 </>
                 }
                 {!token && <Route path="*" element={<ErrorPage />} />}

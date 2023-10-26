@@ -124,6 +124,23 @@ const Navbar = () => {
                                         </div>
                                     </li>
                                 </>}
+                                {(superAdmin || context.auth.permissions.includes('Contact')) && <>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-contacts") || location.pathname.match("/contacts-list")) && "text-primary"}`} to="#contactsMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
+                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Contact</span>
+                                        </Link>
+                                        <div className="collapse menu-dropdown" id="contactsMenu">
+                                            <ul className="nav nav-sm flex-column">
+                                                <li className="nav-item">
+                                                    <Link to="/add-contact" className={`nav-link ${location.pathname.match("/add-contacts") && "text-primary"}`} data-key="t-calendar"> Add Contacts </Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link to="contacts-list" className={`nav-link ${location.pathname.match("/contacts-list") && "text-primary"}`} data-key="t-chat"> Contacts List </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </>}
                                 {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
                                     <li className="nav-item">
                                         <Link className={`nav-link menu-link ${location.pathname.match("/common-setting") && "text-primary"}`} to="/common-setting">
