@@ -30,7 +30,7 @@ const ContactFilter = ({ setQuery }) => {
             setTextFilter(prev => ({ ...prev, [e.target.name]: e.target.value }));
         }
     }
-
+    console.log(selectFilter);
     return (
         <>
             <div className="col-xl-3 col-lg-4">
