@@ -10,7 +10,7 @@ function Attendance() {
 
     useEffect(() => {
         if (context && context.auth) {
-            if (!context.auth.attendance) {
+            if (context.auth.role_id !== "1" &&!context.auth.attendance) {
                 document.getElementById('openAttendanceModal').click()
             }
         }

@@ -216,9 +216,9 @@ const AddCandidate = () => {
                             </div>
                             <div className="card-body">
                                 <div className="row g-4">
-                                    <InputField name="first_name" value={formData.first_name} required onChange={handleInputChange} />
+                                    <InputField name="first_name" pattern="[a-zA-Z]+" value={formData.first_name} required onChange={handleInputChange} error="Please enter a only first name"  />
                                     <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
-                                    <InputField name="mobile" value={formData.mobile} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="mobile" label="Primary Mobile" value={formData.mobile} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="alternate_mobile" value={formData.alternate_mobile} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="current_ctc" value={formData.current_ctc} required onChange={handleInputChange} />
                                     <InputField name="email" value={formData.email} required onChange={handleInputChange} />

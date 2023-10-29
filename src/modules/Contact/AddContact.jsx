@@ -168,10 +168,10 @@ const AddContact = () => {
                                     <InputField name="email" value={formData.email} required onChange={handleInputChange} />
                                     <InputField name="contact_no" value={formData.contact_no} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="alternate_contact_no" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="address" value={formData.address} required onChange={handleInputChange} />
+                                    <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
                                     <InputField name="reporting_manager_name" value={formData.reporting_manager_name} onChange={handleInputChange} />
                                     <InputField name="reporting_email" value={formData.reporting_email} onChange={handleInputChange} />
-                                    <InputField name="reporting_location" value={formData.reporting_location} onChange={handleInputChange} />
+                                    {/* <InputField name="reporting_location" value={formData.reporting_location} onChange={handleInputChange} /> */}
                                     <InputField name="reporting_contact_no" value={formData.reporting_contact_no} onChange={handleInputChange} />
                                     <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
                                     <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
