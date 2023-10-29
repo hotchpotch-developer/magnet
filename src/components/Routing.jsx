@@ -39,7 +39,7 @@ const Routing = () => {
         if (token) {
             fetchData(GET_AUTH_INFO, 'GET', '', true, false, (res) => {
                 if (res.status === 200 && res.data) {
-                    setContext(prev => ({ ...prev, auth: res.data }));
+                    setContext(prev => ({ ...prev, auth: {...res.data, attendance: false} }));
                     if (res.data.role_id === "1") {
                         setSuperAdmin(true);
                     }

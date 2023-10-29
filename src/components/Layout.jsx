@@ -4,6 +4,7 @@ import TopHeader from "./TopHeader";
 import { useContext } from "react";
 import Navbar from "./Navbar";
 import { Context } from "./Context";
+import Attendance from "./Attendance";
 
 
 const Layout = () => {
@@ -23,6 +24,7 @@ const Layout = () => {
                         </div>
                     </div>
                     <Footer />
+                    <Attendance />
                 </>}
             </div>
         </>

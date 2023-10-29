@@ -104,6 +104,14 @@ export const CREATE_CONTACT = "create-contact-details"
 export const EDIT_CONTACT = "edit-contact-details"
 export const CONTACT_LIST = "list-contact-details"
 export const DELETE_CONTACT = "delete-contact-details"
+
+// Attendance Routes
+
+export const ADD_ATTENDANCE = "add-attendance"
+export const EDIT_ATTENDANCE = "edit-attendance"
+export const ATTENDANCE_LIST = "list-attendance"
+export const DELETE_ATTENDANCE = "delete-attendance"
+
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"
