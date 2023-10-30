@@ -166,8 +166,8 @@ const AddContact = () => {
                                 <div className="row g-4">
                                     <InputField name="name" value={formData.name} required onChange={handleInputChange} />
                                     <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                    <InputField name="contact_no" value={formData.contact_no} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="alternate_contact_no" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="contact_no" type="number" value={formData.contact_no} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="alternate_contact_no" type="number" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
                                     <InputField name="reporting_manager_name" value={formData.reporting_manager_name} onChange={handleInputChange} />
                                     <InputField name="reporting_email" value={formData.reporting_email} onChange={handleInputChange} />

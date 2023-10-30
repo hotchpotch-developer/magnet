@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import Breadcrumbs from '../../components/Breadcrumbs'
 import interactionPlugin from "@fullcalendar/interaction"
-import * as Elements from "../../components/Elements";
+import LeaveForm from './Partials/LeaveForm';
 
 const Calender = () => {
 
@@ -17,10 +17,6 @@ const Calender = () => {
         console.log(arg.event.id)
     }
 
-    const submitForm = (e) => {
-
-    }
-
     return (
         <>
             <Breadcrumbs title="Attendance" parentPage="Attendance" />
@@ -29,16 +25,7 @@ const Calender = () => {
                     <i className="ri-add-fill fs-5"></i>Apply Leave
                 </button>
             </div>
-            <Elements.ModalSection modalId="applyLeave" title="Apply Leave" btnTitle="Save" action={submitForm} loading={false} formId="apply-leave-form">
-                <form className="needs-validation" noValidate id="apply-leave-form">
-                    <div className="row gy-4">
-                        <div className="col-md-12">
-                            <h6>Date</h6>
-                            <h6>Reason</h6>
-                        </div>
-                    </div>
-                </form>
-            </Elements.ModalSection>
+            <LeaveForm />
             <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                 headerToolbar={{

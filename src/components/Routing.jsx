@@ -26,6 +26,7 @@ import AddContact from "../modules/Contact/AddContact";
 import ContactList from "../modules/Contact/ContactList";
 import ContactDetails from "../modules/Contact/ContactDetails";
 import ResetPassword from "../modules/Auth/ResetPassword";
+import AttendanceList from "../modules/Calender/AttendanceList";
 
 
 const Routing = () => {
@@ -101,6 +102,10 @@ const Routing = () => {
                                 <Route caseSensitive={false} path="/contact-details" element={<ContactDetails />} />
                                 <Route caseSensitive={false} path="/add-contact" element={<AddContact />} />
                                 <Route caseSensitive={false} path="/edit-contact" element={<AddContact />} />
+                            </>}
+
+                            {superAdmin && <>
+                                <Route caseSensitive={false} path="/attendance-list" element={<AttendanceList />} />
                             </>}
 
                             {/* Settings */}
