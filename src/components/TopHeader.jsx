@@ -98,7 +98,7 @@ const TopHeader = () => {
                                 </div>
                             </div>
 
-                            <div className="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
+                            {/* <div className="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
                                 <button type="button" className={`btn btn-icon btn-topbar btn-ghost-secondary rounded-circle ${notificationDD ? 'show' : ''}`} id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" onClick={() => bellDropDown()}>
                                     <i className='bx bx-bell fs-22'></i>
                                     <span className="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">3<span className="visually-hidden">unread messages</span></span>
@@ -360,7 +360,7 @@ const TopHeader = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             {context && context.auth && <>
                                 <div className="dropdown ms-sm-3 header-item topbar-user">
