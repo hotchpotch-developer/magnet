@@ -84,7 +84,7 @@ const Navbar = () => {
                                                     <Link to="/add-team" className={`nav-link ${location.pathname.match("/add-team") && "text-primary"}`} data-key="t-calendar"> Add Team </Link>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <Link to="/team-list" className={`nav-link ${location.pathname.match("/eam-list") && "text-primary"}`} data-key="t-calendar"> Team List </Link>
+                                                    <Link to="/team-list" className={`nav-link ${location.pathname.match("/team-list") && "text-primary"}`} data-key="t-calendar"> Team List </Link>
                                                 </li>
                                             </ul>
                                         </div>
