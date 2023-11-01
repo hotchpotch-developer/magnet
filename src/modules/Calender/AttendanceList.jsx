@@ -38,7 +38,7 @@ function AttendanceList() {
     }, [dt])
 
     return (<>
-        <Breadcrumbs title="Attendance List" parentPage="" />
+        <Breadcrumbs title="Attendance List" parentPage="Attendance List" />
         <Datatables dt_name="attendance-list" dataPageLength="15" />
     </>
     );
