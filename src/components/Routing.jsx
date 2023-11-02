@@ -48,15 +48,7 @@ const Routing = () => {
                 }
             })
         }
-        fetchData("calendar-list/4", 'GET', '', true, false, (res) => {
-            if (res.status === 200 && res.data) {
-                setContext(prev => ({ ...prev, auth: res.data }));
-                if (res.data.role_id === "1") {
-                    setSuperAdmin(true);
-                }
-            }
-        })
-        
+
     }, [token])
 
     return (
