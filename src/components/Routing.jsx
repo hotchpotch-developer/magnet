@@ -27,6 +27,7 @@ import ContactList from "../modules/Contact/ContactList";
 import ContactDetails from "../modules/Contact/ContactDetails";
 import ResetPassword from "../modules/Auth/ResetPassword";
 import AttendanceList from "../modules/Calender/AttendanceList";
+import EmployeeCalendar from "../modules/Attendance/EmployeeCalendar";
 
 
 const Routing = () => {
@@ -47,7 +48,15 @@ const Routing = () => {
                 }
             })
         }
-
+        fetchData("calendar-list/4", 'GET', '', true, false, (res) => {
+            if (res.status === 200 && res.data) {
+                setContext(prev => ({ ...prev, auth: res.data }));
+                if (res.data.role_id === "1") {
+                    setSuperAdmin(true);
+                }
+            }
+        })
+        
     }, [token])
 
     return (
@@ -73,6 +82,7 @@ const Routing = () => {
                                 <Route caseSensitive={false} path="/add-team" element={<CreateTeam />} />
                                 <Route caseSensitive={false} path="/edit-team" element={<CreateTeam />} />
                                 <Route caseSensitive={false} path="/team-profile" element={<TeamProfile />} />
+                                <Route caseSensitive={false} path="/view-calender" element={<EmployeeCalendar />} />
                             </>}
 
                             {/* Common Settings Routes */}
