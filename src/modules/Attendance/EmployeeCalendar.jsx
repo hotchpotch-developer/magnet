@@ -27,6 +27,7 @@ const EmployeeCalendar = () => {
                 setDetails(null);
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // const handleDateClick = (arg) => {
@@ -57,9 +58,9 @@ const EmployeeCalendar = () => {
                         </div>
                         <div className="modal-body">
                             <div className="event-details">
-                                {context && context.auth && context.auth.id == details?.user_id &&
+                                {context && context.auth && context.auth.id === details?.user_id &&
                                     <div class="text-end">
-                                        <a href="#" class="btn btn-sm btn-soft-primary" id="edit-event-btn" data-id="edit-event" role="button">Edit</a>
+                                        <button type='button' class="btn btn-sm btn-soft-primary">Edit</button>
                                     </div>
                                 }
                                 <div className="d-flex mb-2">
@@ -91,7 +92,7 @@ const EmployeeCalendar = () => {
                                     </div>
                                 }
                             </div>
-                            {context && context.auth && context.auth.id == details?.user_id &&
+                            {context && context.auth && context.auth.id === details?.user_id &&
                                 <div className="hstack gap-2 justify-content-end">
                                     <button type="button" className="btn btn-soft-danger" id="btn-delete-event"><i className="ri-close-line align-bottom"></i> Delete</button>
                                     <button type="submit" className="btn btn-success" id="btn-save-event">Add Event</button>
