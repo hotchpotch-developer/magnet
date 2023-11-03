@@ -20,7 +20,7 @@ const EmployeeCalendar = () => {
     const [details, setDetails] = useState(null);
     const [prevModal, setPrevModal] = useState(null);
     const [deleteId, setDeleteId] = useState(null);
-    const title = context && context.auth && context.auth.role_id === "1" ? `${_.upperFirst(location?.state?.team?.first_name)} ${_.upperFirst(location?.state?.team?.first_name)} (${location?.state?.team?.roles_name}) Calender Details` : "Calender Details"
+    const title = context && context.auth && context.auth.role_id === "1" ? `${_.upperFirst(location?.state?.team?.first_name)} ${_.upperFirst(location?.state?.team?.first_name)} (${location?.state?.team?.roles_name})` : "Calender Details"
 
     useEffect(() => {
         if (context && context.auth) {
