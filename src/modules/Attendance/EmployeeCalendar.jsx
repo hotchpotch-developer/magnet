@@ -24,7 +24,7 @@ const EmployeeCalendar = () => {
 
     useEffect(() => {
         if (context && context.auth) {
-            let id = location && location.state && location.state.team ? location.state.team : context.auth.id
+            let id = location && location.state && location.state.team ? location.state.team.id : context.auth.id
             fetchData(`${CALENDER_LIST}/${id}`, 'GET', '', true, false, (res) => {
                 if (res.status) {
                     setData(res.data)
