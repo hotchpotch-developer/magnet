@@ -58,7 +58,7 @@ function LeaveForm() {
                     <div className="col-md-12">
                         <div>
                             <label htmlFor="date" className="form-label">Date and Time</label>
-                            <DatePicker showTimeSelect required className='form-control' name="date" id="date" dateFormat="MMMM d, yyyy H:mm:ss" selected={date} onChange={(e) => setDate(e)} />
+                            <DatePicker showTimeSelect required className='form-control' name="date" id="date" dateFormat="MMMM d, yyyy H:mm:ss" selected={date} minDate={new Date()} onChange={(e) => setDate(e)} />
                         </div>
                     </div>
                     <div className="col-md-12">

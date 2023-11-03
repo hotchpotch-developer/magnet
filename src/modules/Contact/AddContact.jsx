@@ -5,12 +5,15 @@ import { useEffect, useState } from 'react';
 import { COMMON_DROPDOWN, CREATE_CONTACT, DELETE_CONTACT, EDIT_CONTACT } from '../../components/APIRoutes';
 import { fetchData, initialFormState, validateForm } from '../../components/Helper';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import _ from 'lodash';
 
 const AddContact = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
+    const [remark, setRemark] = useState("")
 
     const commonDropdown = [
         { key: "state", value: "state" },
@@ -70,6 +73,7 @@ const AddContact = () => {
                 reporting_email: contact.reporting_email,
                 reporting_location: contact.reporting_location,
             })
+            setRemark(contact.remark ?? '')
         } else {
             setFormData({
                 name: '',
@@ -82,6 +86,7 @@ const AddContact = () => {
                 reporting_email: '',
                 reporting_location: '',
             });
+            setRemark('')
             initialFormState("contact-form");
         }
     }, [location])
@@ -134,6 +139,7 @@ const AddContact = () => {
             setLoading(true)
             let formdata = new FormData(document.getElementById('contact-form'));
             formdata.append('id', formData.id);
+            formdata.append('remark', remark);
             fetchData(formData.id ? EDIT_CONTACT : CREATE_CONTACT, 'POST', formdata, true, true, (res) => {
                 setLoading(false)
                 if (res.status) {
@@ -180,6 +186,10 @@ const AddContact = () => {
                                     <ReactSelectField name="sales_non_sales" label="Sales/Non Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
+                                    <div className="col-lg-12">
+                                            <label htmlFor="password" className="form-label">Remark</label>
+                                            <CKEditor editor={ClassicEditor} data={remark} onChange={(event, editor) => setRemark(editor.getData())} />
+                                        </div>
                                     <div className="col-lg-12">
                                         <div className="hstack justify-content-end gap-2">
                                             {location && location.state && location.state.id && <button type="button" className="btn btn-soft-danger mt-3" data-bs-target="#contactConfirmationModal" data-bs-toggle="modal" title="Delete Contact">Permanently Delete</button>}
