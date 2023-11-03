@@ -48,8 +48,8 @@ const TeamList = () => {
                                 <button type="button" className="btn btn-sm btn-soft-primary ms-2" title="View Profile" onClick={() => viewProfile(records)}>
                                     <i className="ri-eye-fill fs-5"></i>
                                 </button>
-                                <button type="button" className="btn btn-sm btn-soft-info ms-2" title="View Calender" onClick={() => viewCalender(records)}>
-                                    <i className="ri-eye-fill fs-5"></i>
+                                <button type="button" className="btn btn-sm btn-soft-info ms-2" title="View Attendance" onClick={() => viewCalender(records)}>
+                                    <i className="ri-calendar-event-fill fs-5"></i>
                                 </button>
                                 <button type="button" className="btn btn-sm btn-soft-danger ms-2" data-bs-target="#teamConfirmationModal" data-bs-toggle="modal" onClick={() => setDeleteRecord(records)} title="Delete Team">
                                     <i className="ri-delete-bin-line fs-5"></i>
