@@ -60,7 +60,7 @@ const Routing = () => {
                         {context && context.auth && (superAdmin || context.auth.permissions) && <>
 
                             {/* Attendance Sheet */}
-                            <Route caseSensitive={false} path="/calender" element={<Calender />} />
+                            <Route caseSensitive={false} path="/calender" element={<EmployeeCalendar />} />
 
                             {/* Permission Routes */}
                             {(superAdmin || context.auth.permissions.includes('Permission')) && <>

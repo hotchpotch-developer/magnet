@@ -24,13 +24,13 @@ export const ModalSection = (props) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id={`${props.modalId}Label`}>{props.title}</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => initialFormState(props.formId)}></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {initialFormState(props.formId); if(props.closeAction) {props.closeAction()}}}></button>
                     </div>
                     <div className="modal-body">
                         {props.children}
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={() => initialFormState(props.formId)}>Close</button>
+                        <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={() => {initialFormState(props.formId); if(props.closeAction) {props.closeAction()}}}>Close</button>
                         {!props.loading ?
                             <button type="button" className="btn btn-primary" onClick={props.action}>{props.btnTitle}</button>
                         : 
@@ -70,7 +70,7 @@ export const ConfirmationModal = (props) => {
                             <h4 className="mb-3">Are you sure want to delete?</h4>
                             <p className="text-muted mb-4"> This is a destructive action and cannot be reversed.</p>
                             <div className="hstack gap-2 justify-content-center">
-                                <button type="button" className="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-light" data-bs-dismiss="modal" onClick={props.closeAction ?? null}>Close</button>
                                 <button type="button" className="btn btn-danger" onClick={props.action}>Delete</button>
                             </div>
                         </div>
