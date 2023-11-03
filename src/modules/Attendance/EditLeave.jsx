@@ -2,8 +2,8 @@
 import * as Elements from "../../components/Elements";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ADD_ATTENDANCE, EDIT_ATTENDANCE } from '../../components/APIRoutes';
-import { fetchData, initialFormState, validateForm } from '../../components/Helper';
+import { EDIT_ATTENDANCE } from '../../components/APIRoutes';
+import { fetchData, validateForm } from '../../components/Helper';
 import moment from 'moment';
 import { useEffect, useState } from "react";
 import { now } from "lodash";
@@ -31,6 +31,7 @@ function EditLeave(props) {
             setType(null)
             setDate(null)
         }
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.details])
 
     const submitForm = (e) => {

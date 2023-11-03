@@ -17,7 +17,6 @@ import TeamProfile from "../modules/Teams/TeamProfile";
 import AccountSetting from "../modules/AccountSetting/AccountSetting";
 import JobList from "../modules/Jobs/JobList";
 import CreateJob from "../modules/Jobs/CreateJob"
-import Calender from "../modules/Calender/Calender";
 import JobDetails from "../modules/Jobs/JobDetails";
 import CandidateList from "../modules/Candidate/CandidateList";
 import AddCandidate from "../modules/Candidate/AddCandidate";

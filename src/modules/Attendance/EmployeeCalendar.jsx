@@ -63,6 +63,8 @@ const EmployeeCalendar = () => {
         })
     }
 
+    console.log(prevModal);
+
     return (
         <>
             <Breadcrumbs title={title} parentPage="Attendance" />
