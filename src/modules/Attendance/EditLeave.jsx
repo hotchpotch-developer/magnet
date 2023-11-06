@@ -44,16 +44,14 @@ function EditLeave(props) {
             }
             fetchData(EDIT_ATTENDANCE, 'POST', formdata, true, false, (res) => {
                 setLoading(false)
-                if (res.status) {
-                    if(props.edit){
-                        props.setDetails(prev => ({ 
-                            ...prev,
-                            type: type.label,
-                            event_timing: moment(date).format("YYYY-MM-DD"), 
-                            description: description,
+                if (res.success) {
+                    props.setDetails(prev => ({ 
+                        ...prev,
+                        type: type.label,
+                        event_timing: moment(date).format("YYYY-MM-DD"), 
+                        description: description,
 
-                        }));
-                    }
+                    }));
                     document.querySelector('#editLeave [data-bs-dismiss="modal"]').click()
                     props.setReload(now())
                     document.getElementById('calender-details-btn').click()

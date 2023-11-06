@@ -106,6 +106,13 @@ export const EDIT_CONTACT = "edit-contact-details"
 export const CONTACT_LIST = "list-contact-details"
 export const DELETE_CONTACT = "delete-contact-details"
 
+// Note Routes
+
+export const CREATE_NOTE = "add-notes"
+export const EDIT_NOTE = "edit-notes"
+export const NOTE_LIST = "notes-list"
+export const DELETE_NOTE = "delete-notes"
+
 // Attendance Routes
 
 export const ADD_ATTENDANCE = "add-attendance"

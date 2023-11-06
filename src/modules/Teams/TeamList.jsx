@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client"
 import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
-import { DELETE_TEAM, DIRECT_LOGIN, TEAM_LIST } from "../../components/APIRoutes";
+import { ASSIGN_PERMISSION, COMMON_DROPDOWN, DELETE_TEAM, DIRECT_LOGIN, TEAM_LIST } from "../../components/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RoleFilter from "./RoleFilter";
-import { fetchData } from "../../components/Helper";
+import { fetchData, initialFormState, validateForm } from "../../components/Helper";
 import { now } from "lodash";
 import * as Elements from "../../components/Elements";
 import { Context } from "../../components/Context";
@@ -16,6 +16,10 @@ const TeamList = () => {
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
     const [context] = useContext(Context)
+    const [selectPermission, setSelectPermission] = useState([])
+    const [permissionList, setPermissionList] = useState([])
+    const [loader, setLoader] = useState(false)
+    const [teamId, setTeamId] = useState(false)
 
     const viewProfile = () => {
         navigate('/team-profile');
@@ -42,7 +46,10 @@ const TeamList = () => {
                     createRoot(td).render(
                         <>
                             <div className="d-flex text-nowrap">
-                                <button type="button" className="btn btn-sm btn-soft-success" title="Edit" onClick={() => editTeam(records)}>
+                                <button type="button" className="btn btn-sm btn-soft-warning" data-bs-target="#assignPermission" data-bs-toggle="modal" onClick={() => editAssignPermission(records)} title="Assign Permission">
+                                    <i className="ri-user-star-fill fs-5"></i>
+                                </button>
+                                <button type="button" className="btn btn-sm btn-soft-success ms-2" title="Edit" onClick={() => editTeam(records)}>
                                     <i className="ri-pencil-fill fs-5"></i>
                                 </button>
                                 <button type="button" className="btn btn-sm btn-soft-primary ms-2" title="View Profile" onClick={() => viewProfile(records)}>
@@ -79,7 +86,7 @@ const TeamList = () => {
     const viewCalender = (data) => {
         navigate('/view-calender', { state: { team: data } });
     }
-    
+
     useEffect(() => {
         let url = role ? `${TEAM_LIST}?type=${role}` : `${TEAM_LIST}`;
         reloadUrlDataTable(dt, url);
@@ -106,12 +113,72 @@ const TeamList = () => {
         })
     }
 
+    const editAssignPermission = (data) => {
+        fetchData(`${COMMON_DROPDOWN}?type=permission`, 'GET', '', true, false, (res) => {
+            if (res.status) {
+                if (res.data && res.data.length > 0) {
+                    setPermissionList(res.data)
+                    setTeamId(data.id);
+                    setSelectPermission(data.permissions);
+                }
+            }
+        })
+    }
+    console.log(permissionList, selectPermission);
+
+    const updatePermission = (e) => {
+        e.preventDefault();
+
+        if (validateForm(e, 'assignUpdatePermission')) {
+            setLoader(true)
+
+            let formData = new FormData(document.getElementById('assignUpdatePermission'));
+            formData.append('user_id', teamId)
+
+            fetchData(ASSIGN_PERMISSION, 'POST', formData, true, true, (res) => {
+                setLoader(false)
+                if (res.status) {
+                    initialFormState('assignUpdatePermission')
+                    setSelectPermission([])
+                    setTeamId(false)
+                    setReload(now)
+                    document.querySelector('#assignPermission [data-bs-dismiss="modal"]').click()
+                }
+            })
+        }
+    }
+
     return (
 
         <>
             <Breadcrumbs title="Team List" parentPage="Teams" />
             <Datatables dt_name="team-list" dataPageLength="15" />
             <Elements.ConfirmationModal modalId="teamConfirmationModal" action={deleteTeam} />
+
+            <Elements.ModalSection modalId="assignPermission" title={'Assign Permission'} btnTitle="Save Changes" loading={loader} action={(e) => updatePermission(e)} formId="assignUpdatePermission">
+                <form className="needs-validation" noValidate id="assignUpdatePermission">
+                    <div className="row gy-4">
+                        <div className="col-md-12">
+                            <label htmlFor="role_name" className="form-label">Permission</label>
+                            <Elements.ReactSelect
+                                placeholder="Select Permission"
+                                options={permissionList}
+                                name="permission_name[]"
+                                id="permission_name"
+                                value={selectPermission}
+                                isMulti={true}
+                                isClearable={true}
+                                closeMenuOnSelect={false}
+                                isSearchable
+                                className="react-select required"
+                                onChange={(e) => { Elements.reactSelectValidation(e, "permission_name"); setSelectPermission(e ?? []) }}
+                                required={true}
+                            />
+                            <div className="invalid-feedback">Please choose permission.</div>
+                        </div>
+                    </div>
+                </form>
+            </Elements.ModalSection>
         </>
 
     )
