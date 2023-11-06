@@ -27,6 +27,8 @@ import ContactDetails from "../modules/Contact/ContactDetails";
 import ResetPassword from "../modules/Auth/ResetPassword";
 import AttendanceList from "../modules/Calender/AttendanceList";
 import EmployeeCalendar from "../modules/Attendance/EmployeeCalendar";
+import NoteList from "../modules/Note/NoteList";
+import AddNote from "../modules/Note/AddNote";
 
 
 const Routing = () => {
@@ -103,6 +105,13 @@ const Routing = () => {
                                 <Route caseSensitive={false} path="/contact-details" element={<ContactDetails />} />
                                 <Route caseSensitive={false} path="/add-contact" element={<AddContact />} />
                                 <Route caseSensitive={false} path="/edit-contact" element={<AddContact />} />
+                            </>}
+
+                            {/* Note Route */}
+                            {(superAdmin || context.auth.permissions.includes('Note')) && <>
+                                <Route caseSensitive={false} path="/notes-list" element={<NoteList />} />
+                                <Route caseSensitive={false} path="/add-note" element={<AddNote />} />
+                                <Route caseSensitive={false} path="/edit-note" element={<AddNote />} />
                             </>}
 
                             {superAdmin && <>

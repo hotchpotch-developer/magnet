@@ -141,6 +141,23 @@ const Navbar = () => {
                                         </div>
                                     </li>
                                 </>}
+                                {(superAdmin || context.auth.permissions.includes('Note')) && <>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-notes") || location.pathname.match("/notes-list")) && "text-primary"}`} to="#notesMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
+                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Note</span>
+                                        </Link>
+                                        <div className="collapse menu-dropdown" id="notesMenu">
+                                            <ul className="nav nav-sm flex-column">
+                                                <li className="nav-item">
+                                                    <Link to="/add-note" className={`nav-link ${location.pathname.match("/add-notes") && "text-primary"}`} data-key="t-calendar"> Add Notes </Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link to="notes-list" className={`nav-link ${location.pathname.match("/notes-list") && "text-primary"}`} data-key="t-chat"> Notes List </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </>}
                                 {(superAdmin || context.auth.permissions.includes('Common Settings')) && <>
                                     <li className="nav-item">
                                         <Link className={`nav-link menu-link ${location.pathname.match("/common-setting") && "text-primary"}`} to="/common-setting">
