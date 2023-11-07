@@ -30,18 +30,33 @@ const TeamList = () => {
         dt_name: 'team-list',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'first_name', name: 'first_name', title: 'First Name' },
             { data: 'last_name', name: 'last_name', title: 'Last Name' },
             { data: 'phone', name: 'phone', title: 'Phone' },
             { data: 'email', name: 'email', title: 'Email' },
+            { data: 'reporting_user_name.first_name', name: 'reporting_user_name', title: 'Reporting Manager' },
             { data: 'roles_name', name: 'roles.name', title: 'Role' },
             { data: 'status', name: 'status', title: 'Status' },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
             {
-                targets: 7,
+                targets: 5,
+                createdCell: (td, cellData, records, row, col) => {
+                    createRoot(td).render (
+                        <>
+                            <div className="d-flex text-nowrap">
+                                <span>
+                                    {records && records.reporting_user_name && records.reporting_user_name.first_name+' '+records.reporting_user_name.last_name}
+                                </span>
+                            </div>
+                        </>
+                    )
+                }
+            },
+            {
+                targets: 8,
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render(
                         <>

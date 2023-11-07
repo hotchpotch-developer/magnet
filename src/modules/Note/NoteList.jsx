@@ -21,11 +21,25 @@ const NoteList = () => {
         dt_column: [
             { data: 'id', name: 'id', title: '#' },
             { data: 'subject', name: 'subject', title: 'Subject' },
-            { data: 'company_name', name: 'company_name', title: 'Company Name' },
+            { data: 'companies.label', name: 'companies', title: 'Company Name' },
             { data: 'remark', name: 'remark', title: 'Remark' },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
+            {
+                targets: 2,
+                createdCell: (td, cellData, records, row, col) => {
+                    createRoot(td).render(
+                        <>
+                            <div className="d-flex text-nowrap">
+                                <span>
+                                    {records?.companies?.label}
+                                </span>
+                            </div>
+                        </>
+                    )
+                }
+            },
             {
                 targets: 3,
                 createdCell: (td, cellData, records, row, col) => {

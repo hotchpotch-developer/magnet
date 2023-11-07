@@ -55,10 +55,8 @@ const AddNote = () => {
                 if (res.status) {
                     setDropDownData(prev => ({ ...prev, [element.key]: res.data }));
                     if (location && location.state) {
-                        let company_name = res.data.filter((item) => item.value === parseInt(location.state.note.company_name))
-
                         setSelectedDropDownData({
-                            company_name: company_name[0] ?? null,
+                            company_name: location?.state?.note?.companies ?? null,
                         })
                     } else {
                         setSelectedDropDownData({
@@ -95,10 +93,10 @@ const AddNote = () => {
             })
         }
     }
-
+    
     return (
         <>
-            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Note`} parentPage="Post Note" />
+            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Note`} parentPage="Note" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
@@ -108,8 +106,8 @@ const AddNote = () => {
                             </div>
                             <div className="card-body">
                                 <div className="row g-4">
-                                    <InputField name="subject" value={formData.subject} required onChange={handleInputChange} />
                                     <ReactSelectField name="company_name" value={selectedDropDownData.company_name} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company_name')} />
+                                    <InputField name="subject" value={formData.subject} required onChange={handleInputChange} />
                                     <InputField type="file" name="document" required={formData.id ? false : true} />
                                     <div className="col-lg-12">
                                         <label htmlFor="password" className="form-label">Remark</label>
