@@ -42,7 +42,7 @@ const JobFilter = ({ setQuery }) => {
                                 <h5 className="fs-16">Filters</h5>
                             </div>
                             <div className="flex-shrink-0">
-                                <button className="text-decoration-underline" id="clearall" onClick={resetFilter}>Clear All</button>
+                                <button className="btn btn-soft-danger mt-3" id="clearall" onClick={resetFilter}>Clear All</button>
                             </div>
                         </div>
 

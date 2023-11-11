@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import * as Elements from "../../../components/Elements";
 
 const CandidateFilter = () => {
@@ -12,7 +12,7 @@ const CandidateFilter = () => {
                                 <h5 className="fs-16">Filters</h5>
                             </div>
                             <div className="flex-shrink-0">
-                                <Link to="" className="text-decoration-underline" id="clearall">Clear All</Link>
+                                <button to="" className="btn btn-soft-danger mt-3" id="clearall">Clear All</button>
                             </div>
                         </div>
 
