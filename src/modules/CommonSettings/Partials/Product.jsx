@@ -19,7 +19,7 @@ const Product = (props) => {
         dt_name: 'product-list',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Product Name', class: "text-nowrap minw-130px" },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],

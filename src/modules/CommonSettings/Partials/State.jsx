@@ -18,8 +18,9 @@ const State = (props) => {
         dt_url: STATE_LIST,
         dt_name: 'state-list',
         dt_export: true,
+        dt_order: 1,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'State Name', class: "text-nowrap minw-130px" },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],

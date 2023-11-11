@@ -12,7 +12,7 @@ const CandidateItem = ({ item }) => {
                         <div className="d-flex mb-4">
                             <div className="avatar-sm">
                                 <div className="avatar-title bg-light rounded">
-                                    <img src="assets/images/companies/img-7.png" alt="" className="avatar-xxs companyLogo-img" />
+                                    <img src="/images/slack.png" alt="" className="avatar-xxs companyLogo-img" />
                                 </div>
                             </div>
                             <div className="ms-3 flex-grow-1">

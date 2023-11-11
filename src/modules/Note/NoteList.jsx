@@ -19,7 +19,7 @@ const NoteList = () => {
         dt_name: 'note-list',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'subject', name: 'subject', title: 'Subject' },
             { data: 'companies.label', name: 'companies', title: 'Company Name' },
             { data: 'remark', name: 'remark', title: 'Remark' },

@@ -19,7 +19,7 @@ const Source = (props) => {
         dt_name: 'source-List',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'source', name: 'source', title: 'Source', class: "text-nowrap minw-130px" },
             { data: 'source_name', name: 'source_name', title: 'Source Name', class: "text-nowrap minw-130px" },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
