@@ -95,7 +95,7 @@ const Routing = () => {
                             {(superAdmin || context.auth.permissions.includes('Candidate')) && <>
                                 <Route caseSensitive={false} path="/candidates-list" element={<CandidateList />} />
                                 <Route caseSensitive={false} path="/candidate-details" element={<CandidateDetails />} />
-                                <Route caseSensitive={false} path="/add-candidates" element={<AddCandidate />} />
+                                <Route caseSensitive={false} path="/add-candidate" element={<AddCandidate />} />
                                 <Route caseSensitive={false} path="/edit-candidate" element={<AddCandidate />} />
                             </>}
 

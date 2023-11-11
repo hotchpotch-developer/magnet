@@ -109,13 +109,13 @@ const Navbar = () => {
                                 </>}
                                 {(superAdmin || context.auth.permissions.includes('Candidates')) && <>
                                     <li className="nav-item">
-                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-candidates") || location.pathname.match("/candidates-list")) && "text-primary"}`} to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
+                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-candidate") || location.pathname.match("/candidates-list") || location.pathname.match("/edit-candidate")) && "text-primary"}`} to="#recruiterMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
                                             <i className="ri-account-box-line"></i> <span data-key="t-apps">Candidates</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="recruiterMenu">
                                             <ul className="nav nav-sm flex-column">
                                                 <li className="nav-item">
-                                                    <Link to="/add-candidates" className={`nav-link ${location.pathname.match("/add-candidates") && "text-primary"}`} data-key="t-calendar"> Add Candidates </Link>
+                                                    <Link to="/add-candidate" className={`nav-link ${location.pathname.match("/add-candidate") && "text-primary"}`} data-key="t-calendar"> Add Candidate </Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link to="candidates-list" className={`nav-link ${location.pathname.match("/candidates-list") && "text-primary"}`} data-key="t-chat"> Candidates List </Link>
@@ -126,13 +126,13 @@ const Navbar = () => {
                                 </>}
                                 {(superAdmin || context.auth.permissions.includes('Contact')) && <>
                                     <li className="nav-item">
-                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-contacts") || location.pathname.match("/contacts-list")) && "text-primary"}`} to="#contactsMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
+                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-contact") || location.pathname.match("/contacts-list")) && "text-primary"}`} to="#contactsMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
                                             <i className="ri-account-box-line"></i> <span data-key="t-apps">Business Contact</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="contactsMenu">
                                             <ul className="nav nav-sm flex-column">
                                                 <li className="nav-item">
-                                                    <Link to="/add-contact" className={`nav-link ${location.pathname.match("/add-contacts") && "text-primary"}`} data-key="t-calendar"> Add Contacts </Link>
+                                                    <Link to="/add-contact" className={`nav-link ${location.pathname.match("/add-contact") && "text-primary"}`} data-key="t-calendar"> Add Contact </Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link to="contacts-list" className={`nav-link ${location.pathname.match("/contacts-list") && "text-primary"}`} data-key="t-chat"> Contacts List </Link>
@@ -143,13 +143,13 @@ const Navbar = () => {
                                 </>}
                                 {(superAdmin || context.auth.permissions.includes('Note')) && <>
                                     <li className="nav-item">
-                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-notes") || location.pathname.match("/notes-list")) && "text-primary"}`} to="#notesMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
+                                        <Link className={`nav-link menu-link ${(location.pathname.match("/add-note") || location.pathname.match("/notes-list")) && "text-primary"}`} to="#notesMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
                                             <i className="ri-account-box-line"></i> <span data-key="t-apps">Note</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="notesMenu">
                                             <ul className="nav nav-sm flex-column">
                                                 <li className="nav-item">
-                                                    <Link to="/add-note" className={`nav-link ${location.pathname.match("/add-notes") && "text-primary"}`} data-key="t-calendar"> Add Notes </Link>
+                                                    <Link to="/add-note" className={`nav-link ${location.pathname.match("/add-note") && "text-primary"}`} data-key="t-calendar"> Add Note </Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link to="notes-list" className={`nav-link ${location.pathname.match("/notes-list") && "text-primary"}`} data-key="t-chat"> Notes List </Link>

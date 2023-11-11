@@ -96,7 +96,7 @@ const AddNote = () => {
     
     return (
         <>
-            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Note`} parentPage="Note" />
+            <Breadcrumbs title={`${formData.id ? "Update" : "Add"} Note`} parentPage="Note" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">

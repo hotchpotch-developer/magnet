@@ -206,7 +206,7 @@ const AddCandidate = () => {
 
     return (
         <>
-            <Breadcrumbs title={`${formData.id ? "Update" : "Create"} Candidate`} parentPage="Post Candidate" />
+            <Breadcrumbs title={`${formData.id ? "Update" : "Add"} Candidate`} parentPage="Post Candidate" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
