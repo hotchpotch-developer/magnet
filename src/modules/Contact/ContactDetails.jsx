@@ -45,13 +45,6 @@ const ContactDetails = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-auto">
-                                            <div className="hstack gap-1 flex-wrap mt-4 mt-md-0">
-                                                <button type="button" className="btn btn-icon btn-sm btn-ghost-primary fs-16">
-                                                    <i className="ri-share-line"></i>
-                                                </button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -93,11 +86,6 @@ const ContactDetails = () => {
                                             <td>{data.channel && data.channel.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Designation</td>
-                                            <td>{data.designation}</td>
-                                        </tr>
-
-                                        <tr>
                                             <td className="fw-medium">Reporting Manager Name</td>
                                             <td>{data.reporting_manager_name}</td>
                                         </tr>
@@ -108,10 +96,6 @@ const ContactDetails = () => {
                                         <tr>
                                             <td className="fw-medium">Reporting Contact No.</td>
                                             <td>{data.reporting_contact_no}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Reporting Location</td>
-                                            <td>{data.reporting_location}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Remark</td>
