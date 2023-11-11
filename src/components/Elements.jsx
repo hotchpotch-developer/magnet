@@ -98,6 +98,11 @@ export const ReactSelect = (props) => {
                     ...baseStyles,
                     color: state.isSelected ? "#fff" : "#05192f",
                     backgroundColor: state.isSelected ? "#05192f" : "#fff",
+                    "&:hover": {
+                        ...baseStyles,
+                        color: "#fff",
+                        backgroundColor: "#05192f",
+                    }
                 }),
                 singleValue: (baseStyles) => ({ ...baseStyles, color: "#fff" }),
             }}

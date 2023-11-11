@@ -127,7 +127,7 @@ const Navbar = () => {
                                 {(superAdmin || context.auth.permissions.includes('Contact')) && <>
                                     <li className="nav-item">
                                         <Link className={`nav-link menu-link ${(location.pathname.match("/add-contacts") || location.pathname.match("/contacts-list")) && "text-primary"}`} to="#contactsMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
-                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Contact</span>
+                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Business Contact</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="contactsMenu">
                                             <ul className="nav nav-sm flex-column">

@@ -12,7 +12,7 @@ const ContactDetails = () => {
 
     return (
         <>
-            <Breadcrumbs title="Contact Details" parentPage="Contact List" />
+            <Breadcrumbs title="Contact Details" parentPage="Business Contact" />
             {data && data.id && <>
                 <div className="row mt-4">
                     <div className="col-lg-12">
@@ -72,6 +72,18 @@ const ContactDetails = () => {
                                         <tr>
                                             <td className="fw-medium">Department</td>
                                             <td>{data.department && data.department.label}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Primary Contact No.</td>
+                                            <td>{data && data.alternate_contact_no}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Branch Address</td>
+                                            <td>{data && data.address}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Location</td>
+                                            <td>{data.location && data.location.label}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">State</td>

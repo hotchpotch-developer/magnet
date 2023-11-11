@@ -17,7 +17,7 @@ const ContactList = () => {
 
     return (
         <>
-            <Breadcrumbs title="Candidate List" parentPage="Candidate List" />
+            <Breadcrumbs title="Contact List" parentPage="Business Contact" />
             <div className="row">
                 <ContactFilter setQuery={setQuery} />
                 <div className="col-xl-9 col-lg-8">
