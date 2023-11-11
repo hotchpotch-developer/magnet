@@ -41,17 +41,18 @@ const CandidateItem = ({ item }) => {
                                 <i className="ri-briefcase-2-line align-bottom me-1"></i>
                                 <span className="job-type">{item.designation}</span>
                             </div>
-                            <div className="d-none">
+                            <div>
+                                <i className=" ri-user-2-line align-bottom me-1"></i>
                                 <span className="job-experience">{item.experience ? `${item.experience} Year` : ''}</span>
                             </div>
                             <div>
                                 <i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                {item.location_id && item.location_id.length > 0 && item.location_id.map(l => <span key={l.value}><span className="badge rounded-pill bg-primary fs-12 mx-1">{l.label}</span></span>)}
+                                <span className="fs-12 mx-1">{item.location && item.location && item.location.label}</span>
                             </div>
                             <div>
                                 <i className="ri-user-3-line align-bottom me-1"></i> {item.current_ctc}
                             </div>
-                            <div>
+                            <div className="d-none">
                                 <i className="ri-time-line align-bottom me-1"></i>
                                 <span className="job-postdate">{item.created_at ? dateFormat(item.created_at) : ''}</span>
                             </div>
