@@ -102,16 +102,20 @@ const ContactDetails = () => {
                                             <td>{data.reporting_manager_name}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Reporting Email</td>
+                                            <td className="fw-medium">Reporting Mail Id.</td>
                                             <td>{data.reporting_email}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Reporting Contact</td>
+                                            <td className="fw-medium">Reporting Contact No.</td>
                                             <td>{data.reporting_contact_no}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Reporting Location</td>
                                             <td>{data.reporting_location}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Remark</td>
+                                            <td><div dangerouslySetInnerHTML={{__html: data.remark}}></div></td>
                                         </tr>
                                     </tbody>
                                 </table>

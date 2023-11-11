@@ -171,21 +171,21 @@ const AddContact = () => {
                             <div className="card-body">
                                 <div className="row g-4">
                                     <InputField name="name" value={formData.name} required onChange={handleInputChange} />
-                                    <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                    <InputField name="contact_no" type="number" value={formData.contact_no} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="alternate_contact_no" type="number" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
-                                    <InputField name="reporting_manager_name" value={formData.reporting_manager_name} onChange={handleInputChange} />
-                                    <InputField name="reporting_email" value={formData.reporting_email} onChange={handleInputChange} />
-                                    {/* <InputField name="reporting_location" value={formData.reporting_location} onChange={handleInputChange} /> */}
-                                    <InputField name="reporting_contact_no" value={formData.reporting_contact_no} onChange={handleInputChange} />
-                                    <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
-                                    <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
+                                    <InputField name="contact_no" label="Primary Contact No." type="number" value={formData.contact_no} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="alternate_contact_no" label="Alternate Contact No." type="number" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="email" label="Official Mail Id." value={formData.email} required onChange={handleInputChange} />
                                     <ReactSelectField name="industry" value={selectedDropDownData.industry} options={dropDownData.industry} onChange={(e) => handleInputChange(e, 'industry')} />
-                                    <ReactSelectField name="company" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} />
+                                    <ReactSelectField name="company" label="Company Name" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} />
                                     <ReactSelectField name="sales_non_sales" label="Sales/Non Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
+                                    <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
+                                    <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
+                                    <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
+                                    <InputField name="reporting_manager_name" label="Reporting Manager Name" value={formData.reporting_manager_name} onChange={handleInputChange} />
+                                    <InputField name="reporting_contact_no" label="Reporting Contact No." value={formData.reporting_contact_no} onChange={handleInputChange} />
+                                    <InputField name="reporting_email" label="Reporting Mail Id." value={formData.reporting_email} onChange={handleInputChange} />
+                                    {/* <InputField name="reporting_location" value={formData.reporting_location} onChange={handleInputChange} /> */}
                                     <div className="col-lg-12">
                                             <label htmlFor="password" className="form-label">Remark</label>
                                             <CKEditor editor={ClassicEditor} data={remark} onChange={(event, editor) => setRemark(editor.getData())} />

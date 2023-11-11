@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 function Lock() {
     const [isLocked, setIsLocked] = useState(localStorage.getItem('screenLock') ?? false);
-    const tabIdleThreshold = 2*60*1000; // time seconds in milliseconds
+    const tabIdleThreshold = 15*60*1000; // time seconds in milliseconds
 
     let tabIdleTimer;
 
