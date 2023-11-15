@@ -11,7 +11,7 @@ import { now } from "lodash";
 
 const NoteList = () => {
     const navigate = useNavigate();
-    const ASSET_URL = process.env.REACT_APP_API_URL
+    const ASSET_URL = process.env.REACT_APP_ASSET_URL
     const [reload, setReload] = useState(false)
     const [deleteRecord, setDeleteRecord] = useState(false)
     const [details, setDetails] = useState(null)
@@ -58,7 +58,7 @@ const NoteList = () => {
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render(
                         <>
-                            <a href={ASSET_URL+records.document} target="_blanks"><i className="mdi mdi-file-document"></i></a>
+                            <a href={ASSET_URL+records.document} target="_blanks" className="btn btn-sm btn-soft-success"><i className="ri-file-line fs-5"></i></a>
                         </>
                     )
                 }
@@ -121,22 +121,31 @@ const NoteList = () => {
                             {details && <>
                                 <div className="row mb-2">
                                     <div className="col-sm-6">
-                                        <b className="text-black me-4">Company Name:</b><span>{details?.companies?.label}</span>
+                                        <div className="row d-flex">
+                                            <div className="col-sm-5 fw-bold">Company Name :</div>
+                                            <div className="col-sm-7">{details?.companies?.label}</div>
+                                        </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <b className="text-black me-4">Subject:</b><span>{details?.subject}</span>
-                                    </div>
-                                </div>
-                                <div className="row mb-2">
-                                    <div className="col-sm-12">
-                                        <b className="text-black me-4">Document:</b>
-                                        <span><a href={ASSET_URL+details.document} target="_blanks"><i className="mdi mdi-file-document"></i> click here for view</a></span>
+                                        <div className="row d-flex">
+                                            <div className="col-sm-3 fw-bold">Subject :</div>
+                                            <div className="col-sm-9">{details?.subject}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm-12"><b className="text-black me-4">Remark:</b></div>
-                                    <div className="" dangerouslySetInnerHTML={{ __html: details.remark }}></div>
+                                    <div className="col-sm-2 fw-bold">Remark :</div>
+                                    <div className="col-sm-9" dangerouslySetInnerHTML={{ __html: details.remark }}></div>
                                 </div>
+                                <div className="row mb-2">
+                                    <div className="col-sm-2 fw-bold">Document :</div>
+                                    <div className="col-sm-9">
+                                        <a href={ASSET_URL+details.document} target="_blanks" className="btn btn-sm btn-soft-success">
+                                            <i className="ri-file-line fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                
                             </>}
                         </div>
                     </div>
