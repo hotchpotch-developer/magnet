@@ -14718,6 +14718,18 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 /*# sourceMappingURL=app.min.css.map */
 
 
+.w-100px {
+    width: 100px !important;
+}
+
+.w-200px {
+    width: 200px !important;
+}
+
+.w-300px {
+    width: 300px !important;
+}
+
 .react-select .css-13cymwt-control {
     background: transparent;
     border: 1px solid #2a4562;
