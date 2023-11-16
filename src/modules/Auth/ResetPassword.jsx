@@ -62,7 +62,7 @@ const ResetPassword = () => {
                                     <div className="card-body p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">Reset Password?</h5>
-                                            <p className="text-muted">Reset password with velzon</p>
+                                            <p className="text-muted">Reset password with The Magnet</p>
                                         </div>
 
                                         <div className="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
@@ -102,9 +102,7 @@ const ResetPassword = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0 text-muted">&copy;
-                                        <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand
-                                    </p>
+                                    <p className="mb-0 text-muted">&copy; Copyright 2023. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>

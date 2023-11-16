@@ -28,7 +28,7 @@ const ForgotPassword = () => {
 
             fetchData(FORGOT_PASSWORD, 'POST', formData, false, true, (res) => {
                 setLoader(false)
-                if (res.status === 200) {
+                if (res.status) {
                     navigate('/login');
                 }
             })
@@ -48,7 +48,6 @@ const ForgotPassword = () => {
                                             <img src="/images/logo-light.png" alt="" height="20" />
                                         </a>
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +59,7 @@ const ForgotPassword = () => {
                                     <div className="card-body p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">Forgot Password?</h5>
-                                            <p className="text-muted">Reset password with velzon</p>
+                                            <p className="text-muted">Reset password with The Magnet</p>
                                         </div>
 
                                         <div className="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
@@ -75,7 +74,7 @@ const ForgotPassword = () => {
 
                                                 <div className="mt-4">
                                                     {!loader ?
-                                                        <button className="btn btn-primary w-100" type="button" onClick={submitForm}>Forgot Password In</button>
+                                                        <button className="btn btn-primary w-100" type="button" onClick={submitForm}>Submit</button>
                                                         : loadingButton(100)}
                                                 </div>
                                             </form>
@@ -96,9 +95,7 @@ const ForgotPassword = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0 text-muted">&copy;
-                                        <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand
-                                    </p>
+                                    <p className="mb-0 text-muted">&copy; Copyright 2023. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>

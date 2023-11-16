@@ -71,7 +71,7 @@ const Login = () => {
                                     <div className="card-body p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">Welcome Back !</h5>
-                                            <p className="text-muted">Sign in to continue to Velzon.</p>
+                                            <p className="text-muted">Sign in to continue to The Magnet.</p>
                                         </div>
                                         <div className="p-2 mt-4">
                                             <form className="need-validation" noValidate id="loginForm">
