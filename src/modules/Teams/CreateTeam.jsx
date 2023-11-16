@@ -111,10 +111,10 @@ const CreateTeam = () => {
                                         {formData.id && <InputField name="employee_id" value={formData.employee_id} disabled />}
                                         <InputField name="first_name" value={formData.first_name} required onChange={handleInputChange} />
                                         <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
-                                        <InputField name="phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" value={formData.phone} required onChange={handleInputChange} />
-                                        <InputField label="Alternate Phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
-                                        <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                        <InputField label="Alternate Email" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
+                                        <InputField label="Primary Phone No." name="phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" value={formData.phone} required onChange={handleInputChange} />
+                                        <InputField label="Alternate Phone No." error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
+                                        <InputField label="Primary E-Mail" name="email" value={formData.email} required onChange={handleInputChange} />
+                                        <InputField label="Alternate E-Mail" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
                                             <Elements.ReactSelect
@@ -130,7 +130,7 @@ const CreateTeam = () => {
                                             <div className="invalid-feedback">Please Enter Role.</div>
                                         </div>
                                         <div className="col-xxl-3 col-md-6">
-                                            <label htmlFor="reporting_user_id" className="form-label">Reporting User</label>
+                                            <label htmlFor="reporting_user_id" className="form-label">Reporting Manager</label>
                                             <Elements.ReactSelect
                                                 placeholder="Select Team Member"
                                                 options={reportingUsers}
@@ -143,6 +143,15 @@ const CreateTeam = () => {
                                             />
                                             <div className="invalid-feedback">Please select Team Member.</div>
                                         </div>
+                                        <SelectField name="Status">
+                                            <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
+                                                <option value="">Select Status</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">In Active</option>
+                                            </select>
+                                        </SelectField>
+                                        <InputField label="Photo Upload" type="file" name="profile_image" />
+                                        <InputField type="file" name="proof_document" label="Aadhar/Pan Upload" />
                                         <div className="col-xxl-3 col-md-6">
                                             <div>
                                                 <label htmlFor="password" className="form-label">Password</label>
@@ -154,15 +163,6 @@ const CreateTeam = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <SelectField name="Status">
-                                            <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
-                                                <option value="">Select Status</option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">In Active</option>
-                                            </select>
-                                        </SelectField>
-                                        <InputField type="file" name="profile_image" />
-                                        <InputField type="file" name="proof_document" label="Aadhar/Pan" />
                                         <div className="col-lg-12">
                                             <label htmlFor="password" className="form-label">Additional Information</label>
                                             <CKEditor editor={ClassicEditor} data={additionalInfo} onChange={(event, editor) => setAdditionalInfo(editor.getData())} />

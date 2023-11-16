@@ -62,56 +62,68 @@ const ContactDetails = () => {
                                 <table className="table mb-0">
                                     <tbody>
                                         <tr>
-                                            <td className="fw-medium">Company Name</td>
-                                            <td>{data.company && data.company.label}</td>
+                                            <td className="fw-medium">Name</td>
+                                            <td>{data.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Primary Contact No.</td>
+                                            <td>{data.contact_no}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Alternate Contact No.</td>
+                                            <td>{data.alternate_contact_no}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Official Mail Id.</td>
+                                            <td>{data.mail}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Industry</td>
                                             <td>{data.industry && data.industry.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Department</td>
-                                            <td>{data.department && data.department.label}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Primary Contact No.</td>
-                                            <td>{data && data.alternate_contact_no}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Branch Address</td>
-                                            <td>{data && data.address}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Location</td>
-                                            <td>{data.location && data.location.label}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">State</td>
-                                            <td>{data.state_name && data.state_name.label}</td>
+                                            <td className="fw-medium">Company Name</td>
+                                            <td>{data.company && data.company.label}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Sales/Non-Sales</td>
                                             <td>{data.sales_non && data.sales_non.label}</td>
                                         </tr>
                                         <tr>
+                                            <td className="fw-medium">Department</td>
+                                            <td>{data.department && data.department.label}</td>
+                                        </tr>
+                                        <tr>
                                             <td className="fw-medium">Channel</td>
                                             <td>{data.channel && data.channel.label}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">State</td>
+                                            <td>{data.state_name && data.state_name.label}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Location</td>
+                                            <td>{data.location && data.location.label}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="fw-medium">Branch Address</td>
+                                            <td>{data && data.address}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Reporting Manager Name</td>
                                             <td>{data.reporting_manager_name}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Reporting Mail Id.</td>
-                                            <td>{data.reporting_email}</td>
-                                        </tr>
-                                        <tr>
                                             <td className="fw-medium">Reporting Contact No.</td>
                                             <td>{data.reporting_contact_no}</td>
                                         </tr>
                                         <tr>
+                                            <td className="fw-medium">Reporting Mail Id.</td>
+                                            <td>{data.reporting_email}</td>
+                                        </tr>
+                                        <tr>
                                             <td className="fw-medium">Remark</td>
-                                            <td><div dangerouslySetInnerHTML={{__html: data.remark}}></div></td>
+                                            <td><div dangerouslySetInnerHTML={{ __html: data.remark }}></div></td>
                                         </tr>
                                     </tbody>
                                 </table>

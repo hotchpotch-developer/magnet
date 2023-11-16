@@ -13,7 +13,6 @@ import ManagePermission from "../modules/Permission/ManagePermission";
 import SettingMaster from "../modules/CommonSettings/ManagesStates/SettingMaster";
 import TeamList from "../modules/Teams/TeamList";
 import CreateTeam from "../modules/Teams/CreateTeam";
-import TeamProfile from "../modules/Teams/TeamProfile";
 import AccountSetting from "../modules/AccountSetting/AccountSetting";
 import JobList from "../modules/Jobs/JobList";
 import CreateJob from "../modules/Jobs/CreateJob"
@@ -29,6 +28,7 @@ import AttendanceList from "../modules/Calender/AttendanceList";
 import EmployeeCalendar from "../modules/Attendance/EmployeeCalendar";
 import NoteList from "../modules/Note/NoteList";
 import AddNote from "../modules/Note/AddNote";
+import TeamDetails from "../modules/Teams/TeamDetails";
 
 
 const Routing = () => {
@@ -74,7 +74,7 @@ const Routing = () => {
                                 <Route caseSensitive={false} path="/team-list" element={<TeamList />} />
                                 <Route caseSensitive={false} path="/add-team" element={<CreateTeam />} />
                                 <Route caseSensitive={false} path="/edit-team" element={<CreateTeam />} />
-                                <Route caseSensitive={false} path="/team-profile" element={<TeamProfile />} />
+                                <Route caseSensitive={false} path="/team-profile" element={<TeamDetails />} />
                                 <Route caseSensitive={false} path="/view-calender" element={<EmployeeCalendar />} />
                             </>}
 

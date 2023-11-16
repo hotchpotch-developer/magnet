@@ -21,8 +21,8 @@ const TeamList = () => {
     const [loader, setLoader] = useState(false)
     const [teamId, setTeamId] = useState(false)
 
-    const viewProfile = () => {
-        navigate('/team-profile');
+    const viewProfile = (data) => {
+        navigate('/team-profile', { state: data })
     }
 
     const [dt] = useState({
