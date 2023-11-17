@@ -9,6 +9,7 @@ import { fetchData, initialFormState, validateForm } from "../../components/Help
 import { now } from "lodash";
 import * as Elements from "../../components/Elements";
 import { Context } from "../../components/Context";
+import _ from "lodash";
 
 const TeamList = () => {
     const navigate = useNavigate();
@@ -31,18 +32,19 @@ const TeamList = () => {
         dt_export: true,
         dt_column: [
             { data: 'DT_RowIndex', name: 'id', title: '#' },
+            { data: 'emp_id', name: 'emp_id', title: 'E. Code' },
             { data: 'first_name', name: 'first_name', title: 'First Name' },
             { data: 'last_name', name: 'last_name', title: 'Last Name' },
-            { data: 'phone', name: 'phone', title: 'Phone' },
-            { data: 'email', name: 'email', title: 'Email' },
-            { data: 'reporting_user_name.first_name', name: 'reporting_user_name', title: 'Reporting Manager' },
+            { data: 'phone', name: 'phone', title: 'Primary Phone No.' },
+            { data: 'email', name: 'email', title: 'Primary E-Mail' },
             { data: 'roles_name', name: 'roles.name', title: 'Role' },
+            { data: 'reporting_user_name.first_name', name: 'reporting_user_name', title: 'Reporting Manager' },
             { data: 'status', name: 'status', title: 'Status' },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
             {
-                targets: 5,
+                targets: 7,
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render (
                         <>
@@ -57,6 +59,20 @@ const TeamList = () => {
             },
             {
                 targets: 8,
+                createdCell: (td, cellData, records, row, col) => {
+                    createRoot(td).render (
+                        <>
+                            <div className="d-flex text-nowrap">
+                                <span>
+                                    {records && records.status && _.capitalize(records.status)}
+                                </span>
+                            </div>
+                        </>
+                    )
+                }
+            },
+            {
+                targets: 9,
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render(
                         <>
