@@ -58,7 +58,7 @@ const NoteList = () => {
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render(
                         <>
-                            <a href={ASSET_URL+records.document} target="_blanks" className="btn btn-sm btn-soft-success"><i className="ri-file-line fs-5"></i></a>
+                            <a href={ASSET_URL + records.document} target="_blanks" className="btn btn-sm btn-soft-success"><i className="ri-file-line fs-5"></i></a>
                         </>
                     )
                 }
@@ -111,41 +111,40 @@ const NoteList = () => {
             <Datatables dt_name="note-list" dataPageLength="15" />
             <Elements.ConfirmationModal modalId="noteConfirmationModal" action={deleteNote} />
             <div id="noteDetailsModal" className="modal fade zoomIn" tabIndex="-1" aria-labelledby="noteDetailsModal" aria-hidden="true" style={{ display: 'none' }} data-bs-backdrop="static" >
-                <div className="modal-dialog modal-lg">
+                <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="noteDetailsModal">Note Details</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
+
                             {details && <>
-                                <div className="row mb-2">
-                                    <div className="col-sm-6">
-                                        <div className="row d-flex">
-                                            <div className="col-sm-5 fw-bold">Company Name :</div>
-                                            <div className="col-sm-7">{details?.companies?.label}</div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6">
-                                        <div className="row d-flex">
-                                            <div className="col-sm-3 fw-bold">Subject :</div>
-                                            <div className="col-sm-9">{details?.subject}</div>
-                                        </div>
-                                    </div>
+                                <div className="mb-3">
+                                    <label htmlFor="task-company-input" className="form-label">Comany Name</label>
+                                    <input type="text" readOnly id="task-company-input" defaultValue={details?.companies?.label} className="form-control" />
                                 </div>
-                                <div className="row">
-                                    <div className="col-sm-2 fw-bold">Remark :</div>
-                                    <div className="col-sm-9" dangerouslySetInnerHTML={{ __html: details.remark }}></div>
+                                <div className="mb-3">
+                                    <label htmlFor="task-subject" className="form-label">Subject</label>
+                                    <input type="text" readOnly id="task-subject" defaultValue={details?.subject} className="form-control" />
                                 </div>
-                                <div className="row mb-2">
-                                    <div className="col-sm-2 fw-bold">Document :</div>
+                                <div className="mb-3">
+                                    <label htmlFor="task-remark-input" className="form-label">Remark</label>
+                                    {details?.remark ?
+                                        <div dangerouslySetInnerHTML={{ __html: details?.remark }}></div>
+                                        :
+                                        <textarea rows="1" className="form-control" readOnly defaultValue={'N/A'}></textarea>
+                                    }
+                                </div>
+
+                                <div className="mb-2">
+                                    <label htmlFor="task-duedate-input" className="form-label">Document</label>
                                     <div className="col-sm-9">
-                                        <a href={ASSET_URL+details.document} target="_blanks" className="btn btn-sm btn-soft-success">
+                                        <a href={ASSET_URL + details.document} target="_blanks" className="btn btn-sm btn-soft-success w-50">
                                             <i className="ri-file-line fs-5"></i>
                                         </a>
                                     </div>
                                 </div>
-                                
                             </>}
                         </div>
                     </div>
