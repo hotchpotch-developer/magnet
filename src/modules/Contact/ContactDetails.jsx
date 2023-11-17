@@ -98,6 +98,10 @@ const ContactDetails = () => {
                                             <td>{data.channel && data.channel.label}</td>
                                         </tr>
                                         <tr>
+                                            <td className="fw-medium">Designation</td>
+                                            <td>{data.designation && data.designation}</td>
+                                        </tr>
+                                        <tr>
                                             <td className="fw-medium">State</td>
                                             <td>{data.state_name && data.state_name.label}</td>
                                         </tr>

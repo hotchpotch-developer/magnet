@@ -12,13 +12,27 @@ const ContactItem = ({ item }) => {
                         <div className="d-flex mb-4">
                             <div className="avatar-sm">
                                 <div className="avatar-title bg-light rounded">
-                                    <img src="/images/slack.png" alt="" className="avatar-xxs companyLogo-img" />
+                                    <img src="/images/mcap.svg" alt="" className="avatar-xxs companyLogo-img" />
                                 </div>
                             </div>
                             <div className="ms-3 flex-grow-1">
-                                <img src="assets/images/small/img-8.jpg" alt="" className="d-none cover-img" />
-                                <Link to=""><h5 className="job-title">{item.name}</h5></Link>
-                                <p className="company-name text-muted mb-0">{item.email}</p>
+                                <img src="/images/mcap.svg" alt="" className="d-none cover-img" />
+                                <h5 className="job-title">{item.name}</h5>
+                                <div className="d-flex">
+                                    <p className="company-name mb-0 me-2">
+                                        <i className="ri-mail-line me-1"></i>
+                                        {item.email}
+                                    </p>
+                                    <p className="company-name mb-0 me-2">
+                                        <i className="ri-smartphone-line me-1"></i>
+                                        {item.contact_no}
+                                    </p>
+                                </div>
+                                <p className="company-name my-2">
+                                    <i className=" ri-building-line me-1"></i>
+                                    {item.company && item.company.label}
+                                </p>
+                                
                             </div>
                             <div>
                                 <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-contact', { state: item })}>
@@ -27,20 +41,18 @@ const ContactItem = ({ item }) => {
                                 </button>
                             </div>
                         </div>
-                        <p className="text-muted job-description">{item.company && item.company.label}</p>
                         <div>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.industry && item.industry.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.state_name && item.state_name.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.sales_non && item.sales_non.label}</span>
+                            <div className="text-truncate" dangerouslySetInnerHTML={{ __html: item.remark }}></div>
                         </div>
                     </div>
                     <div className="card-footer border-top-dashed">
                         <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
                             <div>
-                                <i className="ri-map-pin-2-line align-bottom me-1"></i>{item.location && item.location.label}
+                                <i className="ri-map-pin-2-line align-bottom me-1"></i>{item.address}, {item.location && item.location.label}, {item.state_name && item.state_name.label}
                             </div>
                             <div>
-                                <i className="ri-user-3-line align-bottom me-1"></i> {item.contact_no}
+                                <i className="ri-building-4-line align-bottom me-1"></i>
+                                <span className="job-postdate">{item.industry && item.industry.label}</span>
                             </div>
                             <div>
                                 <i className="ri-time-line align-bottom me-1"></i>

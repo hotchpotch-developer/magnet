@@ -51,6 +51,7 @@ const AddContact = () => {
         contact_no: '',
         alternate_contact_no: '',
         address: '',
+        designation: '',
         reporting_manager_name: '',
         reporting_contact_no: '',
         reporting_email: '',
@@ -60,7 +61,6 @@ const AddContact = () => {
     useEffect(() => {
         if (location && location.state && location.state) {
             let contact = location.state;
-            console.log(contact);
             setFormData({
                 id: contact.id,
                 name: contact.name,
@@ -68,6 +68,7 @@ const AddContact = () => {
                 contact_no: contact.contact_no,
                 alternate_contact_no: contact.alternate_contact_no,
                 address: contact.address,
+                designation: contact.designation,
                 reporting_manager_name: contact.reporting_manager_name,
                 reporting_contact_no: contact.reporting_contact_no,
                 reporting_email: contact.reporting_email,
@@ -81,6 +82,7 @@ const AddContact = () => {
                 contact_no: '',
                 alternate_contact_no: '',
                 address: '',
+                designation: '',
                 reporting_manager_name: '',
                 reporting_contact_no: '',
                 reporting_email: '',
@@ -179,6 +181,7 @@ const AddContact = () => {
                                     <ReactSelectField name="sales_non_sales" label="Sales/Non Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
+                                    <InputField name="designation" label="Designation" value={formData.designation} required onChange={handleInputChange} />
                                     <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
                                     <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
                                     <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
