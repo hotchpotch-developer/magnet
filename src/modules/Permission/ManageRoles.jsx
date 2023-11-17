@@ -22,7 +22,7 @@ const ManageRoles = () => {
         dt_name: 'role-List',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'name', name: 'name', title: 'Role Name', class: "text-nowrap minw-130px" },    
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate minw-100px", sortable: false, searchable: false, orderable: false }
         ],
