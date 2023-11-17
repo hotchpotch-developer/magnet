@@ -42,7 +42,7 @@ const ContactItem = ({ item }) => {
                             </div>
                         </div>
                         <div>
-                            <div className="text-truncate" dangerouslySetInnerHTML={{ __html: item.remark }}></div>
+                            <div className="d-flex text-truncate" dangerouslySetInnerHTML={{ __html: item.remark }}></div>
                         </div>
                     </div>
                     <div className="card-footer border-top-dashed">
