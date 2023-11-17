@@ -139,7 +139,6 @@ const TeamList = () => {
             }
         })
     }
-    console.log(permissionList, selectPermission);
 
     const updatePermission = (e) => {
         e.preventDefault();
