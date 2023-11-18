@@ -18,7 +18,7 @@ const CreateTeam = () => {
     const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [additionalInfo, setAdditionalInfo] = useState("")
-    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
+    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
 
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
@@ -55,8 +55,7 @@ const CreateTeam = () => {
                 id: team.id,
                 roles_name: team.roles_name,
                 employee_id: team.emp_id,
-                first_name: team.first_name,
-                last_name: team.last_name,
+                name: team.name,
                 phone: team.phone,
                 alternet_phone: team.phone_1 ?? '',
                 email: team.email,
@@ -64,11 +63,12 @@ const CreateTeam = () => {
                 role: team.role_id,
                 reporting_user_id: team.reporting_user_id,
                 status: team.status,
+                status_reason: team.status_reason
             })
             setAdditionalInfo(team.additional_information ?? '')
         } else {
             setAdditionalInfo("")
-            setFormData({ employee_id: "", reporting_user_id: "", first_name: "", last_name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "" });
+            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
             initialFormState("team-form");
         }
     }, [location])
@@ -109,8 +109,7 @@ const CreateTeam = () => {
                                 <form className="needs-validation" noValidate id="team-form">
                                     <div className="row gy-4">
                                         {formData.id && <InputField name="employee_id" value={formData.employee_id} disabled />}
-                                        <InputField name="first_name" value={formData.first_name} required onChange={handleInputChange} />
-                                        <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
+                                        <InputField name="name" value={formData.name} required onChange={handleInputChange} />
                                         <InputField label="Primary Phone No." name="phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" value={formData.phone} required onChange={handleInputChange} />
                                         <InputField label="Alternate Phone No." error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
                                         <InputField label="Primary E-Mail" name="email" value={formData.email} required onChange={handleInputChange} />
@@ -143,15 +142,21 @@ const CreateTeam = () => {
                                             />
                                             <div className="invalid-feedback">Please select Team Member.</div>
                                         </div>
-                                        <SelectField name="Status">
-                                            <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
-                                                <option value="">Select Status</option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">In Active</option>
-                                            </select>
-                                        </SelectField>
+                                        {formData.status &&
+                                            <SelectField name="Status">
+                                                <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
+                                                    <option value="">Select Status</option>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">In Active</option>
+                                                </select>
+                                            </SelectField>
+                                        }
+                                        {formData.status === "inactive" && 
+                                            <InputField label="Inactive Reason" name="status_reason" value={formData.status_reason} />
+                                        }
                                         <InputField label="Photo Upload" type="file" name="profile_image" />
                                         <InputField type="file" name="proof_document" label="Aadhar/Pan Upload" />
+                                        <InputField type="file" name="resume" label="Resume" />
                                         <div className="col-xxl-3 col-md-6">
                                             <div>
                                                 <label htmlFor="password" className="form-label">Password</label>
