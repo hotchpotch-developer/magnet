@@ -36,7 +36,7 @@ const TeamList = () => {
             { data: 'name', name: 'name', title: 'Name' , width:"200"},
             { data: 'created_at', name: 'created_at', title: 'Date of Joining' },
             { data: 'phone', name: 'phone', title: 'Primary Phone No.', width:"250" },
-            { data: 'phone_1', name: 'phone_1', title: 'Alternate Phone No.', width:"250" },
+            { data: 'phone_1', name: 'user_metas.phone_1', title: 'Alternate Phone No.', width:"250" },
             { data: 'email', name: 'email', title: 'Primary E-Mail', width:"250" },
             { data: 'roles_name', name: 'roles.name', title: 'Role' },
             { data: 'reporting_user_name.name', name: 'reporting_user_name', title: 'Reporting Manager' },
