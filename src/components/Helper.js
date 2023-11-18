@@ -187,6 +187,11 @@ export const generateText = (length = 8, number = false, password = false) => {
     return retVal;
 }
 
-export const dateFormat = (date) => {
-    return moment(date).format('YYYY-MM-DD H:mm a');
+export const dateFormat = (date, time = false) => {
+    if(time){ 
+        return moment(date).format('YYYY-MM-DD H:mm a'); 
+    }else{ 
+        return moment(date).format('YYYY-MM-DD'); 
+    }
+    
 }

@@ -5,7 +5,7 @@ import { ASSIGN_PERMISSION, COMMON_DROPDOWN, DELETE_TEAM, DIRECT_LOGIN, TEAM_LIS
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RoleFilter from "./RoleFilter";
-import { fetchData, initialFormState, validateForm } from "../../components/Helper";
+import { dateFormat, fetchData, initialFormState, validateForm } from "../../components/Helper";
 import { now } from "lodash";
 import * as Elements from "../../components/Elements";
 import { Context } from "../../components/Context";
@@ -32,17 +32,48 @@ const TeamList = () => {
         dt_export: true,
         dt_column: [
             { data: 'DT_RowIndex', name: 'id', title: '#' },
+            { data: 'emp_id', name: 'emp_id', title: 'E. Code' },
             { data: 'name', name: 'name', title: 'Name' },
-            { data: 'phone', name: 'phone', title: 'Phone' },
-            { data: 'email', name: 'email', title: 'Email' },
-            { data: 'reporting_user_name.name', name: 'reporting_user_name', title: 'Reporting Manager' },
+            { data: 'created_at', name: 'created_at', title: 'Date of Joining' },
+            { data: 'phone', name: 'phone', title: 'Primary Phone No.' },
+            { data: 'phone_1', name: 'phone_1', title: 'Alternate Phone No.' },
+            { data: 'email', name: 'email', title: 'Primary E-Mail' },
             { data: 'roles_name', name: 'roles.name', title: 'Role' },
+            { data: 'reporting_user_name.name', name: 'reporting_user_name', title: 'Reporting Manager' },
             { data: 'status', name: 'status', title: 'Status' },
             { data: 'action', name: 'action', title: 'Action', class: "text-truncate ", sortable: false, searchable: false, orderable: false }
         ],
         dt_column_defs: [
             {
-                targets: 6,
+                targets: 3,
+                createdCell: (td, cellData, records, row, col) => {
+                    createRoot(td).render (
+                        <>
+                            <div className="d-flex text-nowrap">
+                                <span>
+                                    {records && records.created_at && dateFormat(records.created_at, false) }
+                                </span>
+                            </div>
+                        </>
+                    )
+                }
+            },
+            {
+                targets: 8,
+                createdCell: (td, cellData, records, row, col) => {
+                    createRoot(td).render (
+                        <>
+                            <div className="d-flex text-nowrap">
+                                <span>
+                                    {records && records.reporting_user_name && records.reporting_user_name.name}
+                                </span>
+                            </div>
+                        </>
+                    )
+                }
+            },
+            {
+                targets: 9,
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render (
                         <>
@@ -56,7 +87,7 @@ const TeamList = () => {
                 }
             },
             {
-                targets: 7,
+                targets: 10,
                 createdCell: (td, cellData, records, row, col) => {
                     createRoot(td).render(
                         <>

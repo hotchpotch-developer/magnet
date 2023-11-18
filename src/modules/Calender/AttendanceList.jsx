@@ -12,7 +12,7 @@ function AttendanceList() {
         dt_name: 'attendance-list',
         dt_export: true,
         dt_column: [
-            { data: 'id', name: 'id', title: '#' },
+            { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'user_data.first_name', name: 'first_name', title: 'Name', sortable: false, searchable: false, orderable: false },
             { data: 'type', name: 'type', title: 'Type' },
             { data: 'description', name: 'description', title: 'Description' },
