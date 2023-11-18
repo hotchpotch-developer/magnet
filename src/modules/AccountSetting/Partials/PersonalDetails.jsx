@@ -15,8 +15,7 @@ const PersonalDetails = (props) => {
             initialFormState("personal-details-form");
             setFormData({
                 role: context.auth.role_name,
-                first_name: context.auth.first_name,
-                last_name: context.auth.last_name,
+                name: context.auth.name,
                 phone: context.auth.phone,
                 email: context.auth.email,
             })
@@ -44,11 +43,10 @@ const PersonalDetails = (props) => {
             <form action="#" id="personal-details-form">
                 <div className="row g-2">
                     {formData && <>
-                        <InputField name="first_name" defaultValue={formData.first_name} required />
-                        <InputField name="last_name" defaultValue={formData.last_name} required />
+                        <InputField name="name" defaultValue={formData.name} required />
                         <InputField name="phone" defaultValue={formData.phone} required />
                         <InputField name="email" defaultValue={formData.email} disabled />
-                        <InputField full name="role" defaultValue={formData.role} disabled />
+                        <InputField name="role" defaultValue={formData.role} disabled />
                         <SubmitButton title="Update" loading={loading} action={submitForm} />
                     </>}
                 </div>
