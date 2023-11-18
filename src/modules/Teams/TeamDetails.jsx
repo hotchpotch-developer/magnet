@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
 import { dateFormat } from "../../components/Helper";
+import _ from "lodash";
 
 const TeamDetails = () => {
     const ASSET_URL = process.env.REACT_APP_ASSET_URL
@@ -14,7 +15,7 @@ const TeamDetails = () => {
 
     return (
         <>
-            <Breadcrumbs title={`${data?.first_name} ${data?.last_name}`} parentPage="Teams" />
+            <Breadcrumbs title={data?.name} parentPage="Teams" />
             <div className="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
                 <div className="row g-4">
                     <div className="col-auto">
@@ -25,7 +26,7 @@ const TeamDetails = () => {
 
                     <div className="col">
                         <div className="p-2">
-                            <h3 className="mb-1">{data?.first_name} {data?.last_name}</h3>
+                            <h3 className="mb-1">{data?.name}</h3>
                             <p className="text-muted">{data?.roles_name}</p>
                             <div className="hstack text-muted gap-1">
                                 <div className="me-2"><i className="ri-account-box-line me-1 fs-16 align-bottom text-primary"></i>{data?.emp_id}</div>
@@ -77,7 +78,7 @@ const TeamDetails = () => {
                                                         <tbody>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Full Name :</th>
-                                                                <td className="text-muted">{data?.first_name} {data?.last_name}</td>
+                                                                <td className="text-muted">{data?.name}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Role :</th>
@@ -101,11 +102,11 @@ const TeamDetails = () => {
                                                             </tr>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Reporting Manager :</th>
-                                                                <td className="text-muted">{data && data.reporting_user_name ? data.reporting_user_name.first_name + ' ' + data.reporting_user_name.last_name : 'N/A'}</td>
+                                                                <td className="text-muted">{data && data.reporting_user_name ? data.reporting_user_name.name : 'N/A'}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Status :</th>
-                                                                <td className="text-muted">{data?.status}</td>
+                                                                <td className="text-muted">{data && _.capitalize(data.status)} {data && data.status_reason &&  '(' + data.status_reason + ', ' + data.status_update + ')' }</td>
                                                             </tr>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Joining Date</th>
@@ -130,7 +131,7 @@ const TeamDetails = () => {
                                                             <table className="table table-borderless align-middle mb-0">
                                                                 <thead className="table-light">
                                                                     <tr>
-                                                                        <th scope="col">Aadhar/Pan Card</th>
+                                                                        <th scope="col">Document</th>
                                                                         <th scope="col">Download</th>
                                                                     </tr>
                                                                 </thead>
@@ -144,7 +145,7 @@ const TeamDetails = () => {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="ms-3 flex-grow-1">
-                                                                                    <h6 className="fs-15 mb-0">Document</h6>
+                                                                                    <h6 className="fs-15 mb-0">Aadhar/Pan Card</h6>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -152,6 +153,29 @@ const TeamDetails = () => {
                                                                             {data && data.proof_document ?
 
                                                                                 <a href={data && data.proof_document ? ASSET_URL + data.proof_document : ''} className="btn btn-sm btn-outline-primary"><i className="ri-file-list-2-line align-middle"></i></a>
+
+                                                                                :
+                                                                                <span>N/A</span>
+                                                                            }
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div className="d-flex align-items-center">
+                                                                                <div className="avatar-sm">
+                                                                                    <div className="avatar-title bg-primary-subtle text-primary rounded fs-20">
+                                                                                        <i className="ri-file-list-2-line"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="ms-3 flex-grow-1">
+                                                                                    <h6 className="fs-15 mb-0">Resume</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            {data && data.proof_document ?
+
+                                                                                <a href={data && data.resume ? ASSET_URL + data.resume : ''} className="btn btn-sm btn-outline-primary"><i className="ri-file-list-2-line align-middle"></i></a>
 
                                                                                 :
                                                                                 <span>N/A</span>
