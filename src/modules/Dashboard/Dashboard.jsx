@@ -1,7 +1,29 @@
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../components/Context";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
+
 const Dashboard = () => {
+
+    const [greeting, setGreeting] = useState('');
+    const [userName, setUserName] = useState('');
+    const [context] = useContext(Context)
+
+    useEffect(() =>  {
+        const date = new Date();
+        const greeting_hours = date.getHours();
+        if(greeting_hours < 12) {
+            setGreeting('Good Morning')
+        }else if(greeting_hours <= 17){ 
+            setGreeting('Good Noon')
+        }else{ 
+            setGreeting('Good Evening')
+        }
+        if(context && context.auth){ 
+            setUserName(context.auth.name)
+        }
+    }, [context])
 
     return (
         <>
@@ -14,27 +36,7 @@ const Dashboard = () => {
                             <div className="col-12">
                                 <div className="d-flex align-items-lg-center flex-lg-row flex-column">
                                     <div className="flex-grow-1">
-                                        <h4 className="fs-16 mb-1">Good Morning, Anna!</h4>
-                                    </div>
-                                    <div className="mt-3 mt-lg-0">
-                                        <form action="#">
-                                            <div className="row g-3 mb-0 align-items-center">
-                                                <div className="col-sm-auto">
-                                                    <div className="input-group">
-                                                        <input type="text" className="form-control dash-filter-picker" data-provider="flatpickr" data-range-date="true" data-date-format="d M, Y" data-deafult-date="01 Jan 2022 to 31 Jan 2022" />
-                                                            <div className="input-group-text bg-primary border-primary text-white">
-                                                                <i className="ri-calendar-2-line"></i>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-auto">
-                                                    <button type="button" className="btn btn-soft-primary"><i className="ri-add-circle-line align-middle me-1"></i> Add Product</button>
-                                                </div>
-                                                <div className="col-auto">
-                                                    <button type="button" className="btn btn-soft-primary btn-icon waves-effect waves-light layout-rightside-btn"><i className="ri-pulse-line"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <h4 className="fs-16 mb-1">{greeting && greeting}, {userName && userName}!</h4>
                                     </div>
                                 </div>
                             </div>
