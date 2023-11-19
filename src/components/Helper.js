@@ -1,5 +1,6 @@
 import { Toast } from "bootstrap";
 import $ from 'jquery'
+import _ from "lodash";
 import moment from "moment";
 export const ENDPOINT = process.env.REACT_APP_API_URL
 
@@ -194,4 +195,20 @@ export const dateFormat = (date, time = false) => {
         return moment(date).format('YYYY-MM-DD'); 
     }
     
+}
+
+
+export const downloadFile = (blobImg, name) => {
+    let url = window.URL.createObjectURL(new Blob([blobImg]));
+    let ext = _.split(blobImg.type, '/')[1]
+    if(ext.match('spreadsheetml')){
+        ext = 'xlsx'
+    }else if(ext.match('wordprocessingml')){
+        ext = 'docx'
+    }
+    let link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', name+'.'+ext);
+    document.body.appendChild(link);
+    link.click();
 }

@@ -123,3 +123,7 @@ export const DELETE_ATTENDANCE = "delete-attendance"
 // Common Routes
 
 export const COMMON_DROPDOWN = "common-dropdown"
+
+// Export Routes
+
+export const TEAM_EXPORT = "export-team"

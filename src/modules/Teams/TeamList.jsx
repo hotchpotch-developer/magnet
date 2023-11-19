@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client"
 import Datatables, { reloadUrlDataTable } from "../../components/Datatables";
-import { ASSIGN_PERMISSION, COMMON_DROPDOWN, DELETE_TEAM, DIRECT_LOGIN, TEAM_LIST } from "../../components/APIRoutes";
+import { ASSIGN_PERMISSION, COMMON_DROPDOWN, DELETE_TEAM, DIRECT_LOGIN, TEAM_EXPORT, TEAM_LIST } from "../../components/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RoleFilter from "./RoleFilter";
-import { dateFormat, fetchData, initialFormState, validateForm } from "../../components/Helper";
+import { dateFormat, downloadFile, fetchData, initialFormState, validateForm } from "../../components/Helper";
 import { now } from "lodash";
 import * as Elements from "../../components/Elements";
 import { Context } from "../../components/Context";
@@ -29,7 +29,7 @@ const TeamList = () => {
     const [dt] = useState({
         dt_url: role ? `${TEAM_LIST}?type=${role}` : `${TEAM_LIST}`,
         dt_name: 'team-list',
-        dt_export: true,
+        dt_export: false,
         dt_column: [
             { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'emp_id', name: 'emp_id', title: 'E. Code', width:"150" },
@@ -120,6 +120,9 @@ const TeamList = () => {
         ],
         dt_filter: () => {
             createRoot(document.querySelector(`#wt_datatable_team-list_wrapper .dt-custom-filter`)).render(<>
+                <button type="button" style={{height: "38px"}} className="btn btn-sm btn-primary me-2" onClick={exportTeam} title="Team Export">
+                    Team Export
+                </button>
                 <RoleFilter setValue={setRole} />
             </>)
         }
@@ -191,6 +194,12 @@ const TeamList = () => {
                 }
             })
         }
+    }
+
+    const exportTeam = () => {
+        fetchData(TEAM_EXPORT, "GET", "", true, false, (file) => {
+            downloadFile(file, `team`)
+        }, false, 'blob')
     }
 
     return (
