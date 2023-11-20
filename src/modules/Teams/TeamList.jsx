@@ -198,7 +198,7 @@ const TeamList = () => {
 
     const exportTeam = () => {
         fetchData(TEAM_EXPORT, "GET", "", true, false, (file) => {
-            downloadFile(file, `team`)
+            downloadFile(file, `Teams`)
         }, false, 'blob')
     }
 

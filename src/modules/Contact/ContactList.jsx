@@ -17,7 +17,7 @@ const ContactList = () => {
 
     const exportContact = () => {
         fetchData(CONTACT_EXPORT, "GET", "", true, false, (file) => {
-            downloadFile(file, `Contact-Details.xlsx`)
+            downloadFile(file, `Contact-Details`)
         }, false, 'blob')
     }
 
