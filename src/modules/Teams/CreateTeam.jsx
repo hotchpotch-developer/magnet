@@ -8,6 +8,7 @@ import { InputField, SelectField } from "../../components/FormHelper";
 import * as Elements from "../../components/Elements";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Popover } from "bootstrap";
 
 const CreateTeam = () => {
     const location = useLocation();
@@ -44,6 +45,8 @@ const CreateTeam = () => {
                 }
             }
         })
+
+        Array.from(document.querySelectorAll('[data-bs-toggle="popover"]')).forEach(popoverNode => new Popover(popoverNode));
     }, [location])
 
 
@@ -111,7 +114,7 @@ const CreateTeam = () => {
                                         <InputField name="name" value={formData.name} required onChange={handleInputChange} />
                                         <InputField label="Primary Phone No." name="phone" error="Please enter a valid phone number" pattern="[6789][0-9]{9}" value={formData.phone} required onChange={handleInputChange} />
                                         <InputField label="Alternate Phone No." error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
-                                        <InputField label="Primary E-Mail" name="email" value={formData.email} required onChange={handleInputChange} />
+                                        <InputField label="Primary E-Mail" name="email" value={formData.email} disabled={formData.id ? true : false} required onChange={handleInputChange} />
                                         <InputField label="Alternate E-Mail" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
@@ -164,6 +167,12 @@ const CreateTeam = () => {
                                                     <span className="input-group-text" role="button" title="Copy Password" onClick={() => copyText('password')}><i className=" ri-file-copy-line"></i></span>
                                                     <span className="input-group-text" role="button" title="Generate Password" onClick={() => document.getElementById('password').value = generateText(16, false, true)}><i className="ri-refresh-line"></i></span>
                                                     <div className="invalid-feedback">Please Enter Password.</div>
+
+                                                </div>
+                                                <div className="text-muted">
+                                                    <span className="text-muted ms-1 ri-information-line"  data-bs-content="Create a strong password with a combination of uppercase and lowercase letters, numbers, and symbols for enhanced security. Aim for at least 8 characters, and avoid easily guessable information." data-bs-toggle="popover" data-bs-trigger="focus hover"
+                                                    data-bs-template={`<div class='popover shadow' role='popover'><div class='popover-arrow'></div><div class='popover-inner p-2 '>Create a strong password with a combination of uppercase and lowercase letters, numbers, and symbols for enhanced security. Aim for at least 8 characters, and avoid easily guessable information.</div></div>`}
+                                                    >Password information</span>
                                                 </div>
                                             </div>
                                         </div>
