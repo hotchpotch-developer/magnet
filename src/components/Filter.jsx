@@ -59,7 +59,7 @@ function Filter({ setQuery, filterItem, selectFilter }) {
                         </div>
                     </div>
                     <div className="filter-choices-input">
-                        <input className="form-control" type="text" id="filter-choices-input" name="search" placeholder="Search Job Name..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <input className="form-control" type="text" id="filter-choices-input" name="search" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
                     </div>
                 </div>
 
