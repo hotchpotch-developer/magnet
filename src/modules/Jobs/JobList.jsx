@@ -1,7 +1,7 @@
 import Breadcrumbs from "../../components/Breadcrumbs"
 import { useEffect, useState } from "react";
-import { JOB_LIST } from "../../components/APIRoutes";
-import { fetchData } from "../../components/Helper";
+import { JOB_EXPORT, JOB_LIST } from "../../components/APIRoutes";
+import { downloadFile, fetchData } from "../../components/Helper";
 import JobItem from "./Partials/JobItem";
 import Filter from "../../components/Filter";
 const JobList = () => {
@@ -14,9 +14,22 @@ const JobList = () => {
         })
     }, [query])
 
+    const exportJob = () => {
+        fetchData(JOB_EXPORT, "GET", "", true, false, (file) => {
+            downloadFile(file, `team`)
+        }, false, 'blob')
+    }
+
     return (
         <>
             <Breadcrumbs title="Manage Jobs" parentPage="Post Job" />
+            <div className="row mb-2">
+                <div className="text-end">
+                    <button type="button" className="btn btn-sm btn-primary me-2" onClick={exportJob} title="Job Export">
+                        Job Export
+                    </button>
+                </div>
+            </div>
             <div className="row">
                 <Filter setQuery={setQuery}
                     filterItem={['state', 'location', 'industry', 'company', 'sales_non_sales', 'department', 'channel', 'level', 'product']}
