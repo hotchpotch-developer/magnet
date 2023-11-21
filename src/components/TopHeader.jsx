@@ -54,19 +54,19 @@ const TopHeader = () => {
                             <div className="navbar-brand-box horizontal-logo">
                                 <Link href="/" className="logo logo-dark">
                                     <span className="logo-sm">
-                                        <img src="/images/logo-sm.png" alt="" height="22" />
+                                        <img src="/logo.jpeg" alt="" height="22" />
                                     </span>
                                     <span className="logo-lg">
-                                        <img src="/images/logo-dark.png" alt="" height="17" />
+                                        <img src="/logo.jpeg" alt="" height="30" />
                                     </span>
                                 </Link>
 
                                 <Link href="/" className="logo logo-light">
                                     <span className="logo-sm">
-                                        <img src="/images/logo-sm.png" alt="" height="22" />
+                                        <img src="/logo.jpeg" alt="" height="22" />
                                     </span>
                                     <span className="logo-lg">
-                                        <img src="/images/logo-light.png" alt="" height="17" />
+                                        <img src="/logo.jpeg" alt="" height="30" />
                                     </span>
                                 </Link>
                             </div>

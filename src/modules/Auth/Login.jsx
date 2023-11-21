@@ -49,15 +49,15 @@ const Login = () => {
 
     return (
         <>
-            <div className="auth-page-wrapper pt-5">
-                <div className="auth-page-content">
+            <div className="auth-page-wrapper vh-100">
+                <div className="auth-page-content h-100 d-flex  align-items-center">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center mt-sm-5 mb-4 text-white-50">
                                     <div>
                                         <Link to="/" className="d-inline-block auth-logo">
-                                            <img src="/images/logo-light.png" alt="Login Logo" height="20" />
+                                            <img src="/logo.jpeg" alt="Login Logo" height="40" />
                                         </Link>
                                     </div>
                                 </div>
