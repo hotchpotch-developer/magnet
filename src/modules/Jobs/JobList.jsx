@@ -4,6 +4,7 @@ import { JOB_EXPORT, JOB_LIST } from "../../components/APIRoutes";
 import { downloadFile, fetchData } from "../../components/Helper";
 import JobItem from "./Partials/JobItem";
 import Filter from "../../components/Filter";
+import NoRecord from "../../components/NoRecord"
 const JobList = () => {
     const [jobs, setJobs] = useState(false)
     const [query, setQuery] = useState("")
@@ -46,9 +47,12 @@ const JobList = () => {
                     ]}
                 />
                 <div className="col-xl-9 col-lg-8">
-                    {jobs && jobs.data && jobs.data.length > 0 && jobs.data.map((item, key) => {
+                    {jobs && jobs.data && jobs.data.length > 0 ? jobs.data.map((item, key) => {
                         return <JobItem item={item} key={key} />
-                    })}
+                    })
+                    :
+                        <NoRecord />
+                    }
                 </div>
             </div>
         </>

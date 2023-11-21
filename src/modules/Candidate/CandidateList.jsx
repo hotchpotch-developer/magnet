@@ -4,6 +4,7 @@ import { CANDIDATE_EXPORT, CANDIDATE_LIST } from "../../components/APIRoutes";
 import { downloadFile, fetchData } from "../../components/Helper";
 import CandidateItem from "./Partials/CandidateItem";
 import Filter from "../../components/Filter";
+import NoRecord from "../../components/NoRecord";
 
 const CandidateList = () => {
     const [candidates, setCandidates] = useState(false)
@@ -48,9 +49,13 @@ const CandidateList = () => {
                     ]}
                 />
                 <div className="col-xl-9 col-lg-8">
-                    {candidates && candidates.data && candidates.data.length > 0 && candidates.data.map((item, key) => {
+                    {candidates && candidates.data && candidates.data.length > 0 ? candidates.data.map((item, key) => {
                         return <CandidateItem item={item} key={key} />
-                    })}
+                        })
+                    :
+
+                        <NoRecord />
+                    }
                 </div>
             </div>
         </>

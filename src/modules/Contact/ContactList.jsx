@@ -4,6 +4,7 @@ import { CONTACT_EXPORT, CONTACT_LIST } from "../../components/APIRoutes";
 import { downloadFile, fetchData } from "../../components/Helper";
 import ContactItem from "./Partials/ContactItem";
 import Filter from "../../components/Filter";
+import NoRecord from "../../components/NoRecord";
 
 const ContactList = () => {
     const [contacts, setContacts] = useState(false)
@@ -45,9 +46,12 @@ const ContactList = () => {
                     ]}
                 />
                 <div className="col-xl-9 col-lg-8">
-                    {contacts && contacts.data && contacts.data.length > 0 && contacts.data.map((item, key) => {
+                    {contacts && contacts.data && contacts.data.length > 0 ? contacts.data.map((item, key) => {
                         return <ContactItem item={item} key={key} />
-                    })}
+                    })
+                    :
+                        <NoRecord />
+                    }
                 </div>
             </div>
         </>
