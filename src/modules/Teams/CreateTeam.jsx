@@ -21,6 +21,8 @@ const CreateTeam = () => {
     const [additionalInfo, setAdditionalInfo] = useState("")
     const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
 
+
+    const password_disclaimer = "<p>Password has to be in below combination.</p><ul><li>Alphabets with min. 1 Capital and 1 Small Character.</li><li> Min. 1 Special Character.</li><li>Min. 1 Number</li><li>Password must be of Min. 8 Character and Max. 50 length</li>";
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
             if (res.status) {
@@ -47,6 +49,8 @@ const CreateTeam = () => {
         })
 
         Array.from(document.querySelectorAll('[data-bs-toggle="popover"]')).forEach(popoverNode => new Popover(popoverNode));
+
+        
     }, [location])
 
 
@@ -170,8 +174,8 @@ const CreateTeam = () => {
 
                                                 </div>
                                                 <div className="text-muted">
-                                                    <span className="text-muted ms-1 ri-information-line"  data-bs-content="Create a strong password with a combination of uppercase and lowercase letters, numbers, and symbols for enhanced security. Aim for at least 8 characters, and avoid easily guessable information." data-bs-toggle="popover" data-bs-trigger="focus hover"
-                                                    data-bs-template={`<div class='popover shadow' role='popover'><div class='popover-arrow'></div><div class='popover-inner p-2 '>Create a strong password with a combination of uppercase and lowercase letters, numbers, and symbols for enhanced security. Aim for at least 8 characters, and avoid easily guessable information.</div></div>`}
+                                                    <span className="text-muted ms-1 ri-information-line"  data-bs-content={password_disclaimer} data-bs-toggle="popover" data-bs-trigger="focus hover"
+                                                    data-bs-template={`<div class='popover shadow' role='popover'><div class='popover-arrow'></div><div class='popover-inner p-2 '>${password_disclaimer}</div></div>`}
                                                     >Password information</span>
                                                 </div>
                                             </div>

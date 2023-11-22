@@ -152,7 +152,7 @@ const TeamDetails = () => {
                                                                         <td>
                                                                             {data && data.proof_document ?
 
-                                                                                <a href={data && data.proof_document ? ASSET_URL + data.proof_document : ''} className="btn btn-sm btn-outline-primary"><i className="ri-file-list-2-line align-middle"></i></a>
+                                                                                <a href={data && data.proof_document ? ASSET_URL + data.proof_document : ''} className="btn btn-sm btn-outline-primary" target="_blank" rel="noreferrer"><i className="ri-file-list-2-line align-middle"></i></a>
 
                                                                                 :
                                                                                 <span>N/A</span>
@@ -173,9 +173,9 @@ const TeamDetails = () => {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            {data && data.proof_document ?
+                                                                            {data && data.resume ?
 
-                                                                                <a href={data && data.resume ? ASSET_URL + data.resume : ''} className="btn btn-sm btn-outline-primary"><i className="ri-file-list-2-line align-middle"></i></a>
+                                                                                <a href={data && data.resume ? ASSET_URL + data.resume : ''} className="btn btn-sm btn-outline-primary" target="_blank" rel="noreferrer"><i className="ri-file-list-2-line align-middle"></i></a>
 
                                                                                 :
                                                                                 <span>N/A</span>

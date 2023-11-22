@@ -144,7 +144,7 @@ const Navbar = () => {
                                 {(superAdmin || context.auth.permissions.includes('Note')) && <>
                                     <li className="nav-item">
                                         <Link className={`nav-link menu-link ${(location.pathname.match("/add-note") || location.pathname.match("/notes-list")) && "text-primary"}`} to="#notesMenu" data-bs-toggle="collapse" role="button" aria-controls="recruiterMenu">
-                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Note</span>
+                                            <i className="ri-account-box-line"></i> <span data-key="t-apps">Notes</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="notesMenu">
                                             <ul className="nav nav-sm flex-column">

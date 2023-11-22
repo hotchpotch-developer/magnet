@@ -9,7 +9,8 @@ function Attendance() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if (context && context.auth && context.auth.role_id) {
+        let admin_token = localStorage.getItem('admin-accessToken')
+        if (context && context.auth && context.auth.role_id && !admin_token) {
             if (context.auth.role_id !== "1" &&!context.auth.attendance) {
                 document.getElementById('openAttendanceModal').click()
             }
