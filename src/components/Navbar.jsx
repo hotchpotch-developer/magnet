@@ -76,7 +76,7 @@ const Navbar = () => {
                                 {(superAdmin || context.auth.permissions.includes('Teams')) && <>
                                     <li className="nav-item">
                                         <Link className={`nav-link menu-link ${(location.pathname.match("/add-team") || location.pathname.match("/team-list")) && "text-primary"}`} to="#managerMenu" data-bs-toggle="collapse" role="button" aria-controls="managerMenu">
-                                            <i className="ri-team-line"></i> <span data-key="t-apps">Teams</span>
+                                            <i className="ri-team-line"></i> <span data-key="t-apps">Our Team</span>
                                         </Link>
                                         <div className="collapse menu-dropdown" id="managerMenu">
                                             <ul className="nav nav-sm flex-column">

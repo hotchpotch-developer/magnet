@@ -205,7 +205,7 @@ const TeamList = () => {
     return (
 
         <>
-            <Breadcrumbs title="THEMAGNETS - TEAM" parentPage="Teams" />
+            <Breadcrumbs title="THEMAGNETS - TEAM" parentPage="Our Team" />
             <Datatables dt_name="team-list" dataPageLength="15" />
             <Elements.ConfirmationModal modalId="teamConfirmationModal" action={deleteTeam} />
 

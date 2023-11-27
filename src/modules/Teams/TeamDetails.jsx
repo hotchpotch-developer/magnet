@@ -15,7 +15,7 @@ const TeamDetails = () => {
 
     return (
         <>
-            <Breadcrumbs title={data?.name} parentPage="Teams" />
+            <Breadcrumbs title={data?.name} parentPage="Our Team" />
             <div className="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
                 <div className="row g-4">
                     <div className="col-auto">

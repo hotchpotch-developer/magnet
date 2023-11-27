@@ -9,6 +9,8 @@ import * as Elements from "../../components/Elements";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Popover } from "bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateTeam = () => {
     const location = useLocation();
@@ -19,7 +21,7 @@ const CreateTeam = () => {
     const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [additionalInfo, setAdditionalInfo] = useState("")
-    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
+    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", status_update: [] });
 
 
     const password_disclaimer = "<p>Password has to be in below combination.</p><ul><li>Alphabets with min. 1 Capital and 1 Small Character.</li><li> Min. 1 Special Character.</li><li>Min. 1 Number</li><li>Password must be of Min. 8 Character and Max. 50 length</li>";
@@ -69,12 +71,13 @@ const CreateTeam = () => {
                 role: team.role_id,
                 reporting_user_id: team.reporting_user_id,
                 status: team.status,
-                status_reason: team.status_reason
+                status_reason: team.status_reason,
+                status_update: team.status_update ? new Date(team.status_update) : null
             })
             setAdditionalInfo(team.additional_information ?? '')
         } else {
             setAdditionalInfo("")
-            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
+            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", status_update: [] });
             initialFormState("team-form");
         }
     }, [location])
@@ -100,10 +103,11 @@ const CreateTeam = () => {
         }
     }
 
+    console.log(formData.status_update);
     return (
 
         <>
-            <Breadcrumbs title={`${formData.id ? 'Edit' : 'Add'}  Team Member`} parentPage="Teams" />
+            <Breadcrumbs title={`${formData.id ? 'Edit' : 'Add'}  Team Member`} parentPage="Our Team" />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
@@ -148,18 +152,6 @@ const CreateTeam = () => {
                                             />
                                             <div className="invalid-feedback">Please select Team Member.</div>
                                         </div>
-                                        {formData.status &&
-                                            <SelectField name="Status">
-                                                <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
-                                                    <option value="">Select Status</option>
-                                                    <option value="active">Active</option>
-                                                    <option value="inactive">In Active</option>
-                                                </select>
-                                            </SelectField>
-                                        }
-                                        {formData.status === "inactive" && 
-                                            <InputField label="Inactive Reason" name="status_reason" value={formData.status_reason} />
-                                        }
                                         <InputField label="Photo Upload" type="file" name="profile_image" />
                                         <InputField type="file" name="proof_document" label="Aadhar/Pan Upload" />
                                         <InputField type="file" name="resume" label="Resume" />
@@ -180,6 +172,25 @@ const CreateTeam = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        {formData.status &&
+                                            <SelectField name="Status">
+                                                <select name="status" className="form-select" value={formData.status} required onChange={handleInputChange}>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">In Active</option>
+                                                </select>
+                                            </SelectField> 
+                                        }
+                                        {formData.status === "inactive" && 
+                                            <>
+                                            <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+                                                <div>
+                                                    <label htmlFor="inactive_from_date" className="form-label">Inactive From Date</label>
+                                                    <DatePicker required className='form-control' name="inactive_from_date" id="inactive_from_date" selected={formData.status_update} onChange={(date) => setFormData(prev => ({ ...prev, status_update: date }))} />
+                                                </div>
+                                            </div>
+                                            <InputField half label="Inactive Reason" name="status_reason" value={formData.status_reason} />
+                                            </>
+                                        }
                                         <div className="col-lg-12">
                                             <label htmlFor="password" className="form-label">Additional Information</label>
                                             <CKEditor editor={ClassicEditor} data={additionalInfo} onChange={(event, editor) => setAdditionalInfo(editor.getData())} />
