@@ -9,6 +9,8 @@ import * as Elements from "../../components/Elements";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Popover } from "bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateTeam = () => {
     const location = useLocation();
@@ -19,7 +21,7 @@ const CreateTeam = () => {
     const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [additionalInfo, setAdditionalInfo] = useState("")
-    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
+    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", joining_date: null });
 
     useEffect(() => {
         fetchData(COMMON_DROPDOWN + '?type=roles', 'GET', '', true, false, (res) => {
@@ -65,12 +67,13 @@ const CreateTeam = () => {
                 role: team.role_id,
                 reporting_user_id: team.reporting_user_id,
                 status: team.status,
-                status_reason: team.status_reason
+                status_reason: team.status_reason,
+                joining_date: new Date(team.joining_date) ?? null
             })
             setAdditionalInfo(team.additional_information ?? '')
         } else {
             setAdditionalInfo("")
-            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "" });
+            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", joining_date: null });
             initialFormState("team-form");
         }
     }, [location])
@@ -116,6 +119,12 @@ const CreateTeam = () => {
                                         <InputField label="Alternate Phone No." error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
                                         <InputField label="Primary E-Mail" name="email" value={formData.email} disabled={formData.id ? true : false} required onChange={handleInputChange} />
                                         <InputField label="Alternate E-Mail" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
+                                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+                                            <div>
+                                                <label htmlFor="joining_date" className="form-label">Joining Date</label>
+                                                <DatePicker required className='form-control' name="joining_date" id="joining_date" selected={formData.joining_date} onChange={(date) => setFormData(prev => ({ ...prev, joining_date: date }))} />
+                                            </div>
+                                        </div>
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
                                             <Elements.ReactSelect

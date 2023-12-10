@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
-import { dateFormat } from "../../components/Helper";
+import { dateFormat, downloadBase64File, srcToBase64 } from "../../components/Helper";
 import _ from "lodash";
 
 const TeamDetails = () => {
@@ -12,6 +12,16 @@ const TeamDetails = () => {
     useEffect(() => {
         setData(location.state)
     }, [location])
+
+
+const downloadFile = (e, url, name) => {
+        e.preventDefault();
+        e.target.classList.add("pe-none")
+        srcToBase64(url, res => {
+        e.target.classList.remove("pe-none")
+        downloadBase64File(res, `${name}_image`)
+    })
+}
 
     return (
         <>
@@ -110,7 +120,7 @@ const TeamDetails = () => {
                                                             </tr>
                                                             <tr>
                                                                 <th className="ps-0" scope="row">Joining Date</th>
-                                                                <td className="text-muted">{data && data.created_at ? dateFormat(data.created_at) : 'N/A'}</td>
+                                                                <td className="text-muted">{data && data.joining_date ? dateFormat(data.joining_date) : 'N/A'}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -176,6 +186,29 @@ const TeamDetails = () => {
                                                                             {data && data.proof_document ?
 
                                                                                 <a href={data && data.resume ? ASSET_URL + data.resume : ''} className="btn btn-sm btn-outline-primary"><i className="ri-file-list-2-line align-middle"></i></a>
+
+                                                                                :
+                                                                                <span>N/A</span>
+                                                                            }
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div className="d-flex align-items-center">
+                                                                                <div className="avatar-sm">
+                                                                                    <div className="avatar-title bg-primary-subtle text-primary rounded fs-20">
+                                                                                        <i className="ri-file-list-2-line"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="ms-3 flex-grow-1">
+                                                                                    <h6 className="fs-15 mb-0">Profile Image</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            {data?.profile_image ?
+
+                                                                                <a href={ASSET_URL + data.profile_image } className="btn btn-sm btn-outline-primary" onClick={(e) => downloadFile(e, ASSET_URL + data.profile_image, data.name)}><i className="ri-file-list-2-line align-middle"></i></a>
 
                                                                                 :
                                                                                 <span>N/A</span>
