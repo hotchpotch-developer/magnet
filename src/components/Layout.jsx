@@ -5,6 +5,7 @@ import { useContext } from "react";
 import Navbar from "./Navbar";
 import { Context } from "./Context";
 import Attendance from "./Attendance";
+import Lock from "./Lock";
 
 
 const Layout = () => {
@@ -25,6 +26,7 @@ const Layout = () => {
                     </div>
                     <Footer />
                     <Attendance />
+                    <Lock />
                 </>}
             </div>
         </>

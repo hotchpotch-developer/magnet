@@ -12,7 +12,7 @@ const bodyLoader = (active) => {
     }
 }
 
-export const fetchData = async (url, method, data, token, process, res, abort_signal = false, process_type = false, form_id = '', loading = true) => {
+export const fetchData = async (url, method, data, token, process, res, abort_signal = false, process_type = false, form_id = '', loading = true, alert = true) => {
     if (loading) {
         bodyLoader(true)
     }
@@ -53,12 +53,16 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
             localStorage.removeItem("accessToken");
             window.location.href = '/'
         } else if (!json.data) {
-            showAlertMsg(json, form_id)
+            if(alert){
+                showAlertMsg(json, form_id)
+            }
             res(json)
         } else if (json.data && json.data.length > 0) {
             res(json)
         } else {
-            showAlertMsg(json, form_id)
+            if(alert){
+                showAlertMsg(json, form_id)
+            }
             res(json)
         }
     }).catch((error) => {
@@ -169,7 +173,7 @@ export const copyText = (id) => {
     textField.select()
     document.execCommand('copy')
     textField.remove()
-    showAlertMsg({success: "Text Copied."})
+    showAlertMsg({ success: "Text Copied." })
 }
 
 export const generateText = (length = 8, number = false, password = false) => {
@@ -189,26 +193,46 @@ export const generateText = (length = 8, number = false, password = false) => {
 }
 
 export const dateFormat = (date, time = false) => {
-    if(time){ 
-        return moment(date).format('YYYY-MM-DD H:mm a'); 
-    }else{ 
-        return moment(date).format('YYYY-MM-DD'); 
+    if (time) {
+        return moment(date).format('YYYY-MM-DD H:mm a');
+    } else {
+        return moment(date).format('YYYY-MM-DD');
     }
-    
+
 }
 
 
 export const downloadFile = (blobImg, name) => {
     let url = window.URL.createObjectURL(new Blob([blobImg]));
     let ext = _.split(blobImg.type, '/')[1]
-    if(ext.match('spreadsheetml')){
+    if (ext.match('spreadsheetml')) {
         ext = 'xlsx'
-    }else if(ext.match('wordprocessingml')){
+    } else if (ext.match('wordprocessingml')) {
         ext = 'docx'
     }
     let link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', name+'.'+ext);
+    link.setAttribute('download', name + '.' + ext);
+    document.body.appendChild(link);
+    link.click();
+}
+
+
+export const srcToBase64 = async (url, res) => {
+    await fetch(`https://cors-fix.web.app/v1?url=${url}`)
+        .then(data => data.blob().then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                res(reader.result)
+            };
+            reader.readAsDataURL(blob);
+        }));
+}
+
+export const downloadBase64File = (url, name = 'attachment') => {
+    let link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', name);
     document.body.appendChild(link);
     link.click();
 }

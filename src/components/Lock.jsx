@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
-// import { initialFormState } from './Helper';
+import React, { useState, useEffect, useContext } from 'react';
+import { fetchData, validateForm } from './Helper';
+import { LOGIN, LOGOUT } from './APIRoutes';
+import { Context } from './Context';
+import { initialFormState } from './Helper';
+import { loadingButton } from './Elements';
 
 function Lock() {
+    const [context, setContext] = useContext(Context)
+    const [loader, setLoader] = useState(false)
     const [isLocked, setIsLocked] = useState(localStorage.getItem('screenLock') ?? false);
-    const tabIdleThreshold = 15*60*1000; // time seconds in milliseconds
+    const tabIdleThreshold = 15 * 60 * 1000; // time seconds in milliseconds
 
     let tabIdleTimer;
 
@@ -48,9 +54,36 @@ function Lock() {
     }, []);
 
     const submitForm = (e) => {
-        // initialFormState('lock-form')
-        unlockTab()
-        document.getElementById('openLockModal').click()
+        e.preventDefault();
+
+        if (validateForm(e, 'lock-form')) {
+            setLoader(true)
+
+            let formData = new FormData(document.getElementById('lock-form'));
+            formData.append('email', context.auth.email)
+
+            fetchData(LOGIN, 'POST', formData, false, true, (res) => {
+                setLoader(false)
+                if (res.status === 200 && res.data) {
+                    fetchData(LOGOUT, 'GET', '', true, false, (res) => {}, false, false, '', true, false)
+                    setTimeout(() => {
+                        localStorage.setItem('accessToken', res.data.access_token)
+                        setContext(prev => ({ ...prev, auth: res.data }));
+                        initialFormState('lock-form')
+                        unlockTab()
+                        document.getElementById('openLockModal').click()
+                        Array.from(document.querySelectorAll('.modal-backdrop')).forEach(modal => {
+                            if(modal.classList.contains('show')){
+                                modal.classList.remove('show')
+                            }
+                            if(!modal.innerHtml){
+                                modal.remove();
+                            }
+                        });
+                    }, 1000);
+                }
+            })
+        }
     }
 
     return (<>
@@ -60,9 +93,10 @@ function Lock() {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="lockModalLabel">Unlock</h5>
+                        <h5>Are You Working?</h5>
                     </div>
                     <div className="modal-body">
-                        {/* <form className="needs-validation" noValidate id="lock-form">
+                        <form className="needs-validation" noValidate id="lock-form">
                             <div className="row gy-4">
                                 <div className="col-md-12">
                                     <label htmlFor="lock_password" className="form-label">Password</label>
@@ -70,11 +104,14 @@ function Lock() {
                                     <div className="invalid-feedback">Please Enter Password.</div>
                                 </div>
                             </div>
-                        </form> */}
-                        <h4>Are You Working?</h4>
+                        </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={submitForm}>Yes</button>
+                        <div className="mt-4">
+                            {!loader ?
+                                <button className="btn btn-primary w-100" type="button" onClick={(e) => submitForm(e)}>Submit</button>
+                                : loadingButton(100)}
+                        </div>
                     </div>
                 </div>
             </div>

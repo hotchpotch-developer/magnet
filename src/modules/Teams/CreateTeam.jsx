@@ -21,7 +21,7 @@ const CreateTeam = () => {
     const [reportingUser, setReportingUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [additionalInfo, setAdditionalInfo] = useState("")
-    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", status_update: [] });
+    const [formData, setFormData] = useState({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", joining_date: null });
 
 
     const password_disclaimer = "<p>Password has to be in below combination.</p><ul><li>Alphabets with min. 1 Capital and 1 Small Character.</li><li> Min. 1 Special Character.</li><li>Min. 1 Number</li><li>Password must be of Min. 8 Character and Max. 50 length</li>";
@@ -72,12 +72,12 @@ const CreateTeam = () => {
                 reporting_user_id: team.reporting_user_id,
                 status: team.status,
                 status_reason: team.status_reason,
-                status_update: team.status_update ? new Date(team.status_update) : null
+                joining_date: new Date(team.joining_date) ?? null
             })
             setAdditionalInfo(team.additional_information ?? '')
         } else {
             setAdditionalInfo("")
-            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", status_update: [] });
+            setFormData({ employee_id: "", reporting_user_id: "", name: "", phone: "", alternet_phone: "", email: "", alternet_email: "", role: "", password: "", status: "", status_reason: "", joining_date: null });
             initialFormState("team-form");
         }
     }, [location])
@@ -124,6 +124,12 @@ const CreateTeam = () => {
                                         <InputField label="Alternate Phone No." error="Please enter a valid phone number" pattern="[6789][0-9]{9}" name="alternet_phone" value={formData.alternet_phone} onChange={handleInputChange} />
                                         <InputField label="Primary E-Mail" name="email" value={formData.email} disabled={formData.id ? true : false} required onChange={handleInputChange} />
                                         <InputField label="Alternate E-Mail" name="alternet_email" value={formData.alternet_email} onChange={handleInputChange} />
+                                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
+                                            <div>
+                                                <label htmlFor="joining_date" className="form-label">Joining Date</label>
+                                                <DatePicker required className='form-control' name="joining_date" id="joining_date" selected={formData.joining_date} onChange={(date) => setFormData(prev => ({ ...prev, joining_date: date }))} />
+                                            </div>
+                                        </div>
                                         <div className="col-xxl-3 col-md-6">
                                             <label htmlFor="employee_id" className="form-label">Role</label>
                                             <Elements.ReactSelect
