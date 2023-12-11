@@ -196,7 +196,7 @@ export const dateFormat = (date, time = false) => {
     if (time) {
         return moment(date).format('YYYY-MM-DD H:mm a');
     } else {
-        return moment(date).format('YYYY-MM-DD');
+        return moment(date).format('DD-MM-YYYY');
     }
 
 }

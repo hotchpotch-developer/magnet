@@ -34,7 +34,7 @@ const TeamList = () => {
             { data: 'DT_RowIndex', name: 'id', title: '#' },
             { data: 'emp_id', name: 'emp_id', title: 'E. Code', width:"150" },
             { data: 'name', name: 'name', title: 'Name' , width:"200"},
-            { data: 'created_at', name: 'created_at', title: 'Date of Joining' },
+            { data: 'joining_date', name: 'joining_date', title: 'Date of Joining' },
             { data: 'phone', name: 'phone', title: 'Primary Phone No.', width:"250" },
             { data: 'phone_1', name: 'user_metas.phone_1', title: 'Alternate Phone No.', width:"250" },
             { data: 'email', name: 'email', title: 'Primary E-Mail', width:"250" },
@@ -51,7 +51,7 @@ const TeamList = () => {
                         <>
                             <div className="d-flex text-nowrap">
                                 <span>
-                                    {records && records.created_at && dateFormat(records.created_at, false) }
+                                    {records && records.joining_date && dateFormat(records.joining_date, false) }
                                 </span>
                             </div>
                         </>
