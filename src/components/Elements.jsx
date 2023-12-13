@@ -91,8 +91,20 @@ export const ReactSelect = (props) => {
                   ...baseStyles,
                   borderColor:'#2a4562',
                   backgroundColor: 'transparent',
-                  color: '#fff'
+                  color: '#ffffff'
                 }),
+                input: (baseStyles) => {
+                    return {
+                        ...baseStyles,
+                        color: '#fff'
+                    }
+                },
+                // placeholder : (defaultStyles) => {
+                //     return {
+                //         ...defaultStyles,
+                //         color: '#ffffff',
+                //     }
+                // },
 
                 option: (baseStyles, state) => ({
                     ...baseStyles,
