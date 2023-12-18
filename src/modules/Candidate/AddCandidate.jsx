@@ -76,11 +76,10 @@ const AddCandidate = () => {
     })
 
     const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        mobile: '',
+        name: '',
+        primary_mobile_no: '',
         alternate_mobile: '',
-        email: '',
+        primary_email: '',
         alternate_email: '',
         current_ctc: '',
         pan_no: '',
@@ -92,14 +91,12 @@ const AddCandidate = () => {
     useEffect(() => {
         if (location && location.state && location.state) {
             let candidate = location.state;
-            console.log(candidate);
             setFormData({
                 id: candidate.id,
-                first_name: candidate.first_name,
-                last_name: candidate.last_name,
-                mobile: candidate.mobile,
+                name: candidate.name,
+                primary_mobile_no: candidate.mobile,
                 alternate_mobile: candidate.alternate_mobile,
-                email: candidate.email,
+                primary_email: candidate.email,
                 alternate_email: candidate.alternate_email,
                 current_ctc: candidate.current_ctc,
                 pan_no: candidate.pan_no,
@@ -109,11 +106,10 @@ const AddCandidate = () => {
             })
         } else {
             setFormData({
-                first_name: '',
-                last_name: '',
-                mobile: '',
+                name: '',
+                primary_mobile_no: '',
                 alternate_mobile: '',
-                email: '',
+                primary_email: '',
                 alternate_email: '',
                 current_ctc: '',
                 pan_no: '',
@@ -216,14 +212,13 @@ const AddCandidate = () => {
                             </div>
                             <div className="card-body">
                                 <div className="row g-4">
-                                    <InputField name="first_name" pattern="[a-zA-Z]+" value={formData.first_name} required onChange={handleInputChange} error="Please enter a only first name"  />
-                                    <InputField name="last_name" value={formData.last_name} required onChange={handleInputChange} />
-                                    <InputField name="mobile" label="Primary Mobile" value={formData.mobile} required onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="alternate_mobile" value={formData.alternate_mobile} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
-                                    <InputField name="current_ctc" value={formData.current_ctc} required onChange={handleInputChange} />
-                                    <InputField name="email" value={formData.email} required onChange={handleInputChange} />
-                                    <InputField name="alternate_email" value={formData.alternate_email} onChange={handleInputChange} />
-                                    <InputField name="pan_no" value={formData.pan_no} required onChange={handleInputChange} />
+                                    <InputField name="name" value={formData.name} required onChange={handleInputChange} error="Please enter name."  />
+                                    <InputField name="primary_mobile_no" label="Primary Mobile No." value={formData.primary_mobile_no} required onChange={handleInputChange} error="Please enter a valid primary mobile number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="alternate_mobile" label="Alternate Mobile No." value={formData.alternate_mobile} onChange={handleInputChange} error="Please enter a valid alternate mobile number" pattern="[6789][0-9]{9}" />
+                                    <InputField name="current_ctc" label="Current CTC" value={formData.current_ctc} required onChange={handleInputChange} />
+                                    <InputField name="primary_email" label="Primary E-Mail" value={formData.primary_email} required onChange={handleInputChange} />
+                                    <InputField name="alternate_email" label="Alternate E-Mail" value={formData.alternate_email} onChange={handleInputChange} />
+                                    <InputField name="pan_no" label="Pan No." value={formData.pan_no} required onChange={handleInputChange} />
                                     <InputField name="designation" value={formData.designation} required onChange={handleInputChange} />
                                     <InputField name="employment_status" value={formData.employment_status} required onChange={handleInputChange} />
                                     <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
@@ -236,7 +231,7 @@ const AddCandidate = () => {
                                     <ReactSelectField name="location" id="location" isMulti value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
                                     <ReactSelectField name="industry" value={selectedDropDownData.industry} options={dropDownData.industry} onChange={(e) => handleInputChange(e, 'industry')} />
                                     <ReactSelectField name="company" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} />
-                                    <ReactSelectField name="sales_non_sales" label="Sales/Non Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
+                                    <ReactSelectField name="sales_non_sales" label="Sales/Non-Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
                                     <ReactSelectField name="level" value={selectedDropDownData.level} options={dropDownData.level} onChange={(e) => handleInputChange(e, 'level')} />

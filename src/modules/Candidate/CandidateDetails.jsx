@@ -32,12 +32,12 @@ const CandidateDetails = () => {
                                                 </div>
                                                 <div className="col-md">
                                                     <div>
-                                                        <h4 className="fw-bold">{data.first_name} {" "} {data.last_name}</h4>
+                                                        <h4 className="fw-bold">{data.name}</h4>
                                                         <div className="hstack gap-3 flex-wrap">
                                                             <div><i className="ri-building-line align-bottom me-1"></i> {data.company && data.company.label}</div>
                                                             <div className="vr"></div>
                                                             <div><i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                                                {data.location_id && data.location_id.length > 0 && data.location_id.map(l => <span key={l.value}><span className="badge rounded-pill bg-primary fs-12 mx-1">{l.label}</span></span>)}
+                                                                <span className="badge rounded-pill bg-primary fs-12 mx-1">{data?.location?.label}</span>
                                                             </div>
                                                             <div className="vr"></div>
                                                             <div className="badge rounded-pill bg-success fs-12">{data.current_ctc}</div>
@@ -48,9 +48,9 @@ const CandidateDetails = () => {
                                         </div>
                                         <div className="col-md-auto">
                                             <div className="hstack gap-1 flex-wrap mt-4 mt-md-0">
-                                                <button type="button" className="btn btn-icon btn-sm btn-ghost-primary fs-16">
+                                                {/* <button type="button" className="btn btn-icon btn-sm btn-ghost-primary fs-16">
                                                     <i className="ri-share-line"></i>
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     </div>
