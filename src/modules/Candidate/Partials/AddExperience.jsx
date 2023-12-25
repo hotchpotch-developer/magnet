@@ -36,6 +36,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                 [`experience[${index}]total_experience`]: null,
             })
         }
+        // eslint-disable-next-line
     }, [formdata])
 
     const handleInputChange = (e, key = false) => {
