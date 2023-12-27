@@ -20,7 +20,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                 [`experience[${index}]channel`]: formdata.channel_id ?? null,
                 [`experience[${index}]level`]: formdata.level_id ?? null,
                 [`experience[${index}]product`]: formdata.product_id ?? null,
-                [`experience[${index}]total_experience`]: formdata.total_experience ?? null,
+                [`experience[${index}]total_experience`]: {value: formdata.total_experience, label: formdata.total_experience} ?? null,
             })
             setDesignation(formdata.designation)
             setCurrent_ctc(formdata.current_ctc)
@@ -56,7 +56,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                         <ReactSelectField index={index} name={`sales_non_sales`} value={selectedDropDownData[`experience[${index}]sales_non_sales`]} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, `experience[${index}]sales_non_sales`)} />
                         <ReactSelectField index={index} name={`department`} value={selectedDropDownData[`experience[${index}]department`]} options={dropDownData.department} onChange={(e) => handleInputChange(e, `experience[${index}]department`)} />
                         <ReactSelectField index={index} name={`channel`} value={selectedDropDownData[`experience[${index}]channel`]} options={dropDownData.channel} onChange={(e) => handleInputChange(e, `experience[${index}]channel`)} />
-                        <InputField name={`experience[${index}][designation]`} id={`designation_${index}`} label="designation" value={designation} onChange={(e) => setDesignation(e.target.value)} error="Please enter designation." />
+                        <InputField name={`experience[${index}][designation]`} id={`designation_${index}`} label="Designation" value={designation} onChange={(e) => setDesignation(e.target.value)} error="Please enter designation." />
                         <ReactSelectField index={index} name={`level`} value={selectedDropDownData[`experience[${index}]level`]} options={dropDownData.level} onChange={(e) => handleInputChange(e, `experience[${index}]level`)} />
                         <ReactSelectField index={index} name={`product`} value={selectedDropDownData[`experience[${index}]product`]} options={dropDownData.product} onChange={(e) => handleInputChange(e, `experience[${index}]product`)} />
                         <ReactSelectField index={index} name={`total_experience`} value={selectedDropDownData[`experience[${index}]total_experience`]} options={dropDownData.experience} onChange={(e) => handleInputChange(e, `experience[${index}]total_experience`)} />
@@ -79,7 +79,7 @@ export default AddExperience;
 const ReactSelectField = (props) => {
 
     return (<>
-        <div className="col-xxl-3 col-md-6">
+        <div className="col-xxl-3 col-md-6 mt-2">
             <label htmlFor={props.label ?? (props.id ?? props.name)} className="form-label">{props.label ?? _.startCase(props.name)}</label>
             <Elements.ReactSelect
                 placeholder={`Select ${props.label ?? _.startCase(props.name)}`}

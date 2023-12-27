@@ -19,23 +19,27 @@ const CandidateItem = ({ item }) => {
                                 <img src="assets/images/small/img-8.jpg" alt="" className="d-none cover-img" />
                                 <h5 className="job-title">{item.name}</h5>
                                 <div className="d-flex">
-                                    <p className="company-name text-muted mb-0 me-1">
-                                        <i className="ri-user-2-line me-1"></i>
-                                        {item.department && item.department.label}
-                                    </p>
+                                    {item?.candidate_experience[0] &&
+                                        <p className="company-name text-muted mb-0 me-1">
+                                            <i className="ri-user-2-line me-1"></i>
+                                            {item?.candidate_experience[0]?.department_id?.label}
+                                        </p>
+                                    }
                                     <p className="company-name text-muted mb-0 me-1">
                                         <i className="ri-smartphone-line me-1"></i>
-                                        {item?.mobile}
+                                        {item?.primary_phone}
                                     </p>
                                     <p className="company-name text-muted mb-0">
                                         <i className="ri-mail-line me-1"></i>
-                                        {item?.email}
+                                        {item?.primary_email}
                                     </p>
                                 </div>
-                                <p className="company-name my-2">
-                                    <i className="ri-building-line me-1"></i>
-                                    {item.company && item.company.label}
-                                </p>
+                                {item?.candidate_experience[0] &&
+                                    <p className="company-name my-2">
+                                        <i className="ri-building-line me-1"></i>
+                                        {item?.candidate_experience[0]?.company_id?.label}
+                                    </p>
+                                }
                             </div>
                             <div>
                                 <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
@@ -45,38 +49,42 @@ const CandidateItem = ({ item }) => {
                             </div>
                         </div>
                         <div>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.industry && item.industry.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.qualification && item.qualification.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.state_name && item.state_name.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item.sales_non && item.sales_non.label}</span>
+                            {item?.candidate_experience[0] &&
+                                <span className="badge bg-primary-subtle text-primary me-1">{item?.candidate_experience[0]?.industry_id?.label}</span>
+                            }
+                            <span className="badge bg-primary-subtle text-primary me-1">{item?.high_qualification_id?.label}</span>
+                            <span className="badge bg-primary-subtle text-primary me-1">{item?.current_state?.label}</span>
+                            <span className="badge bg-primary-subtle text-primary me-1">{item?.current_location?.label}</span>
                         </div>
                     </div>
-                    <div className="card-footer border-top-dashed">
-                        <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                            <div>
-                                <i className="ri-briefcase-2-line align-bottom me-1"></i>
-                                <span className="job-type">{item.designation}</span>
-                            </div>
-                            <div>
-                                <i className=" ri-user-2-line align-bottom me-1"></i>
-                                <span className="job-experience">{item.experience ? `${item.experience} Year` : ''}</span>
-                            </div>
-                            <div>
-                                <i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                <span className="fs-12 mx-1">{item.location && item.location && item.location.label}</span>
-                            </div>
-                            <div>
-                                <i className="ri-user-3-line align-bottom me-1"></i> {item.current_ctc}
-                            </div>
-                            <div className="d-none">
-                                <i className="ri-time-line align-bottom me-1"></i>
-                                <span className="job-postdate">{item.created_at ? dateFormat(item.created_at) : ''}</span>
-                            </div>
-                            <div>
-                                <Link to="/candidate-details" state={item} className="btn btn-primary viewjob-list">View More <i className="ri-arrow-right-line align-bottom ms-1"></i></Link>
+                    {item?.candidate_experience[0] &&
+                        <div className="card-footer border-top-dashed">
+                            <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                <div>
+                                    <i className="ri-briefcase-2-line align-bottom me-1"></i>
+                                    <span className="job-type">{item?.candidate_experience[0]?.designation}</span>
+                                </div>
+                                <div>
+                                    <i className=" ri-user-2-line align-bottom me-1"></i>
+                                    <span className="job-experience">{item?.candidate_experience[0] ? `${item?.candidate_experience[0]?.total_experience} Year` : ''}</span>
+                                </div>
+                                <div>
+                                    <i className="ri-map-pin-2-line align-bottom me-1"></i>
+                                    <span className="fs-12 mx-1">{item?.preferred_location?.label}</span>
+                                </div>
+                                <div>
+                                    <i className="ri-user-3-line align-bottom me-1"></i> {item?.candidate_experience[0]?.current_ctc}
+                                </div>
+                                <div className="d-none">
+                                    <i className="ri-time-line align-bottom me-1"></i>
+                                    <span className="job-postdate">{item.created_at ? dateFormat(item.created_at) : ''}</span>
+                                </div>
+                                <div>
+                                    <Link to="/candidate-details" state={item} className="btn btn-primary viewjob-list">View More <i className="ri-arrow-right-line align-bottom ms-1"></i></Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </>
