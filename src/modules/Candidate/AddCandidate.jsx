@@ -107,9 +107,9 @@ const AddCandidate = () => {
     useEffect(() => {
         if (location && location.state && location.state) {
             let candidate = location.state;
-            console.log(candidate);
             setFormData({
                 id: candidate.id,
+                candidate_id: candidate.candidate_id,
                 name: candidate.name,
                 primary_mobile_no: candidate.primary_phone,
                 alternate_mobile: candidate.alternate_mobile,
@@ -120,6 +120,7 @@ const AddCandidate = () => {
                 designation: candidate.designation,
                 employment_status: (candidate.status === 'working' ? { value: 'working', label: 'Working' } : { value: 'not-working', label: 'Not Working' }),
                 experience: candidate.experience,
+                last_updated: candidate.last_updated
             })
             if (candidate && candidate.candidate_experience) {
                 setAddExperienceOne(location.state.candidate_experience[0] ? true : false)
@@ -256,8 +257,14 @@ const AddCandidate = () => {
                             <div className="card-body">
                                 <h5 className="card-title mb-3">Document</h5>
                                 <div className="row g-4">
+                                    {formData.candidate_id &&
+                                        <InputField label="Candidate ID" value={formData.candidate_id} readOnly />
+                                    }
                                     <InputField name="pan_no" label="PAN No." value={formData.pan_no} required onChange={handleInputChange} />
                                     <ReactSelectField name="employment_status" value={selectedDropDownData.employment_status} options={dropDownData.employment_status} onChange={(e) => handleInputChange(e, 'employment_status')} />
+                                    {formData.last_updated &&
+                                        <InputField label="Last Updated" value={formData.last_updated} readOnly />
+                                    }
                                 </div>
                             </div>
                         </div>
