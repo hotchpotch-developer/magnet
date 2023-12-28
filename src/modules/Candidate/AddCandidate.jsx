@@ -256,7 +256,7 @@ const AddCandidate = () => {
                             <div className="card-body">
                                 <h5 className="card-title mb-3">Document</h5>
                                 <div className="row g-4">
-                                    <InputField name="pan_no" label="Pan No." value={formData.pan_no} required onChange={handleInputChange} />
+                                    <InputField name="pan_no" label="PAN No." value={formData.pan_no} required onChange={handleInputChange} />
                                     <ReactSelectField name="employment_status" value={selectedDropDownData.employment_status} options={dropDownData.employment_status} onChange={(e) => handleInputChange(e, 'employment_status')} />
                                 </div>
                             </div>
@@ -270,19 +270,19 @@ const AddCandidate = () => {
                                     <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
                                         <div>
                                             <label htmlFor="date_of_birth" className="form-label">Date of Birth</label>
-                                            <DatePicker required className='form-control' name="date_of_birth" id="date_of_birth" selected={selectedDropDownData.date_of_birth} onChange={(date) => setSelectedDropDownData(prev => ({ ...prev, date_of_birth: date }))} />
+                                            <DatePicker required className='form-control' name="date_of_birth" id="date_of_birth" selected={selectedDropDownData.date_of_birth} onChange={(date) => setSelectedDropDownData(prev => ({ ...prev, date_of_birth: date }))} showMonthDropdown showYearDropdown dropdownMode="select" />
                                         </div>
                                     </div>
                                     <ReactSelectField name="gender" value={selectedDropDownData.gender} options={dropDownData.gender} onChange={(e) => handleInputChange(e, 'gender')} />
-                                    <ReactSelectField name="high_qualification" value={selectedDropDownData.high_qualification} options={dropDownData.qualification} onChange={(e) => handleInputChange(e, 'high_qualification')} />
+                                    <ReactSelectField name="high_qualification" label="Highest Qualification" value={selectedDropDownData.high_qualification} options={dropDownData.qualification} onChange={(e) => handleInputChange(e, 'high_qualification')} />
                                     <InputField name="primary_mobile_no" label="Primary Mobile No." value={formData.primary_mobile_no} required onChange={handleInputChange} error="Please enter a valid primary mobile number" pattern="[6789][0-9]{9}" />
                                     <InputField name="alternate_mobile" label="Alternate Mobile No." value={formData.alternate_mobile} onChange={handleInputChange} error="Please enter a valid alternate mobile number" pattern="[6789][0-9]{9}" />
                                     <InputField name="primary_email" label="Primary E-Mail" value={formData.primary_email} required onChange={handleInputChange} />
                                     <InputField name="alternate_email" label="Alternate E-Mail" value={formData.alternate_email} onChange={handleInputChange} />
                                     <ReactSelectField name="current_state" value={selectedDropDownData.current_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'current_state')} />
-                                    <ReactSelectField name="current_location" id="current_location" isMulti value={selectedDropDownData.current_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'current_location')} />
-                                    <ReactSelectField name="preferred_state" value={selectedDropDownData.preferred_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'preferred_state')} />
-                                    <ReactSelectField name="preferred_location" id="preferred_location" isMulti value={selectedDropDownData.preferred_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'preferred_location')} />
+                                    <ReactSelectField name="current_location" id="current_location" value={selectedDropDownData.current_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'current_location')} />
+                                    <ReactSelectField name="preferred_state" isMulti label="Preferred States" value={selectedDropDownData.preferred_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'preferred_state')} />
+                                    <ReactSelectField name="preferred_location" id="preferred_location" label="Preferred Locations" isMulti value={selectedDropDownData.preferred_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'preferred_location')} />
 
                                 </div>
                             </div>

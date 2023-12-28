@@ -64,8 +64,8 @@ export const UnAuthInputField = (props) => {
 export const InputField = (props) => {
 
     return (
-        <div className={props.full ? "col-lg-12 mt-4" : props.half ? "col-lg-6 col-md-6 mt-4" : "col-xxl-3 col-xl-6 col-lg-6 col-md-6 mt-4"}>
-            <div>
+        <div className={props.full ? "col-lg-12" : props.half ? "col-lg-6 col-md-6" : "col-xxl-3 col-xl-6 col-lg-6 col-md-6"}>
+            <div className={props?.align}>
                 <label htmlFor={props.label ?? (props.id ?? props.name)} className="form-label">{props.label ?? _.startCase(props.name)}</label>
                 <input type={props.type ?? 'text'} className="form-control" id={props.id ?? props.name} {...props} />
                 <div className="invalid-feedback">{props.error ?? `Please Enter ${_.startCase(props.name)}.`}</div>
