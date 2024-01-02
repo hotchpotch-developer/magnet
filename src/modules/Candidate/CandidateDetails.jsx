@@ -88,7 +88,7 @@ const CandidateDetails = () => {
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Age/ Gender</td>
-                                            <td>{data.dob}/{data.gender}</td>
+                                            <td>{data.age} / {data.gender}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Qualification</td>
