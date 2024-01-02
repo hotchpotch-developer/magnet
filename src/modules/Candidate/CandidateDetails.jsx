@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
-import { dateFormat } from "../../components/Helper";
 
 const CandidateDetails = () => {
     const location = useLocation();
