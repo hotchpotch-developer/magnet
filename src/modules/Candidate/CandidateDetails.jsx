@@ -34,13 +34,19 @@ const CandidateDetails = () => {
                                                     <div>
                                                         <h4 className="fw-bold">{data.name}</h4>
                                                         <div className="hstack gap-3 flex-wrap">
-                                                            <div><i className="ri-building-line align-bottom me-1"></i> {data.company && data.company.label}</div>
-                                                            <div className="vr"></div>
-                                                            <div><i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                                                <span className="badge rounded-pill bg-primary fs-12 mx-1">{data?.location?.label}</span>
+                                                            <div className="company-name text-muted mb-0 me-1">
+                                                                <i className="ri-smartphone-line me-1"></i>
+                                                                {data.primary_phone}
                                                             </div>
                                                             <div className="vr"></div>
-                                                            <div className="badge rounded-pill bg-success fs-12">{data.current_ctc}</div>
+                                                            <div className="company-name text-muted mb-0">
+                                                                <i className="ri-mail-line me-1"></i>
+                                                                {data.primary_email}
+                                                            </div>
+                                                            <div>
+                                                                <i className="ri-map-pin-2-line align-bottom me-1"></i>
+                                                                <span className="badge rounded-pill bg-primary fs-12 mx-1">{data?.current_location?.label}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,56 +76,48 @@ const CandidateDetails = () => {
                                 <table className="table mb-0">
                                     <tbody>
                                         <tr>
-                                            <td className="fw-medium">Email</td>
-                                            <td>{data.email}</td>
+                                            <td className="fw-medium">CID</td>
+                                            <td>{data.candidate_id}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Pan Number</td>
-                                            <td>{data.pan_no}</td>
+                                            <td className="fw-medium">Last Update</td>
+                                            <td>{data.last_updated}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Business Name</td>
-                                            <td>{data.company && data.company.label}</td>
+                                            <td className="fw-medium">Name</td>
+                                            <td>{data.name}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Industry</td>
-                                            <td>{data.industry && data.industry.label}</td>
+                                            <td className="fw-medium">Age/ Gender</td>
+                                            <td>{data.dob}/{data.gender}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Department</td>
-                                            <td>{data.department && data.department.label}</td>
+                                            <td className="fw-medium">Qualification</td>
+                                            <td>{data.high_qualification_id?.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Level</td>
-                                            <td>{data.level && data.level.label}</td>
+                                            <td className="fw-medium">Contact No.</td>
+                                            <td>{data.primary_phone}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Salary</td>
-                                            <td>{data.current_ctc}</td>
+                                            <td className="fw-medium">Mail Id.</td>
+                                            <td>{data.primary_email}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">State</td>
-                                            <td>{data.state_name && data.state_name.label}</td>
+                                            <td className="fw-medium">Current State</td>
+                                            <td>{data.current_state?.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Sales/Non-Sales</td>
-                                            <td>{data.sales_non && data.sales_non.label}</td>
+                                            <td className="fw-medium">Current Location</td>
+                                            <td>{data.current_location?.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Channel</td>
-                                            <td>{data.channel && data.channel.label}</td>
+                                            <td className="fw-medium">Preferred States</td>
+                                            <td>{data.preferred_state?.label}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Gender</td>
-                                            <td>{data.gender}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Designation</td>
-                                            <td>{data.designation}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="fw-medium">Date Of Birth</td>
-                                            <td>{dateFormat(data.dob)}</td>
+                                            <td className="fw-medium">Preferred Locations</td>
+                                            <td>{data.preferred_location?.label}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -127,6 +125,74 @@ const CandidateDetails = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className="row">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title mb-3">Additional Information</h5>
+                            <div dangerouslySetInnerHTML={{ __html: data.additional_information }}></div>
+                        </div>
+                    </div>
+                </div>
+
+                {data.candidate_experience?.length > 0 && data.candidate_experience.map((exp, index) => {
+                    return <div className="row" key={index}>
+                        <div className="card">
+                            <div className="card-header">
+                                <h5 className="mb-0">{index === 0 ? "Current Employment" : "Previous Employment"}</h5>
+                            </div>
+                            <div className="card-body">
+                                <div className="table-responsive table-card">
+                                    <table className="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td className="fw-medium">Industry</td>
+                                                <td>{exp.industry_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Company</td>
+                                                <td>{exp.company_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Sales/ Non-Sales</td>
+                                                <td>{exp.sales_non_sales_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Department</td>
+                                                <td>{exp.department_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Designation</td>
+                                                <td>{exp.designation}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Channel</td>
+                                                <td>{exp.channel_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Level</td>
+                                                <td>{exp.level_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Experience</td>
+                                                <td>{exp.total_experience}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">Product</td>
+                                                <td>{exp.product_id?.label}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="fw-medium">CTC</td>
+                                                <td>{exp.current_ctc}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                })}
+
             </>}
         </>
     )
