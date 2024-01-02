@@ -87,8 +87,8 @@ const CandidateDetails = () => {
                                             <td>{data.name}</td>
                                         </tr>
                                         <tr>
-                                            <td className="fw-medium">Age/ Gender</td>
-                                            <td>{data.age} / {data.gender}</td>
+                                            <td className="fw-medium">Gender</td>
+                                            <td>{data.gender}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium">Qualification</td>
@@ -174,7 +174,7 @@ const CandidateDetails = () => {
                                             </tr>
                                             <tr>
                                                 <td className="fw-medium">Experience</td>
-                                                <td>{exp.total_experience}</td>
+                                                <td>{`${exp.total_experience} year`}</td>
                                             </tr>
                                             <tr>
                                                 <td className="fw-medium">Product</td>
