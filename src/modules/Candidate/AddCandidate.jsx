@@ -260,7 +260,7 @@ const AddCandidate = () => {
                                     {formData.candidate_id &&
                                         <InputField label="Candidate ID" value={formData.candidate_id} readOnly />
                                     }
-                                    <InputField name="pan_no" label="PAN No." value={formData.pan_no} required onChange={handleInputChange} />
+                                    <InputField name="pan_no" label="PAN No." value={formData.pan_no} required onChange={handleInputChange} className="form-control text-uppercase" />
                                     <ReactSelectField name="employment_status" value={selectedDropDownData.employment_status} options={dropDownData.employment_status} onChange={(e) => handleInputChange(e, 'employment_status')} />
                                     {formData.last_updated &&
                                         <InputField label="Last Updated" value={formData.last_updated} readOnly />
@@ -273,7 +273,7 @@ const AddCandidate = () => {
                             <div className="card-body">
                                 <h5 className="card-title mb-3">Personal Information</h5>
                                 <div className="row g-4">
-                                    <InputField name="name" value={formData.name} required onChange={handleInputChange} error="Please enter name." />
+                                    <InputField name="name" value={formData.name} required onChange={handleInputChange} error="Please enter name." className="form-control text-uppercase" />
                                     <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6">
                                         <div>
                                             <label htmlFor="date_of_birth" className="form-label">Date of Birth</label>
