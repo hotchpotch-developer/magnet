@@ -288,8 +288,8 @@ const AddCandidate = () => {
                                     <InputField name="alternate_email" label="Alternate E-Mail" value={formData.alternate_email} onChange={handleInputChange} />
                                     <ReactSelectField name="current_state" value={selectedDropDownData.current_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'current_state')} />
                                     <ReactSelectField name="current_location" id="current_location" value={selectedDropDownData.current_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'current_location')} />
-                                    <ReactSelectField name="preferred_state" isMulti label="Preferred States" value={selectedDropDownData.preferred_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'preferred_state')} />
-                                    <ReactSelectField name="preferred_location" id="preferred_location" label="Preferred Locations" isMulti value={selectedDropDownData.preferred_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'preferred_location')} />
+                                    <ReactSelectField name="preferred_state[]" id="preferred_state" isMulti label="Preferred States" value={selectedDropDownData.preferred_state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'preferred_state')} />
+                                    <ReactSelectField name="preferred_location[]" id="preferred_location" label="Preferred Locations" isMulti value={selectedDropDownData.preferred_location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'preferred_location')} />
 
                                 </div>
                             </div>
