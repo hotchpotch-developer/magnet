@@ -58,7 +58,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                     <div className="col-xxl-3 col-md-6 my-3">
                         <div className="">
                             <span className="form-label">Experience Type</span>
-                            <div className="row">
+                            <div className="row mt-3">
                                 <div className="col-6">
                                     <label className="form-label" htmlFor="previous">Previous</label>
                                     <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="previous" id="previous" checked={experienceType === "previous"} onChange={(e) => setExperienceType(e.target.value)} />
