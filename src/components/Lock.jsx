@@ -11,6 +11,13 @@ function Lock() {
     const [isLocked, setIsLocked] = useState(localStorage.getItem('screenLock') ?? false);
     const tabIdleThreshold = 15 * 60 * 1000; // time seconds in milliseconds
 
+
+    const changeHandler = (e) => {
+        if (e.keyCode === 13) {
+            submitForm(e)
+        }
+    }
+
     let tabIdleTimer;
 
     const resetTabIdleTimer = () => {
@@ -100,7 +107,7 @@ function Lock() {
                             <div className="row gy-4">
                                 <div className="col-md-12">
                                     <label htmlFor="lock_password" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="lock_password" name="password" required />
+                                    <input type="password" className="form-control" id="lock_password" name="password" required onKeyUp={(e) => changeHandler(e)} />
                                     <div className="invalid-feedback">Please Enter Password.</div>
                                 </div>
                             </div>
