@@ -7,6 +7,7 @@ import { InputField } from "../../../components/FormHelper";
 const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
     const [designation, setDesignation] = useState("")
     const [current_ctc, setCurrent_ctc] = useState("")
+    const [experienceType, setExperienceType] = useState("current")
 
     const [selectedDropDownData, setSelectedDropDownData] = useState(null)
 
@@ -24,6 +25,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
             })
             setDesignation(formdata.designation)
             setCurrent_ctc(formdata.current_ctc)
+            setExperienceType(formdata.experience_type)
         } else {
             setSelectedDropDownData({
                 [`experience[${index}]industry`]: null,
@@ -35,6 +37,9 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                 [`experience[${index}]product`]: null,
                 [`experience[${index}]total_experience`]: null,
             })
+            setDesignation("")
+            setCurrent_ctc("")
+            setExperienceType("current")
         }
         // eslint-disable-next-line
     }, [formdata])
@@ -50,6 +55,21 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
         <div className="card mt-2">
             <div className="card-body">
                 <div className="row">
+                    <div className="col-xxl-3 col-md-6 my-3">
+                        <div className="">
+                            <span className="form-label">Experience Type</span>
+                            <div className="row">
+                                <div className="col-6">
+                                    <label className="form-label" htmlFor="previous">Previous</label>
+                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="previous" id="previous" checked={experienceType === "previous"} onChange={(e) => setExperienceType(e.target.value)} />
+                                </div>
+                                <div className="col-6">
+                                    <label className="form-label" htmlFor="current">Current</label>
+                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="current" id="current" checked={experienceType === "current"} onChange={(e) => setExperienceType(e.target.value)} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {selectedDropDownData && <>
                         <ReactSelectField index={index} name={`industry`} value={selectedDropDownData[`experience[${index}]industry`]} options={dropDownData.industry} onChange={(e) => handleInputChange(e, `experience[${index}]industry`)} />
                         <ReactSelectField index={index} name={`company`} isMulti value={selectedDropDownData[`experience[${index}]company`]} options={dropDownData.company} onChange={(e) => handleInputChange(e, `experience[${index}]company`)} />
