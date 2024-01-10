@@ -17,8 +17,9 @@ const CandidateList = () => {
     }, [query])
 
     const exportCandidate = () => {
+        let date = new Date().toJSON().slice(0, 10);
         fetchData(CANDIDATE_EXPORT, "GET", "", true, false, (file) => {
-            downloadFile(file, `Candidate-List-${new Date()}`)
+            downloadFile(file, `Candidate-List-${date}`)
         }, false, 'blob')
     }
 

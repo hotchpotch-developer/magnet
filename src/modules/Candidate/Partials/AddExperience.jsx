@@ -80,7 +80,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                         <ReactSelectField index={index} name={`level`} value={selectedDropDownData[`experience[${index}]level`]} options={dropDownData.level} onChange={(e) => handleInputChange(e, `experience[${index}]level`)} />
                         <ReactSelectField index={index} name={`product`} value={selectedDropDownData[`experience[${index}]product`]} options={dropDownData.product} onChange={(e) => handleInputChange(e, `experience[${index}]product`)} />
                         <ReactSelectField index={index} name={`total_experience`} value={selectedDropDownData[`experience[${index}]total_experience`]} options={dropDownData.experience} onChange={(e) => handleInputChange(e, `experience[${index}]total_experience`)} />
-                        <InputField align="mt-3" type="number" name={`experience[${index}][current_ctc]`} id={`current_ctc_${index}`} label="Current CTC" value={current_ctc} onChange={(e) => setCurrent_ctc(e.target.value)} error="Please enter current ctc." />
+                        <InputField align="mt-3" type="number" name={`experience[${index}][current_ctc]`} id={`current_ctc_${index}`} label="CTC" value={current_ctc} onChange={(e) => setCurrent_ctc(e.target.value)} error="Please enter current ctc." />
                     </>}
                     <div className="col-lg-12">
                         <div className="hstack justify-content-end gap-2">
