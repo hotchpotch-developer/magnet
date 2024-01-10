@@ -18,7 +18,7 @@ const CandidateList = () => {
 
     const exportCandidate = () => {
         fetchData(CANDIDATE_EXPORT, "GET", "", true, false, (file) => {
-            downloadFile(file, `team`)
+            downloadFile(file, `Candidate-List-${new Date()}`)
         }, false, 'blob')
     }
 
