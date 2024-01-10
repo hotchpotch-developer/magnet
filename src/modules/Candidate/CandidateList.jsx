@@ -5,6 +5,7 @@ import { downloadFile, fetchData } from "../../components/Helper";
 import CandidateItem from "./Partials/CandidateItem";
 import Filter from "../../components/Filter";
 import NoRecord from "../../components/NoRecord";
+import moment from "moment";
 
 const CandidateList = () => {
     const [candidates, setCandidates] = useState(false)
@@ -17,9 +18,9 @@ const CandidateList = () => {
     }, [query])
 
     const exportCandidate = () => {
-        let date = new Date().toJSON().slice(0, 10);
+        let date = moment().format('DDMMYYYY');
         fetchData(CANDIDATE_EXPORT, "GET", "", true, false, (file) => {
-            downloadFile(file, `Candidate-List-${date}`)
+            downloadFile(file, `CandidateList-${date}`)
         }, false, 'blob')
     }
 
