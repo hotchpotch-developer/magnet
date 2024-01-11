@@ -3,7 +3,7 @@ import { InputField } from '../../components/FormHelper';
 import * as Elements from "../../components/Elements";
 import { useEffect, useState } from 'react';
 import { COMMON_DROPDOWN, CREATE_CANDIDATE, DELETE_CANDIDATE, EDIT_CANDIDATE } from '../../components/APIRoutes';
-import { fetchData, initialFormState, validateForm } from '../../components/Helper';
+import { fetchData, initialFormState, showAlertMsg, validateForm } from '../../components/Helper';
 import { useLocation, useNavigate } from 'react-router-dom';
 import _, { lowerCase, startCase } from 'lodash';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -218,11 +218,20 @@ const AddCandidate = () => {
         if (document.getElementById(`designation_0`)) document.getElementById(`designation_0`).setAttribute('required', 'true')
         if (document.getElementById(`designation_1`)) document.getElementById(`designation_1`).setAttribute('required', 'true')
 
+        let current_exp_0 = document.getElementById(`current_0`);
+        let current_exp_1 = document.getElementById(`current_1`);
+
+        if (current_exp_0 && current_exp_1 && current_exp_0.checked && current_exp_1.checked){
+            showAlertMsg({ error: "Your both experience are currunt so please make one as a previous experience." })
+            return
+        }
+
         if (validateForm(e, 'candidate-form')) {
             if (popup) setLoading1(true)
             else setLoading(true)
             let formdata = new FormData(document.getElementById('candidate-form'));
             formdata.append('id', formData.id);
+            formdata.append('additional_information', additionalInfo);
 
             fetchData(formData.id ? EDIT_CANDIDATE : CREATE_CANDIDATE, 'POST', formdata, true, true, (res) => {
                 if (popup) setLoading1(false)

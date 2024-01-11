@@ -60,12 +60,12 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                             <span className="form-label">Experience Type</span>
                             <div className="row mt-3">
                                 <div className="col-6">
-                                    <label className="form-label" htmlFor="previous">Previous</label>
-                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="previous" id="previous" checked={experienceType === "previous"} onChange={(e) => setExperienceType(e.target.value)} />
+                                    <label className="form-label" htmlFor={`previous_${index}`}>Previous</label>
+                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="previous" id={`previous_${index}`} checked={experienceType === "previous"} onChange={(e) => setExperienceType(e.target.value)} />
                                 </div>
                                 <div className="col-6">
-                                    <label className="form-label" htmlFor="current">Current</label>
-                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="current" id="current" checked={experienceType === "current"} onChange={(e) => setExperienceType(e.target.value)} />
+                                    <label className="form-label" htmlFor={`current_${index}`}>Current</label>
+                                    <input type="radio" className="ms-2 mt-2" name={`experience[${index}][experience_type]`} value="current" id={`current_${index}`} checked={experienceType === "current"} onChange={(e) => setExperienceType(e.target.value)} />
                                 </div>
                             </div>
                         </div>
