@@ -84,7 +84,7 @@ const CandidateDetails = () => {
                 <div className="row">
                     <div className="card">
                         <div className="card-header">
-                            <h5 className="mb-0">Personal Information</h5>
+                            <h3 className="mb-0 fw-bold">Personal Information</h3>
                         </div>
                         <div className="card-body">
                             <div className="table-responsive table-card">
@@ -171,8 +171,10 @@ const CandidateDetails = () => {
                 {data?.additional_information &&
                     <div className="row">
                         <div className="card">
+                            <div className="card-header">
+                                <h3 className="mb-0 fw-bold">Additional Information</h3>
+                            </div>
                             <div className="card-body">
-                                <h5 className="card-title mb-3">Additional Information</h5>
                                 <div dangerouslySetInnerHTML={{ __html: data.additional_information }}></div>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ const AddExperience = ({ index, dropDownData, formdata, remove, disabled }) => {
                 [`experience[${index}]channel`]: formdata.channel_id ?? null,
                 [`experience[${index}]level`]: formdata.level_id ?? null,
                 [`experience[${index}]product`]: formdata.product_id ?? null,
-                [`experience[${index}]total_experience`]: {value: formdata.total_experience, label: formdata.total_experience} ?? null,
+                [`experience[${index}]total_experience`]: {value: formdata.total_experience, label: formdata.total_experience +' year'} ?? null,
             })
             setDesignation(formdata.designation)
             setCurrent_ctc(formdata.current_ctc)
