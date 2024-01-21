@@ -168,18 +168,7 @@ const CandidateDetails = () => {
                         </div>
                     </div>
                 </div>
-                {data?.additional_information &&
-                    <div className="row">
-                        <div className="card">
-                            <div className="card-header">
-                                <h3 className="mb-0 fw-bold">Additional Information</h3>
-                            </div>
-                            <div className="card-body">
-                                <div dangerouslySetInnerHTML={{ __html: data.additional_information }}></div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                
                 {data.candidate_experience?.length > 0 &&
                     <div className="row">
                         <div className="card" >
@@ -243,6 +232,18 @@ const CandidateDetails = () => {
                                     </div>
                                 )
                             })}
+                        </div>
+                    </div>
+                }
+                {data?.additional_information &&
+                    <div className="row">
+                        <div className="card">
+                            <div className="card-header">
+                                <h3 className="mb-0 fw-bold">Additional Information</h3>
+                            </div>
+                            <div className="card-body">
+                                <div dangerouslySetInnerHTML={{ __html: data.additional_information }}></div>
+                            </div>
                         </div>
                     </div>
                 }
