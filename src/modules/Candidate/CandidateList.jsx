@@ -10,6 +10,7 @@ import moment from "moment";
 const CandidateList = () => {
     const [candidates, setCandidates] = useState(false)
     const [query, setQuery] = useState("")
+    const [ids, setIds] = useState([])
 
     useEffect(() => {
         fetchData(`${CANDIDATE_LIST}?${query}`, 'GET', '', true, false, (res) => {
@@ -19,7 +20,7 @@ const CandidateList = () => {
 
     const exportCandidate = () => {
         let date = moment().format('DDMMYYYY');
-        fetchData(CANDIDATE_EXPORT, "GET", "", true, false, (file) => {
+        fetchData(`${CANDIDATE_EXPORT}?candidate_id=${ids}`, "GET", "", true, false, (file) => {
             downloadFile(file, `CandidateList-${date}`)
         }, false, 'blob')
     }
@@ -52,7 +53,7 @@ const CandidateList = () => {
                 />
                 <div className="col-xl-9 col-lg-8">
                     {candidates && candidates.data && candidates.data.length > 0 ? candidates.data.map((item, key) => {
-                        return <CandidateItem item={item} key={key} />
+                        return <CandidateItem item={item} key={key} ids={ids} setIds={setIds} />
                         })
                     :
 
