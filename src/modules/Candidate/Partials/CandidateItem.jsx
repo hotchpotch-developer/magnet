@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { dateFormat } from "../../../components/Helper";
-import { includes, pull, toInteger } from "lodash";
+import { pull, toInteger } from "lodash";
 
 const CandidateItem = ({ item, ids, setIds }) => {
     const navigate = useNavigate()
