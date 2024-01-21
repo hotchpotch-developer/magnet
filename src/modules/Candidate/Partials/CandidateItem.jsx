@@ -1,8 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { dateFormat } from "../../../components/Helper";
+import { includes, pull, toInteger } from "lodash";
 
-const CandidateItem = ({ item }) => {
+const CandidateItem = ({ item, ids, setIds }) => {
     const navigate = useNavigate()
+
+    const handleInputChange = (e) => {
+        let value = toInteger(e.target.value);
+        let newIds = e.target.checked ? [...ids, value] : pull(ids, value);
+        setIds(newIds);
+    }
 
     return (
         <>
@@ -42,6 +49,7 @@ const CandidateItem = ({ item }) => {
                                 }
                             </div>
                             <div>
+                                <input type="checkbox" name="candidate_id" value={item.id} onChange={handleInputChange} />
                                 <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
                                     <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
                                     <span className="icon-off"><i className="ri-pencil-fill fs-5"></i></span>
