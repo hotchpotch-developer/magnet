@@ -8,3 +8,7 @@
 .react-datepicker-wrapper{
     display: unset !important;
 }
+
+.vr {
+    width: 2px !important;
+}

@@ -17,25 +17,33 @@ const CandidateItem = ({ item, ids, setIds }) => {
                 <div className="card joblist-card">
                     <div className="card-body">
                         <div className="d-flex mb-4">
-                            <div className="avatar-sm">
+                            <div className="avatar-sm" style={{ width: "1.25rem" }}>
+                                <input type="checkbox" className="form-check-input" name="candidate_id" value={item.id} onChange={handleInputChange} />
+                            </div>
+                            {/* <div className="avatar-sm">
                                 <div className="avatar-title bg-light rounded">
                                     <img src="/images/slack.png" alt="" className="avatar-xxs companyLogo-img" />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="ms-3 flex-grow-1">
                                 <img src="assets/images/small/img-8.jpg" alt="" className="d-none cover-img" />
                                 <h5 className="job-title">{item.name}</h5>
                                 <div className="d-flex">
                                     {item?.candidate_experience[0] &&
-                                        <p className="company-name text-muted mb-0 me-1">
+                                        <>
+                                        <p className="company-name text-muted mb-0">
                                             <i className="ri-user-2-line me-1"></i>
                                             {item?.candidate_experience[0]?.department_id?.label}
                                         </p>
+                                        <div className="vr mx-2"></div>
+                                        </>
                                     }
-                                    <p className="company-name text-muted mb-0 me-1">
+                                    
+                                    <p className="company-name text-muted mb-0">
                                         <i className="ri-smartphone-line me-1"></i>
                                         {item?.primary_phone}
                                     </p>
+                                    <div className="vr mx-2"></div>
                                     <p className="company-name text-muted mb-0">
                                         <i className="ri-mail-line me-1"></i>
                                         {item?.primary_email}
@@ -49,7 +57,7 @@ const CandidateItem = ({ item, ids, setIds }) => {
                                 }
                             </div>
                             <div>
-                                <input type="checkbox" name="candidate_id" value={item.id} onChange={handleInputChange} />
+                                
                                 <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
                                     <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
                                     <span className="icon-off"><i className="ri-pencil-fill fs-5"></i></span>
