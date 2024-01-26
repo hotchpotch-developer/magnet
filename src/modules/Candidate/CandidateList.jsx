@@ -37,13 +37,13 @@ const CandidateList = () => {
             </div>
             <div className="row">
                 <Filter setQuery={setQuery}
-                    filterItem={['state', 'location', 'industry', 'company', 'sales_non_sales', 'department', 'channel', 'level', 'product', 'experience', 'qualification']}
+                    filterItem={['state', 'location', 'industry', 'company', 'sales_no_sales', 'department', 'channel', 'level', 'product', 'experience', 'qualification']}
                     selectFilter={[
                         { key: "state", value: "State" },
                         { key: "location", value: "Location" },
                         { key: "industry", value: "Industry" },
                         { key: "company", value: "Company" },
-                        { key: "sales_non_sales", value: "Sales/Non Sales" },
+                        { key: "sales_no_sales", value: "Sales/Non Sales" },
                         { key: "department", value: "Department" },
                         { key: "channel", value: "Channel" },
                         { key: "level", value: "Level" },
