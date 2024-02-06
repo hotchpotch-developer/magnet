@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { dateFormat } from "../../../components/Helper";
 import { pull, toInteger } from "lodash";
 
 const CandidateItem = ({ item, ids, setIds }) => {
@@ -27,80 +26,184 @@ const CandidateItem = ({ item, ids, setIds }) => {
                             </div> */}
                             <div className="ms-3 flex-grow-1">
                                 <img src="assets/images/small/img-8.jpg" alt="" className="d-none cover-img" />
-                                <h5 className="job-title">{item.name}</h5>
-                                <div className="d-flex">
-                                    {item?.candidate_experience[0] &&
-                                        <>
-                                        <p className="company-name text-muted mb-0">
-                                            <i className="ri-user-2-line me-1"></i>
-                                            {item?.candidate_experience[0]?.department_id?.label}
+                                <h5 className="job-title">
+                                    <Link to="/candidate-details" state={item} className="viewjob-list">{item.name}</Link>
+                                </h5>
+                                <div className="row mt-5">
+                                    <div className="col-12 col-md-5 border-end mt-4">
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-profile-line me-1"></i>
+                                            {item?.candidate_id}
                                         </p>
-                                        <div className="vr mx-2"></div>
-                                        </>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-edit-line me-1"></i>
+                                            {item?.last_updated}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-user-4-line me-1"></i>
+                                            {`${item?.dob} / ${item?.gender}`}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-article-line me-1"></i>
+                                            {item?.high_qualification_id?.label}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-smartphone-line me-1"></i>
+                                            {item?.primary_phone}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-mail-line me-1"></i>
+                                            {item?.primary_email}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-map-pin-user-line me-1"></i>
+                                            {item?.current_location?.label}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-map-pin-range-line me-1"></i>
+                                            {item?.current_state?.label}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-pin-distance-line me-1"></i>
+                                            {item.preferred_location && item.preferred_location.map((value, key) => {
+                                                return (
+                                                    <span className="badge border badge-primary text-info rounded mx-1" key={key}>
+                                                        {value.label}
+                                                    </span>
+                                                )
+                                            })}
+                                        </p>
+                                        <p className="company-name text-muted mb-1">
+                                            <i className="ri-road-map-line me-1"></i>
+                                            {item.preferred_state && item.preferred_state.map((value, key) => {
+                                                return (
+                                                    <span className="badge border badge-info text-primary rounded mx-1" key={key}>
+                                                        {value.label}
+                                                    </span>
+                                                )
+                                            })}
+                                        </p>
+                                    </div>
+                                    {item?.candidate_experience &&  item.candidate_experience.length > 0 &&
+                                        item.candidate_experience.map((value, key) => {
+                                            return (
+                                                value.experience_type === 'current' ? 
+                                                    <div className="col-12 col-md-4 border-end mt-4" key={key}>
+                                                        <h5 className="mb-3">Current Employment</h5>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-building-line me-1"></i>
+                                                            {value?.industry_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-hotel-line me-1"></i>
+                                                            {value?.company_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-user-6-line me-1"></i>
+                                                            {value?.sales_non_sales_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-suitcase-line me-1"></i>
+                                                            {value?.department_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-robot-line me-1"></i>
+                                                            {value?.channel_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-asterisk me-1"></i>
+                                                            {value?.level_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-user-2-line me-1"></i>
+                                                            {`${value?.total_experience} years`}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-dropbox-line me-1"></i>
+                                                            {value?.product_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-dropbox-line me-1"></i>
+                                                            {value?.product_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-hand-coin-line me-1"></i>
+                                                            {value?.current_ctc}
+                                                        </p>
+                                                    </div>
+                                                : 
+                                                    <div className="col-12 col-md-3 mt-4" key={key}>
+                                                        <h5>Previous Employment</h5>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-building-line me-1"></i>
+                                                            {value?.industry_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-hotel-line me-1"></i>
+                                                            {value?.company_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-user-6-line me-1"></i>
+                                                            {value?.sales_non_sales_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-suitcase-line me-1"></i>
+                                                            {value?.department_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-robot-line me-1"></i>
+                                                            {value?.channel_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-asterisk me-1"></i>
+                                                            {value?.level_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-user-2-line me-1"></i>
+                                                            {`${value?.total_experience} years`}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-dropbox-line me-1"></i>
+                                                            {value?.product_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-dropbox-line me-1"></i>
+                                                            {value?.product_id?.label}
+                                                        </p>
+                                                        <p className="text-muted mb-1">
+                                                            <i className="ri-hand-coin-line me-1"></i>
+                                                            {value?.current_ctc}
+                                                        </p>
+                                                    </div>
+
+                                                
+                                            )
+                                        })
                                     }
-                                    
-                                    <p className="company-name text-muted mb-0">
-                                        <i className="ri-smartphone-line me-1"></i>
-                                        {item?.primary_phone}
-                                    </p>
-                                    <div className="vr mx-2"></div>
-                                    <p className="company-name text-muted mb-0">
-                                        <i className="ri-mail-line me-1"></i>
-                                        {item?.primary_email}
-                                    </p>
                                 </div>
-                                {item?.candidate_experience[0] &&
-                                    <p className="company-name my-2">
-                                        <i className="ri-building-line me-1"></i>
-                                        {item?.candidate_experience[0]?.company_id?.label}
-                                    </p>
+                                {item?.additional_information &&
+                                    <div className="row border-top">
+                                        <p className="text-truncate mt-3 mb-0">
+                                        <div dangerouslySetInnerHTML={{ __html: item.additional_information }}></div>
+                                        </p>
+                                    </div>
                                 }
                             </div>
                             <div>
-                                
-                                <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
+                                <button type="button" className="btn btn-outline-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
                                     <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
-                                    <span className="icon-off"><i className="ri-pencil-fill fs-5"></i></span>
                                 </button>
                             </div>
                         </div>
-                        <div>
-                            {item?.candidate_experience[0] &&
-                                <span className="badge bg-primary-subtle text-primary me-1">{item?.candidate_experience[0]?.industry_id?.label}</span>
-                            }
-                            <span className="badge bg-primary-subtle text-primary me-1">{item?.high_qualification_id?.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item?.current_state?.label}</span>
-                            <span className="badge bg-primary-subtle text-primary me-1">{item?.current_location?.label}</span>
-                        </div>
                     </div>
-                    {item?.candidate_experience[0] &&
                         <div className="card-footer border-top-dashed">
-                            <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                                <div>
-                                    <i className="ri-briefcase-2-line align-bottom me-1"></i>
-                                    <span className="job-type">{item?.candidate_experience[0]?.designation}</span>
-                                </div>
-                                <div>
-                                    <i className=" ri-user-2-line align-bottom me-1"></i>
-                                    <span className="job-experience">{item?.candidate_experience[0] ? `${item?.candidate_experience[0]?.total_experience} Year` : ''}</span>
-                                </div>
-                                <div>
-                                    <i className="ri-map-pin-2-line align-bottom me-1"></i>
-                                    <span className="fs-12 mx-1">{item?.preferred_location?.label}</span>
-                                </div>
-                                <div>
-                                    <i className="ri-user-3-line align-bottom me-1"></i> {item?.candidate_experience[0]?.current_ctc}
-                                </div>
-                                <div className="d-none">
-                                    <i className="ri-time-line align-bottom me-1"></i>
-                                    <span className="job-postdate">{item.created_at ? dateFormat(item.created_at) : ''}</span>
-                                </div>
+                            <div className="d-flex justify-content-end align-items-center flex-wrap gap-3">
+                                
                                 <div>
                                     <Link to="/candidate-details" state={item} className="btn btn-primary viewjob-list">View More <i className="ri-arrow-right-line align-bottom ms-1"></i></Link>
                                 </div>
                             </div>
                         </div>
-                    }
                 </div>
             </div>
         </>
