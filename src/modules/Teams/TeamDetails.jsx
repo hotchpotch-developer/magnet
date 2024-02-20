@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
 import { dateFormat, downloadBase64File, srcToBase64 } from "../../components/Helper";
@@ -7,6 +7,7 @@ import _ from "lodash";
 const TeamDetails = () => {
     const ASSET_URL = process.env.REACT_APP_ASSET_URL
     const location = useLocation();
+    const navigate = useNavigate();
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -59,6 +60,10 @@ const downloadFile = (e, url, name) => {
                                         <i className="ri-airplay-fill d-inline-block d-md-none"></i> <span className="d-none d-md-inline-block">Overview</span>
                                     </Link>
                                 </li>
+                                <button type="button" className="btn btn-ghost-primary btn-icon custom-toggle ms-auto" data-bs-toggle="button" onClick={() => navigate('/edit-team', { state: { team: data } })}>
+                                    <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
+                                    <span className="icon-off"><i className="ri-pencil-fill fs-5"></i></span>
+                                </button>
                                 {/* <li className="nav-item">
                                     <Link className="nav-link fs-14" data-bs-toggle="tab" to="#activities" role="tab">
                                         <i className="ri-list-unordered d-inline-block d-md-none"></i> <span className="d-none d-md-inline-block">Activities</span>
