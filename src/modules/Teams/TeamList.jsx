@@ -95,9 +95,9 @@ const TeamList = () => {
                                 <button type="button" className="btn btn-sm btn-soft-warning" data-bs-target="#assignPermission" data-bs-toggle="modal" onClick={() => editAssignPermission(records)} title="Assign Permission">
                                     <i className="ri-user-star-fill fs-5"></i>
                                 </button>
-                                <button type="button" className="btn btn-sm btn-soft-success ms-2" title="Edit" onClick={() => editTeam(records)}>
+                                {/* <button type="button" className="btn btn-sm btn-soft-success ms-2" title="Edit" onClick={() => editTeam(records)}>
                                     <i className="ri-pencil-fill fs-5"></i>
-                                </button>
+                                </button> */}
                                 <button type="button" className="btn btn-sm btn-soft-primary ms-2" title="View Profile" onClick={() => viewProfile(records)}>
                                     <i className="ri-eye-fill fs-5"></i>
                                 </button>
@@ -128,9 +128,9 @@ const TeamList = () => {
         }
     });
 
-    const editTeam = (data) => {
-        navigate('/edit-team', { state: { team: data } });
-    }
+    // const editTeam = (data) => {
+    //     navigate('/edit-team', { state: { team: data } });
+    // }
 
     const viewCalender = (data) => {
         navigate('/view-calender', { state: { team: data } });
