@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { pull, toInteger } from "lodash";
 
 const CandidateItem = ({ item, ids, setIds }) => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const handleInputChange = (e) => {
         let value = toInteger(e.target.value);
@@ -190,9 +190,9 @@ const CandidateItem = ({ item, ids, setIds }) => {
                                 }
                             </div>
                             <div>
-                                <button type="button" className="btn btn-outline-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
+                                {/* <button type="button" className="btn btn-outline-primary btn-icon custom-toggle" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: item })}>
                                     <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

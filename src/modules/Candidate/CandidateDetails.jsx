@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { useEffect, useState } from "react";
 import { dateFormat } from "../../components/Helper";
@@ -6,6 +6,7 @@ import _ from "lodash";
 
 const CandidateDetails = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const ASSET_URL = process.env.REACT_APP_ASSET_URL
     const [data, setData] = useState(false)
 
@@ -73,6 +74,10 @@ const CandidateDetails = () => {
                                             {data?.resume_file &&
                                                 <a href={ASSET_URL + data?.resume_file} target="_blanks" className="badge bg-primary" title="Resume File"><i className="ri-file-line fs-3"></i></a>
                                             }
+                                            <button type="button" className="btn btn-primary btn-icon custom-toggle ms-auto" data-bs-toggle="button" onClick={() => navigate('/edit-candidate', { state: data })}>
+                                                <span className="icon-on"><i className="ri-pencil-fill fs-5"></i></span>
+                                                <span className="icon-off"><i className="ri-pencil-fill fs-5"></i></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
