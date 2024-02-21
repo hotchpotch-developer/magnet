@@ -19,11 +19,11 @@ const CandidateItem = ({ item, ids, setIds }) => {
                             <div className="avatar-sm" style={{ width: "1.25rem" }}>
                                 <input type="checkbox" className="form-check-input" name="candidate_id" value={item.id} onChange={handleInputChange} />
                             </div>
-                            {/* <div className="avatar-sm">
+                            <div className="avatar-sm">
                                 <div className="avatar-title bg-light rounded">
                                     <img src="/images/slack.png" alt="" className="avatar-xxs companyLogo-img" />
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="ms-3 flex-grow-1">
                                 <img src="assets/images/small/img-8.jpg" alt="" className="d-none cover-img" />
                                 <h5 className="job-title">
