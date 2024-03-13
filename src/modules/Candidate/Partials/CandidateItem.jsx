@@ -3,6 +3,7 @@ import { pull, toInteger } from "lodash";
 
 const CandidateItem = ({ item, ids, setIds }) => {
     // const navigate = useNavigate()
+    const ASSET_URL = process.env.REACT_APP_ASSET_URL
 
     const handleInputChange = (e) => {
         let value = toInteger(e.target.value);
@@ -51,6 +52,12 @@ const CandidateItem = ({ item, ids, setIds }) => {
                                             <i className="ri-smartphone-line me-1"></i>
                                             {item?.primary_phone}
                                         </p>
+                                        {item?.alternate_mobile &&
+                                            <p className="company-name text-muted mb-1">
+                                                <i className="ri-smartphone-line me-1"></i>
+                                                {item?.alternate_mobile}
+                                            </p>
+                                        }
                                         <p className="company-name text-muted mb-1">
                                             <i className="ri-mail-line me-1"></i>
                                             {item?.primary_email}
@@ -197,8 +204,12 @@ const CandidateItem = ({ item, ids, setIds }) => {
                         </div>
                     </div>
                         <div className="card-footer border-top-dashed">
-                            <div className="d-flex justify-content-end align-items-center flex-wrap gap-3">
-                                
+                            <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                <div>
+                                    {item?.resume_file &&
+                                        <a href={ASSET_URL + item?.resume_file} target="_blanks" className="btn btn-primary" title="Resume File">Resume <i className="ri-file-line"></i></a>
+                                    }
+                                </div>
                                 <div>
                                     <Link to="/candidate-details" state={item} className="btn btn-primary viewjob-list">View More <i className="ri-arrow-right-line align-bottom ms-1"></i></Link>
                                 </div>
