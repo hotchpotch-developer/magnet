@@ -19,13 +19,12 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
     let headers = {
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'X-Requested-With': 'XMLHttpRequest'
     }
 
     if (process) {
-        headers = { ...headers, 'contentType': false, 'processData': false, mode: 'cors' }
+        headers = { ...headers, 'contentType': false, 'processData': false }
     } else {
-        headers = { ...headers, 'Content-Type': 'application/json', mode: 'cors' }
+        headers = { ...headers, 'Content-Type': 'application/json'}
     }
 
     if (token) {
