@@ -18,13 +18,14 @@ export const fetchData = async (url, method, data, token, process, res, abort_si
     }
     let headers = {
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'X-Requested-With': 'XMLHttpRequest'
     }
 
     if (process) {
-        headers = { ...headers, 'contentType': false, 'processData': false }
+        headers = { ...headers, 'contentType': false, 'processData': false, mode: 'cors' }
     } else {
-        headers = { ...headers, 'Content-Type': 'application/json' }
+        headers = { ...headers, 'Content-Type': 'application/json', mode: 'cors' }
     }
 
     if (token) {
