@@ -75,7 +75,7 @@ const ContactDetails = () => {
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Official Mail Id.</td>
-                                            <td>{data.mail}</td>
+                                            <td>{data.email}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Industry</td>
@@ -83,7 +83,7 @@ const ContactDetails = () => {
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Company Name</td>
-                                            <td>{data.company && data.company.label}</td>
+                                            <td>{data.company}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Sales/Non-Sales</td>
@@ -107,7 +107,7 @@ const ContactDetails = () => {
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Location</td>
-                                            <td>{data.location && data.location.label}</td>
+                                            <td>{data.location}</td>
                                         </tr>
                                         <tr>
                                             <td className="fw-medium w-50">Branch Address</td>

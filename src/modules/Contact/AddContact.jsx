@@ -17,9 +17,9 @@ const AddContact = () => {
 
     const commonDropdown = [
         { key: "state", value: "state" },
-        { key: "location", value: "location" },
+        // { key: "location", value: "location" },
         { key: "industry", value: "industry" },
-        { key: "company", value: "company" },
+        // { key: "company", value: "company" },
         { key: "sales_non_sales", value: "sales_no_sales" },
         { key: "department", value: "department" },
         { key: "channel", value: "channel" },
@@ -27,9 +27,9 @@ const AddContact = () => {
 
     const [dropDownData, setDropDownData] = useState({
         state: [],
-        location: [],
+        // location: [],
         industry: [],
-        company: [],
+        // company: [],
         sales_non_sales: [],
         department: [],
         channel: [],
@@ -37,9 +37,9 @@ const AddContact = () => {
 
     const [selectedDropDownData, setSelectedDropDownData] = useState({
         state: null,
-        location: null,
+        // location: null,
         industry: null,
-        company: null,
+        // company: null,
         sales_non_sales: null,
         department: null,
         channel: null,
@@ -50,6 +50,8 @@ const AddContact = () => {
         email: '',
         contact_no: '',
         alternate_contact_no: '',
+        company: '',
+        location: '',
         address: '',
         designation: '',
         reporting_manager_name: '',
@@ -66,6 +68,8 @@ const AddContact = () => {
                 name: contact.name,
                 email: contact.email,
                 contact_no: contact.contact_no,
+                company: contact.company,
+                location: contact.location,
                 alternate_contact_no: contact.alternate_contact_no,
                 address: contact.address,
                 designation: contact.designation,
@@ -80,6 +84,8 @@ const AddContact = () => {
                 name: '',
                 email: '',
                 contact_no: '',
+                company: '',
+                location: '',
                 alternate_contact_no: '',
                 address: '',
                 designation: '',
@@ -102,9 +108,9 @@ const AddContact = () => {
                         let contact = location.state;
                         setSelectedDropDownData({
                             state: contact.state_name ?? null,
-                            location: contact.location ?? null,
+                            // location: contact.location ?? null,
                             industry: contact.industry ?? null,
-                            company: contact.company ?? null,
+                            // company: contact.company ?? null,
                             sales_non_sales: contact.sales_non ?? null,
                             department: contact.department ?? null,
                             channel: contact.channel ?? null,
@@ -112,9 +118,9 @@ const AddContact = () => {
                     } else {
                         setSelectedDropDownData({
                             state: null,
-                            location: null,
+                            // location: null,
                             industry: null,
-                            company: null,
+                            // company: null,
                             sales_non_sales: null,
                             department: null,
                             channel: null,
@@ -177,13 +183,15 @@ const AddContact = () => {
                                     <InputField name="alternate_contact_no" label="Alternate Contact No." type="number" value={formData.alternate_contact_no} onChange={handleInputChange} error="Please enter a valid phone number" pattern="[6789][0-9]{9}" />
                                     <InputField name="email" label="Official Mail Id." value={formData.email} required onChange={handleInputChange} />
                                     <ReactSelectField name="industry" value={selectedDropDownData.industry} options={dropDownData.industry} onChange={(e) => handleInputChange(e, 'industry')} />
-                                    <ReactSelectField name="company" label="Company Name" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} />
+                                    <InputField name="company" label="Company Name" value={formData.company} required onChange={handleInputChange} />
+                                    {/* <ReactSelectField name="company" label="Company Name" value={selectedDropDownData.company} options={dropDownData.company} onChange={(e) => handleInputChange(e, 'company')} /> */}
                                     <ReactSelectField name="sales_non_sales" label="Sales/Non-Sales" value={selectedDropDownData.sales_non_sales} options={dropDownData.sales_non_sales} onChange={(e) => handleInputChange(e, 'sales_non_sales')} />
                                     <ReactSelectField name="department" value={selectedDropDownData.department} options={dropDownData.department} onChange={(e) => handleInputChange(e, 'department')} />
                                     <ReactSelectField name="channel" value={selectedDropDownData.channel} options={dropDownData.channel} onChange={(e) => handleInputChange(e, 'channel')} />
                                     <InputField name="designation" label="Designation" value={formData.designation} required onChange={handleInputChange} />
                                     <ReactSelectField name="state" value={selectedDropDownData.state} options={dropDownData.state} onChange={(e) => handleInputChange(e, 'state')} />
-                                    <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} />
+                                    {/* <ReactSelectField name="location" id="location" value={selectedDropDownData.location} options={dropDownData.location} onChange={(e) => handleInputChange(e, 'location')} /> */}
+                                    <InputField name="location" label="Location" value={formData.location} required onChange={handleInputChange} />
                                     <InputField name="address" label="Branch Address" value={formData.address} required onChange={handleInputChange} />
                                     <InputField name="reporting_manager_name" label="Reporting Manager Name" value={formData.reporting_manager_name} onChange={handleInputChange} />
                                     <InputField name="reporting_contact_no" label="Reporting Contact No." value={formData.reporting_contact_no} onChange={handleInputChange} />

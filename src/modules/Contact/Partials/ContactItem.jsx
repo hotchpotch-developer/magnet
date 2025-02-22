@@ -30,7 +30,7 @@ const ContactItem = ({ item }) => {
                                 </div>
                                 <p className="company-name my-2">
                                     <i className=" ri-building-line me-1"></i>
-                                    {item.company && item.company.label}
+                                    {item.company}
                                 </p>
                                 
                             </div>
@@ -48,7 +48,7 @@ const ContactItem = ({ item }) => {
                     <div className="card-footer border-top-dashed">
                         <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
                             <div>
-                                <i className="ri-map-pin-2-line align-bottom me-1"></i>{item.address}, {item.location && item.location.label}, {item.state_name && item.state_name.label}
+                                <i className="ri-map-pin-2-line align-bottom me-1"></i>{item.address}, {item.location}, {item.state_name && item.state_name.label}
                             </div>
                             <div>
                                 <i className="ri-building-4-line align-bottom me-1"></i>
